@@ -41,8 +41,8 @@ input[type="email"]:focus {
   outline: none;
 }
 
-input[type="submit"] {
-  border-radius: 0.7em;
+input[type="submit"], input[type="image"] {
+  border-radius: 0.6em;
   margin-top: 0.6em;
   cursor: pointer;
   background: #ffffff;
@@ -51,7 +51,7 @@ input[type="submit"] {
   padding: 13px 20px;
 }
 
-.w-100 input[type="submit"] {
+.w-100 input[type="submit"], .w-100 input[type="image"] {
   width: 100%;
   display: block;
 }
@@ -60,7 +60,7 @@ input[type="submit"] {
   width: 100%;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, input[type="image"]:hover {
   background: #f0f0f0;
 }
 
@@ -107,6 +107,10 @@ input[type="submit"]:hover {
 
 .center-text{
   text-align: center;
+}
+
+.justify-text{
+  text-align: justify;
 }
 
 .row{
@@ -174,22 +178,35 @@ input[type="submit"]:hover {
   padding-right: 0.7em;
 }
 
-.headerBtn input[type="submit"]:hover{
+.headerBtn input[type="image"]{
+  margin: 0;
+  background: #f6f6f6;
+  border-width: 0px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.headerBtn input[type="submit"]:hover, .headerBtn input[type="image"]:hover{
   background: #e0e0e0;
 }
 
-.headerBtn input[type="submit"].right{
-  border-radius: 0em 1em 1em 0em;
-  padding-right: 0.9em;
+.arrow {
+  background-color: #000;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
 }
 
-.headerBtn input[type="submit"].middle{
-  border-radius: 0em;
-  border-left: 0em;
-  border-right: 0em;
+input.small-img {
+  width: 18px;
+  height: 14px;
 }
 
-.headerBtn input[type="submit"].left{
-  border-radius: 1em 0em 0em 1em;
-  padding-left: 0.9em;
+input.small-img.disabled {
+  filter: brightness(150%) contrast(70%);
+  cursor: default;
+  pointer-events: all !important;
 }

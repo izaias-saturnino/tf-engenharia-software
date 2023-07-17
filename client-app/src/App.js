@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 import logo from './images/doaresLogo.png';
+import backArrow from './images/backArrow.png';
 
 function App() {
 
@@ -129,7 +130,7 @@ function App() {
     <div className="form">
       <div className="title">Login</div>
       <form onSubmit={handleLogin}>
-        <div className="center-text gray-text pb-1">
+        <div className="justify-text gray-text pb-1">
           Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Acesse sua conta para começar a ajudar!
         </div>
         <div className="pt-5 px-10">
@@ -172,7 +173,7 @@ function App() {
   const selectUserType = (
     <div>
       <div className="title">Criar Conta</div>
-      <div className="center-text gray-text pb-1">
+      <div className="justify-text gray-text pb-1">
         Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Crie sua conta agora mesmo!
       </div>
       <div className="pt-5 px-10">
@@ -253,7 +254,7 @@ function App() {
     <div className="form">
       <div className="title">Criar Conta</div>
       <form onSubmit={handleRegistration}>
-        <div className="center-text gray-text pb-1">
+        <div className="justify-text gray-text pb-1">
           Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Crie sua conta agora mesmo!
         </div>
         <div className="pt-5 px-10">
@@ -299,20 +300,19 @@ function App() {
     </div>
   );
 
-  //console.log(navigation);
-
   return (
     <div className="app">
       <div className="login-form">
-        {navigation.length === 1 ? 
-          <div></div>
-        :
         <form onSubmit={clearNavigation}>
           <div className="row w-100 pb-3">
             <div className="col">
               <div className="flex-row headerBtn">
                 <div className="headerBtn flex-row">
-                <input type="submit" value="<"/>
+                {navigation.length === 1 ? 
+                  <input className="small-img disabled" type="image" src={backArrow}></input>
+                  :
+                  <input className="small-img" type="image" src={backArrow}></input>
+                }
                 </div>
               </div>
             </div>
@@ -325,7 +325,6 @@ function App() {
             </div> */}
           </div>
         </form>
-        }
         {page === "login" ? login : <div></div>}
         {page === "selectUserType" ? selectUserType : <div></div>}
         {page === "registration" ? registration : <div></div>}
