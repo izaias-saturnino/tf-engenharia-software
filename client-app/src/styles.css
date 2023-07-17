@@ -1,0 +1,195 @@
+body *{
+  font-size: 18px;
+  font-family: sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.app {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background-color: #f8f9fd;
+}
+
+input {
+  font-size: 1em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  height: 25px;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+  color: rgb(0.4, 0.4, 0.4);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  outline: none;
+}
+
+input[type="submit"] {
+  border-radius: 0.7em;
+  margin-top: 0.6em;
+  cursor: pointer;
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000;
+  padding: 13px 20px;
+}
+
+.w-100 input[type="submit"] {
+  width: 100%;
+  display: block;
+}
+
+.w-100{
+  width: 100%;
+}
+
+input[type="submit"]:hover {
+  background: #f0f0f0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  max-width: min(80vw, 18em);
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-container {
+  display: flex;
+}
+
+.error {
+  color: red;
+  font-size: .8em;
+}
+
+.title {
+  font-size: 1.75em;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0px 10px 0px;
+}
+
+.center-content{
+  justify-content: center;
+}
+
+.right-content{
+  justify-content: right;
+}
+
+.center-text{
+  text-align: center;
+}
+
+.row{
+  display: table;
+}
+
+.col{
+  display: table-cell;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.flex{
+  display: flex;
+}
+
+.block{
+  display: block;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.gray-text{
+  color: gray;
+}
+
+.pb-1{
+  padding-bottom: 0.2em;
+}
+
+.pb-3{
+  padding-bottom: 0.6em;
+}
+
+.pb-5{
+  padding-bottom: 1em;
+}
+
+.py-5{
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.pt-5{
+  padding-top: 1em;
+}
+
+.px-10{
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.headerBtn input[type="submit"]{
+  margin: 0;
+  background: #f6f6f6;
+  border-width: 0px;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+}
+
+.headerBtn input[type="submit"]:hover{
+  background: #e0e0e0;
+}
+
+.headerBtn input[type="submit"].right{
+  border-radius: 0em 1em 1em 0em;
+  padding-right: 0.9em;
+}
+
+.headerBtn input[type="submit"].middle{
+  border-radius: 0em;
+  border-left: 0em;
+  border-right: 0em;
+}
+
+.headerBtn input[type="submit"].left{
+  border-radius: 1em 0em 0em 1em;
+  padding-left: 0.9em;
+}
