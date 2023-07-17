@@ -1,2 +1,2 @@
 # tf-engenharia-software
-Trabalho de Engenharia de Software referente ao curso de graduação em ciência da computação na UFRGS, realizado no semestre 2023/1.
+Trabalho da disciplina de Engenharia de Software da UFRGS referente ao semestre 2023/1 e ao curso de graduação em ciência da computação.
