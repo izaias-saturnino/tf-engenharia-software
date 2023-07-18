@@ -301,7 +301,7 @@ function App() {
   );
 
   return (
-    <div className="app">
+    <div className="app p-20">
       <div className="login-form">
         <form onSubmit={clearNavigation}>
           <div className="row w-100 pb-3">

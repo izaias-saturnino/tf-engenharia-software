@@ -168,6 +168,10 @@ input[type="submit"]:hover, input[type="image"]:hover {
   padding-right: 2em;
 }
 
+.p-20{
+  padding: 4em;
+}
+
 .headerBtn input[type="submit"]{
   margin: 0;
   background: #f6f6f6;
