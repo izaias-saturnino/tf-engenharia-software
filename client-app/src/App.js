@@ -46,14 +46,14 @@ function App() {
 
   const clearNavigation = (event) => {
     event.preventDefault();
-    if(isLoggedIn){
-      setNavigation(["home"]);
-      setPage("home");
-    }
-    else{
+    //if(isLoggedIn){
+    //  setNavigation(["home"]);
+    //  setPage("home");
+    //}
+    //else{
       setNavigation(["login"]);
       setPage("login");
-    }
+    //}
   }
 
   function logout(){
@@ -73,9 +73,9 @@ function App() {
   const handleLogin = (event) => {
     event.preventDefault();
 
-    var { email, pass } = document.forms[0];
+    var { email, pass } = document.forms[1];
 
-    let uri = 'https://luis-felipe-de-freitas-marques.sa-1.sharedwithexpose.com/API/SignIn';
+    let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/SignIn';
 
     const item = {
       emailAddress: email.value,
@@ -99,7 +99,7 @@ function App() {
         return resp.json();
       })
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         if(resp_ok){
           setUsername(email.value);
           setisLoggedIn(true);
@@ -205,7 +205,7 @@ function App() {
 
     var user_type = utype === "doador" ? "donor" : "kitchen";
 
-    let uri = 'https://luis-felipe-de-freitas-marques.sa-1.sharedwithexpose.com/API/SignUp/'+user_type;
+    let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/SignUp/'+user_type;
 
     const item = {
       emailAddress: email.value,
@@ -231,7 +231,7 @@ function App() {
         return resp.json();
       })
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         if(resp_ok){
           alert("Usuário cadastrado com sucesso.");
         }else{
@@ -301,34 +301,36 @@ function App() {
   );
 
   return (
-    <div className="app p-20">
-      <div className="login-form">
-        <form onSubmit={clearNavigation}>
-          <div className="row w-100 pb-3">
-            <div className="col">
-              <div className="flex-row headerBtn">
-                <div className="headerBtn flex-row">
-                {navigation.length === 1 ? 
-                  <input className="small-img disabled" type="image" src={backArrow}></input>
-                  :
-                  <input className="small-img" type="image" src={backArrow}></input>
-                }
+    <div className="app">
+      <div className="p-10">
+        <div className="login-form">
+          <form onSubmit={clearNavigation}>
+            <div className="row w-100 pb-3">
+              <div className="col">
+                <div className="flex-row headerBtn">
+                  <div className="headerBtn flex-row">
+                  {navigation.length === 1 && navigation[0] === "login" ? 
+                    <input className="small-img disabled" type="image" src={backArrow}></input>
+                    :
+                    <input className="small-img" type="image" src={backArrow}></input>
+                  }
+                  </div>
                 </div>
               </div>
+              {/* <div className="col">
+                <div className="flex-row right-content">
+                  <div className="pb-5 headerBtn flex-row">
+                    <input type="submit" value="H"/>
+                  </div>
+                </div>
+              </div> */}
             </div>
-            {/* <div className="col">
-              <div className="flex-row right-content">
-                <div className="pb-5 headerBtn flex-row">
-                  <input type="submit" value="H"/>
-                </div>
-              </div>
-            </div> */}
-          </div>
-        </form>
-        {page === "login" ? login : <div></div>}
-        {page === "selectUserType" ? selectUserType : <div></div>}
-        {page === "registration" ? registration : <div></div>}
-        {page === "home" ? home : <div></div>}
+          </form>
+          {page === "login" ? login : <div></div>}
+          {page === "selectUserType" ? selectUserType : <div></div>}
+          {page === "registration" ? registration : <div></div>}
+          {page === "home" ? home : <div></div>}
+        </div>
       </div>
     </div>
   );

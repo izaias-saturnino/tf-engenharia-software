@@ -11,7 +11,7 @@ body *{
   justify-content: center;
   flex-direction: column;
   gap: 20px;
-  height: 100vh;
+  min-height: 100vh;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   background-color: #f8f9fd;
 }
@@ -163,13 +163,23 @@ input[type="submit"]:hover, input[type="image"]:hover {
   padding-top: 1em;
 }
 
+.p-10{
+  padding: 2em;
+}
 .px-10{
   padding-left: 2em;
   padding-right: 2em;
 }
+.py-10{
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
 
 .p-20{
   padding: 4em;
+}
+.m-20{
+  margin: 4em;
 }
 
 .headerBtn input[type="submit"]{
