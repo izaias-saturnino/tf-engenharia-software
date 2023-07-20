@@ -73,7 +73,7 @@ function App() {
   const handleLogin = (event) => {
     event.preventDefault();
 
-    var { email, pass } = document.forms[1];
+    var { email, pass } = document.getElementsByClassName("main-form")[0];
 
     let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/SignIn';
 
@@ -129,7 +129,7 @@ function App() {
   const login = (
     <div className="form">
       <div className="title">Login</div>
-      <form onSubmit={handleLogin}>
+      <form className="main-form" onSubmit={handleLogin}>
         <div className="justify-text gray-text pb-1">
           Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Acesse sua conta para começar a ajudar!
         </div>
@@ -196,7 +196,7 @@ function App() {
   const handleRegistration = (event) => {
     event.preventDefault();
 
-    var { username, address, email, pass, pass2 } = document.forms[1];
+    var { username, address, email, pass, pass2 } = document.getElementsByClassName("main-form")[0];
 
     if(pass.value !== pass2.value){
       alert("As duas senhas precisam ser iguais.");
@@ -253,7 +253,7 @@ function App() {
   const registration = (
     <div className="form">
       <div className="title">Criar Conta</div>
-      <form onSubmit={handleRegistration}>
+      <form className="main-form" onSubmit={handleRegistration}>
         <div className="justify-text gray-text pb-1">
           Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Crie sua conta agora mesmo!
         </div>
