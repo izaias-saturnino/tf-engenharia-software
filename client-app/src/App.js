@@ -15,6 +15,10 @@ function App() {
   const [navigation, setNavigation] = useState(["login"]);
   const [validatedKitchen, setValidatedKitchen] = useState(false);
 
+  function handleReqError(error){
+    alert("Serviço indisponível.");
+  }
+
   function getUtype(int){
     if(int === 1){
       return "doador";
@@ -122,8 +126,9 @@ function App() {
           }
         }
       })
-      .catch(error => console.error(error));
-
+      .catch(error => {
+        handleReqError(error);
+      });
   };
 
   const login = (
@@ -247,7 +252,9 @@ function App() {
           }
         }
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        handleReqError(error);
+      });
   };
 
   const registration = (
