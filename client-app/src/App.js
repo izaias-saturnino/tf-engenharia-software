@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import "./styles.css";
 import logo from './images/doaresLogo.png';
 import backArrow from './images/backArrow.png';
+import defaultProfilePic from './images/default-profile-picture.png';
 
 function App() {
 
@@ -327,9 +328,9 @@ function App() {
     <div className="form">
       <div className="title">Modificar Informações</div>
       <form className="main-form" onSubmit={handleModifyDonor}>
-        <div className="pt-5 px-10">
+        <div className="py-3 px-15">
           {/* colocar outra imagem */}
-          <img className="w-100" src={logo}></img>
+          <img className="w-100 rounded-border" src={defaultProfilePic}></img>
         </div>
         <div className="justify-text py-3">
           Informe seus novos dados.

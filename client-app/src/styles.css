@@ -142,6 +142,10 @@ input[type="submit"]:hover, input[type="image"]:hover {
   color: gray;
 }
 
+.rounded-border{
+  border-radius: 50%;
+}
+
 .pb-1{
   padding-bottom: 0.2em;
 }
@@ -171,9 +175,17 @@ input[type="submit"]:hover, input[type="image"]:hover {
 .p-10{
   padding: 2em;
 }
+.px-5{
+  padding-left: 1em;
+  padding-right: 1em;
+}
 .px-10{
   padding-left: 2em;
   padding-right: 2em;
+}
+.px-15{
+  padding-left: 3em;
+  padding-right: 3em;
 }
 .py-10{
   padding-top: 2em;
