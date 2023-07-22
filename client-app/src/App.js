@@ -9,10 +9,11 @@ function App() {
 
   // React States
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [page, setPage] = useState("login");
+  const [page, setPage] = useState("modify profile donor");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [utype, setUtype] = useState("");
-  const [navigation, setNavigation] = useState(["login"]);
+  const [navigation, setNavigation] = useState(["modify profile donor"]);
   const [validatedKitchen, setValidatedKitchen] = useState(false);
 
   function handleReqError(error){
@@ -64,7 +65,7 @@ function App() {
     //send logout request
 
     setisLoggedIn(false);
-    setUsername("");
+    setEmail("");
     setUtype("");
     //clearNavigation();
   }
@@ -105,10 +106,11 @@ function App() {
       .then((data) => {
         //console.log(data);
         if(resp_ok){
-          setUsername(email.value);
+          setEmail(email.value);
           setisLoggedIn(true);
           var str = getUtype(data.actor_type);
           setUtype(str);
+          //setUsername(data.username);
           if(str === "cozinha solidária"){
             setValidatedKitchen(data.actor.validated);
           }
@@ -307,6 +309,53 @@ function App() {
     </div>
   );
 
+  const handleModifyDonor = (event) => {
+    event.preventDefault();
+
+    var { username, address, email, pass, pass2 } = document.getElementsByClassName("main-form")[0];
+
+    var passError = false;
+    if(pass.value !== pass2.value){
+      alert("As duas senhas precisam ser iguais.");
+      return;
+    }
+
+    //TO DO
+  };
+
+  const modify_profile_donor = (
+    <div className="form">
+      <div className="title">Modificar Informações</div>
+      <form className="main-form" onSubmit={handleModifyDonor}>
+        <div className="pt-5 px-10">
+          {/* colocar outra imagem */}
+          <img className="w-100" src={logo}></img>
+        </div>
+        <div className="justify-text py-3">
+          Informe seus novos dados.
+        </div>
+        <div className="input-container">
+          <input placeholder="Nome" type="text" name="username" />
+        </div>
+        <div className="input-container">
+          <input placeholder="Endereço" type="text" name="address" />
+        </div>
+        <div className="input-container">
+          <input placeholder="Email" type="email" name="email" />
+        </div>
+        <div className="input-container">
+          <input placeholder="Senha" type="password" name="pass" />
+        </div>
+        <div className="input-container">
+          <input placeholder="Digite a senha novamente" type="password" name="pass2" />
+        </div>
+        <div className="w-100 button-container">
+          <input type="submit" value="Alterar"/>
+        </div>
+      </form>
+    </div>
+  );
+
   return (
     <div className="app">
       <div className="p-10">
@@ -316,7 +365,7 @@ function App() {
               <div className="col">
                 <div className="flex-row headerBtn">
                   <div className="headerBtn flex-row">
-                  {navigation.length === 1 && navigation[0] === "login" ? 
+                  {navigation.length === 1 ? 
                     <input className="small-img disabled" type="image" src={backArrow}></input>
                     :
                     <input className="small-img" type="image" src={backArrow}></input>
@@ -337,6 +386,7 @@ function App() {
           {page === "selectUserType" ? selectUserType : <div></div>}
           {page === "registration" ? registration : <div></div>}
           {page === "home" ? home : <div></div>}
+          {page === "modify profile donor" ? modify_profile_donor : <div></div>}
         </div>
       </div>
     </div>

@@ -154,6 +154,11 @@ input[type="submit"]:hover, input[type="image"]:hover {
   padding-bottom: 1em;
 }
 
+.py-3{
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
+}
+
 .py-5{
   padding-top: 1em;
   padding-bottom: 1em;
