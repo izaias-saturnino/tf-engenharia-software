@@ -241,3 +241,8 @@ input.small-img.disabled {
   cursor: default;
   pointer-events: all !important;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
