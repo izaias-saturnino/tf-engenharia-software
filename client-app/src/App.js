@@ -9,21 +9,13 @@ import Router from "./routes";
 
 function App() {
 
-  // function logout(){
-  //   //send logout request
-
-  //   setisLoggedIn(false);
-  //   setEmail("");
-  //   setUtype("");
-  //   //clearNavigation();
-  // }
-
   return (
     <Router/>
   );
 
   //TO DO
   //add home button to all pages
+  //add logout function to all pages
 }
 
 export default App;

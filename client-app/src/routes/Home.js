@@ -7,6 +7,26 @@ import backArrow from '../images/backArrow.png';
 import { Route, createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Login from "./Login.js";
+import AccountForm from "../components/AccountForm";
+
+const Content = (props) => {
+    return (
+      <div>
+        <div>Usuário {props.state.username} logado com sucesso.</div>
+        <div>Usuário logado como {props.state.utype}.</div>
+        {!props.state.validatedKitchen && props.state.utype === "cozinha solidária" ? (
+            <div>Seu cadastro ainda não foi validado.</div>
+        ) : (
+            <div></div>
+        )}
+        {props.state.validatedKitchen && props.state.utype === "cozinha solidária" ? (
+            <div>Seu cadastro está validado.</div>
+        ) : (
+            <div></div>
+        )}
+      </div>
+    )
+}
 
 const Home = (props) => {
 
@@ -30,41 +50,7 @@ const Home = (props) => {
     return (
         <div className="app">
             <div className="p-10">
-                <div className="login-form">
-                    <form onSubmit={backNavigation}>
-                        <div className="row w-100 pb-3">
-                            <div className="col">
-                                <div className="flex-row headerBtn">
-                                    <div className="headerBtn flex-row">
-                                        <input className="small-img disabled" type="image" src={backArrow}></input>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <div className="col">
-                            <div className="flex-row right-content">
-                                <div className="pb-5 headerBtn flex-row">
-                                <input type="submit" value="H"/>
-                                </div>
-                            </div>
-                            </div> */}
-                        </div>
-                    </form>
-                    <div>
-                        <div className="title">Home</div>
-                        <div>Usuário {state.username} logado com sucesso.</div>
-                        <div>Usuário logado como {state.utype}.</div>
-                        {!state.validatedKitchen && state.utype === "cozinha solidária" ? (
-                            <div>Seu cadastro ainda não foi validado.</div>
-                        ) : (
-                            <div></div>
-                        )}
-                        {state.validatedKitchen && state.utype === "cozinha solidária" ? (
-                            <div>Seu cadastro está validado.</div>
-                        ) : (
-                            <div></div>
-                        )}
-                    </div>
-                </div>
+                <AccountForm title={"Home"} content={<Content state={state}/>}/>
             </div>
         </div>
     )

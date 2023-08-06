@@ -4,6 +4,41 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import logo from '../images/doaresLogo.png';
 import backArrow from '../images/backArrow.png';
 
+import AccountForm from "../components/AccountForm";
+
+const Content = (props) => {
+  return (
+    <div>
+      <form className="main-form" onSubmit={props.formFunction}>
+          <div className="justify-text gray-text pb-1">
+          Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Crie sua conta agora mesmo!
+          </div>
+          <div className="pt-5 px-10">
+              <img className="w-100" src={logo}></img>
+          </div>
+          <div className="input-container">
+              <input placeholder="Nome" type="text" name="username" required />
+          </div>
+          <div className="input-container">
+              <input placeholder="Endereço" type="text" name="address" required />
+          </div>
+          <div className="input-container">
+              <input placeholder="Email" type="email" name="email" required />
+          </div>
+          <div className="input-container">
+              <input placeholder="Senha" type="password" name="pass" required />
+          </div>
+          <div className="input-container">
+              <input placeholder="Digite a senha novamente" type="password" name="pass2" required />
+          </div>
+          <div className="w-100 button-container">
+              <input type="submit" value="Criar Conta"/>
+          </div>
+      </form>
+    </div>
+  )
+}
+
 const Registration = (props) => {
 
     const location = useLocation();
@@ -76,59 +111,11 @@ const Registration = (props) => {
     };
 
     return (
-        <div className="app">
-            <div className="p-10">
-                <div className="login-form">
-                    <form onSubmit={backNavigation}>
-                        <div className="row w-100 pb-3">
-                            <div className="col">
-                                <div className="flex-row headerBtn">
-                                    <div className="headerBtn flex-row">
-                                        <input className="small-img disabled" type="image" src={backArrow}></input>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <div className="col">
-                            <div className="flex-row right-content">
-                                <div className="pb-5 headerBtn flex-row">
-                                <input type="submit" value="H"/>
-                                </div>
-                            </div>
-                            </div> */}
-                        </div>
-                    </form>
-                    <div className="form">
-                        <div className="title">Criar Conta</div>
-                        <form className="main-form" onSubmit={handleRegistration}>
-                            <div className="justify-text gray-text pb-1">
-                            Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Crie sua conta agora mesmo!
-                            </div>
-                            <div className="pt-5 px-10">
-                                <img className="w-100" src={logo}></img>
-                            </div>
-                            <div className="input-container">
-                                <input placeholder="Nome" type="text" name="username" required />
-                            </div>
-                            <div className="input-container">
-                                <input placeholder="Endereço" type="text" name="address" required />
-                            </div>
-                            <div className="input-container">
-                                <input placeholder="Email" type="email" name="email" required />
-                            </div>
-                            <div className="input-container">
-                                <input placeholder="Senha" type="password" name="pass" required />
-                            </div>
-                            <div className="input-container">
-                                <input placeholder="Digite a senha novamente" type="password" name="pass2" required />
-                            </div>
-                            <div className="w-100 button-container">
-                                <input type="submit" value="Criar Conta"/>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+      <div className="app">
+        <div className="p-10">
+            <AccountForm title={"Criar Conta"} content={<Content formFunction={handleRegistration}/>}/>
         </div>
+      </div>
     )
 };
 
