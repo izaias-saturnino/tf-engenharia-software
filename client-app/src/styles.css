@@ -295,3 +295,11 @@ a {
 .link:hover{
   cursor: pointer;
 }
+
+.profile-properties div div{
+  padding-top: 0.1em;
+}
+
+.profile-properties div{
+  padding-top: 0.3em;
+}

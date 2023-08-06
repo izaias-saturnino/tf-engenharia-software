@@ -8,6 +8,7 @@ import ModifyProfile from "./routes/ModifyProfile.js";
 import Registration from "./routes/Registration.js";
 import SelectUserType from "./routes/SelectUserType.js";
 import KitchenSearch from "./routes/KitchenSearch.js";
+import Profile from "./routes/Profile.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/kitchen_search",
     element: <KitchenSearch/>
+  },
+  {
+    path: "/profile",
+    element: <Profile/>
   },
 ])
 

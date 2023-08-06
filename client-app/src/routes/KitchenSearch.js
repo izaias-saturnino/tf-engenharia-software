@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 import Login from "./Login.js";
-import AccountForm from "../components/AccountForm";
 
 const KitchenResult = (props) => {
     return (
@@ -55,7 +54,7 @@ const KitchenSearch = (props) => {
             results.push(<div className="pt-5">Fim dos resultados.</div>);
         }
     }
-    
+
     //results.push(<div className="pt-5">Fim dos resultados.</div>);
 
     return (
@@ -67,7 +66,7 @@ const KitchenSearch = (props) => {
                         <div>
                             <form className="main-form">
                                 <div className="input-container">
-                                    <input placeholder="Pesquisar" type="text" name="search" />
+                                    <input placeholder="Pesquisar por cozinhas" type="text" name="search" />
                                 </div>
                             </form>
                         </div>
