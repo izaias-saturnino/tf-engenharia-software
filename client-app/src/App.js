@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 
 import "./styles.css";
-import logo from './images/doaresLogo.png';
-import defaultProfilePic from './images/default-profile-picture.png';
 
 import Router from "./routes";
 

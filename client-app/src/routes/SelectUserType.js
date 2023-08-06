@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 import logo from '../images/doaresLogo.png';
-import backArrow from '../images/backArrow.png';
 
 import AccountForm from "../components/AccountForm";
 
@@ -51,11 +50,6 @@ const SelectUserType = (props) => {
         new_state.utype = "cozinha solidária";
         setState(new_state);
         navigate("/registration", {state:state});
-    };
-
-    const backNavigation = (event) => {
-        event.preventDefault();
-        window.history.back();
     };
 
     return (

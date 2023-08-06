@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-import logo from '../images/doaresLogo.png';
-import backArrow from '../images/backArrow.png';
-
-import { Route, createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import Login from "./Login.js";
 import AccountForm from "../components/AccountForm";
 

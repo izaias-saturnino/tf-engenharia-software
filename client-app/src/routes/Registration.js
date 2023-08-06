@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 import logo from '../images/doaresLogo.png';
-import backArrow from '../images/backArrow.png';
 
 import AccountForm from "../components/AccountForm";
 
