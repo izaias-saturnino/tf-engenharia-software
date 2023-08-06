@@ -10,7 +10,6 @@ const Content = (props) => {
     <div className="form">
       <form className="main-form" onSubmit={props.formFunction}>
         <div className="py-3 px-15">
-          {/* colocar outra imagem */}
           <img className="w-100 rounded-border" src={defaultProfilePic}></img>
         </div>
         <div className="justify-text py-3">
