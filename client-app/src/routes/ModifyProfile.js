@@ -40,8 +40,7 @@ const Content = (props) => {
 
 const ModifyProfile = (props) => {
 
-    const location = useLocation();
-    const [state, setState] = useState(location.state);
+    const state = { ...localStorage };
 
     const navigate = useNavigate();
 

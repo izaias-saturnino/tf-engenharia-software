@@ -31,25 +31,20 @@ const Content = (props) => {
 
 const SelectUserType = (props) => {
 
-    const location = useLocation();
-    const [state, setState] = useState(location.state);
+    const state = { ...localStorage };
 
     const navigate = useNavigate();
 
     const toRegistrationDonor = (event) => {
         event.preventDefault();
-        var new_state = {};
-        new_state.utype = "doador";
-        setState(new_state);
-        navigate("/registration", {state:state});
+        localStorage.setItem("utype", JSON.stringify("doador"));
+        navigate("/registration");
     };
 
     const toRegistrationKitchen = (event) => {
         event.preventDefault();
-        var new_state = {};
-        new_state.utype = "cozinha solidária";
-        setState(new_state);
-        navigate("/registration", {state:state});
+        localStorage.setItem("utype", JSON.stringify("cozinha solidária"));
+        navigate("/registration");
     };
 
     return (

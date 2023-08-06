@@ -25,11 +25,8 @@ const Content = (props) => {
 
 const Home = (props) => {
 
-    const isAuthenticated = !!localStorage.getItem("token");
-
-    const location = useLocation();
-    const [state, setState] = useState(location.state);
-    //const [state, setState] = useState({username: "user", utype: "cozinha solidária", validatedKitchen: true});
+    const state = { ...localStorage };
+    //const state = {username: "user", utype: "cozinha solidária", validatedKitchen: true};
 
     const navigate = useNavigate();
 
@@ -38,7 +35,7 @@ const Home = (props) => {
         window.history.back();
     };
 
-    if(state === null){
+    if(state.username === undefined){
         return <Login/>;
     }
 

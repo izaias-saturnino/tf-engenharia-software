@@ -36,14 +36,12 @@ const Content = (props) => {
 
 const Login = (props) => {
 
-    const location = useLocation();
-
     // state.isLoggedIn = undefined;
     // state.email = undefined;
     // state.username = undefined;
     // state.utype = undefined;
     // state.validatedKitchen = undefined;
-    const [state, setState] = useState(location.state);
+    const state = { ...localStorage };
 
     const navigate = useNavigate();
 
@@ -90,17 +88,15 @@ const Login = (props) => {
           .then((data) => {
             //console.log(data);
             if(resp_ok){
-              var new_state = {};
-              new_state.email = email.value;
-              new_state.isLoggedIn = true;
+              localStorage.setItem("email", JSON.stringify(email.value));
+              localStorage.setItem("isLoggedIn", JSON.stringify(true));
               var str = getUtype(data.actor_type);
-              new_state.utype = str;
-              //new_state.username = data.username
+              localStorage.setItem("utype", JSON.stringify(true));
+              //localStorage.setItem("username", JSON.stringify(data.username));
               if(str === "cozinha solidária"){
-                new_state.validatedKitchen = data.actor.validated;
+                localStorage.setItem("validatedKitchen", JSON.stringify(data.actor.validated));
               }
-              setState(new_state);
-              navigate('/home', {replace: true, state: state});
+              navigate('/home');
             }else{
               if(data.errors === undefined){
                 alert(data);
