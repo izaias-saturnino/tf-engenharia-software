@@ -50,6 +50,10 @@ const router = createBrowserRouter([
     path: "/donations",
     element: <Donations/>
   },
+  // {
+  //   path: "*",
+  //   element: <NotFound/>
+  // },
 ])
 
 const Router = (props) => {

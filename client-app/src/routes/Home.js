@@ -57,9 +57,9 @@ const Home = (props) => {
         window.history.back();
     };
 
-    if (state.username === undefined) {
-        return <Login/>;
-    }
+    // if (state.username === undefined) {
+    //     return <Login/>;
+    // }
 
     return (
         <div className="app">
