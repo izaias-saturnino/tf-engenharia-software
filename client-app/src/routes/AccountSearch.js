@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import SearchPage from "../components/SeachPage.js";
 
 import Login from "./Login.js";
 
@@ -64,25 +65,7 @@ const AccountSearch = (props) => {
     //results.push(<div className="pt-5">Fim dos resultados.</div>);
 
     return (
-        <div className="app">
-            <div className="p-10">
-                <div className="login-form justify-text">
-                    <div>
-                        <div className="title">Resultados</div>
-                        <div>
-                            <form className="main-form">
-                                <div className="input-container">
-                                    <input placeholder="Pesquisar" type="text" name="search" />
-                                </div>
-                            </form>
-                        </div>
-                        <div className="search-results">
-                            {results}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <SearchPage title={"Resultados"} results={results} placeholder={"Pesquisar"}/>
     )
 };
 
