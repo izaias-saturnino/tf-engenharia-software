@@ -3,7 +3,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 import Login from "./Login.js";
 
-const KitchenResult = (props) => {
+const AccountResult = (props) => {
     return (
         <div className={"search-item " + props.className}>
             {/* TODO: add navigation to kitchen profile */}
@@ -34,17 +34,17 @@ const KitchenResult = (props) => {
     )
 }
 
-const KitchenSearch = (props) => {
+const AccountSearch = (props) => {
     let results = [];
     let i = 0;
     if(props.kitchens != undefined){
         for (i = 0; i < props.kitchens.length; i++) {
-            results.push(<KitchenResult className={"default-border-bottom"} kitchen={props.kitchens[i]}/>);
+            results.push(<AccountResult className={"default-border-bottom"} kitchen={props.kitchens[i]}/>);
         }
     }
 
     //let kitchensTest = {"name": "name", "addres": "addres"};
-    //results.push(<KitchenResult className={"default-border-bottom"} kitchen={kitchensTest}/>);
+    //results.push(<AccountResult className={"default-border-bottom"} kitchen={kitchensTest}/>);
 
     if(props.search != undefined){
         if(results.length == 0){
@@ -80,4 +80,4 @@ const KitchenSearch = (props) => {
     )
 };
 
-export default KitchenSearch;
+export default AccountSearch;

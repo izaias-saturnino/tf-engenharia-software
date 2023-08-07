@@ -7,7 +7,7 @@ import Login from "./routes/Login.js";
 import ModifyProfile from "./routes/ModifyProfile.js";
 import Registration from "./routes/Registration.js";
 import SelectUserType from "./routes/SelectUserType.js";
-import KitchenSearch from "./routes/KitchenSearch.js";
+import AccountSearch from "./routes/AccountSearch.js";
 import Profile from "./routes/Profile.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -38,8 +38,8 @@ const router = createBrowserRouter([
     element: <SelectUserType/>
   },
   {
-    path: "/kitchen_search",
-    element: <KitchenSearch/>
+    path: "/account_search",
+    element: <AccountSearch/>
   },
   {
     path: "/profile",
