@@ -10,7 +10,7 @@ const Content = (props) => {
     <div>
       <form className="main-form" onSubmit={props.formFunction}>
           <div className="justify-text gray-text pb-1">
-          Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Crie sua conta agora mesmo!
+            Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos. Crie sua conta agora mesmo!
           </div>
           <div className="pt-5 px-10">
               <img className="w-100" src={logo}></img>
@@ -18,8 +18,29 @@ const Content = (props) => {
           <div className="input-container">
               <input placeholder="Nome" type="text" name="username" required />
           </div>
+          {props.state.reg_utype === "doador" ?
+            <div className="input-container">
+              {/* make selection tool */}
+                <input placeholder="Data de Nascimento" type="text" name="birthDate" required />
+            </div>
+            :
+            <div></div>
+          }
           <div className="input-container">
-              <input placeholder="Endereço" type="text" name="address" required />
+            {/* make js mask for input (after modifying number) */}
+              <input placeholder="Telefone" type="text" name="username" />
+          </div>
+          <div className="input-container">
+              <input placeholder="Estado" type="text" name="address" />
+          </div>
+          <div className="input-container">
+              <input placeholder="Cidade" type="text" name="address" />
+          </div>
+          <div className="input-container">
+              <input placeholder="Endereço" type="text" name="address" />
+          </div>
+          <div className="input-container">
+              <input placeholder="CPF/CNPJ" type="text" name="address" required />
           </div>
           <div className="input-container">
               <input placeholder="Email" type="email" name="email" required />
@@ -111,7 +132,7 @@ const Registration = (props) => {
     return (
       <div className="app">
         <div className="p-10">
-            <AccountForm title={"Criar Conta"} content={<Content formFunction={handleRegistration}/>}/>
+            <AccountForm title={"Criar Conta"} content={<Content formFunction={handleRegistration} state={state}/>}/>
         </div>
       </div>
     )
