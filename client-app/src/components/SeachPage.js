@@ -5,7 +5,7 @@ const SearchPage = (props) => {
     return (
         <div className="app">
             <div className="p-10">
-                <div className="login-form justify-text">
+                <div className="login-form">
                     <div>
                         <div className="title">{props.title}</div>
                         <div>

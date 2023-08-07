@@ -12,7 +12,7 @@ const AccountForm = (props) => {
     };
 
     return (
-        <div className="login-form justify-text">
+        <div className="login-form">
             <form onSubmit={backNavigation}>
                 <div className="row w-100 pb-3">
                     <div className="col">

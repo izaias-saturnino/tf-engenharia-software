@@ -12,7 +12,7 @@ const Content = (props) => {
         <div className="py-3 px-15">
           <img className="w-100 rounded-border" src={defaultProfilePic}></img>
         </div>
-        <div className="justify-text py-3">
+        <div className="py-3">
           Informe seus novos dados.
         </div>
         <div className="input-container">
