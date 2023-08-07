@@ -92,7 +92,6 @@ input[type="submit"]:hover, input[type="image"]:hover {
 
 .title2 {
   font-size: 1.25em !important;
-  margin-bottom: 10px;
 }
 
 .input-container {
@@ -169,6 +168,10 @@ input[type="submit"]:hover, input[type="image"]:hover {
 
 .pb-3{
   padding-bottom: 0.6em;
+}
+
+.mb-3{
+  margin-bottom: 0.6em;
 }
 
 .pb-5{
@@ -271,11 +274,7 @@ a {
 }
 
 .default-border-bottom{
-  border-bottom: 1px solid black;
-}
-
-.default-border-bottom{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid gray;
 }
 
 .search-item-propertie{

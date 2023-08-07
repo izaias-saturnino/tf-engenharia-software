@@ -6,45 +6,49 @@ import Login from "./Login.js";
 const AccountResult = (props) => {
     return (
         <div className={"search-item " + props.className}>
-            {/* TODO: add navigation to kitchen profile */}
+            {/* TODO: add navigation to profile */}
             <div className="title2 link">
-                {props.kitchen.name}
+                {props.profile.name}
             </div>
-            <div className="search-item-properties">
-                <div className="search-item-propertie">
-                    {props.kitchen.addres}
+            {props.profile.utype == "kitchen" ?
+                <div className="search-item-properties">
+                    <div className="mb-3"></div>
+                    <div className="search-item-propertie">
+                        {props.profile.addres}
+                    </div>
+                    <div className="search-item-propertie">
+                        CNPJ: {props.profile.CNPJ}
+                    </div>
                 </div>
-                {/* <div className="search-item-propertie">
-                    CEP: 123456789
-                </div>
-                <div className="search-item-propertie">
-                    Email: <a>cozinhasolidaria@gmail.com</a>
-                </div>
-                <div className="search-item-propertie">
-                    Telefone: (99) 987654321
-                </div>
-                <div className="search-item-propertie">
-                    Whatsapp: (99) 987654321
-                </div>
-                <div className="search-item-propertie">
-                    Site: cozinhasolidaria.com.br
-                </div> */}
-            </div>
+                :
+                <div></div>
+            }
         </div>
     )
 }
 
 const AccountSearch = (props) => {
+    //fetch results
     let results = [];
     let i = 0;
-    if(props.kitchens != undefined){
-        for (i = 0; i < props.kitchens.length; i++) {
-            results.push(<AccountResult className={"default-border-bottom"} kitchen={props.kitchens[i]}/>);
+    if(props.profile != undefined){
+        for (i = 0; i < props.profile.length; i++) {
+            results.push(<AccountResult className={"default-border-bottom"} profile={props.profile[i]}/>);
         }
     }
 
-    //let kitchensTest = {"name": "name", "addres": "addres"};
-    //results.push(<AccountResult className={"default-border-bottom"} kitchen={kitchensTest}/>);
+    // let profileTest = {
+    //     "name": "name",
+    //     "addres": "addres",
+    //     "utype": "kitchen",
+    //     "CNPJ" : "987654321"
+    // };
+    // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest}/>);
+    // profileTest = {
+    //     "name": "name",
+    //     "utype": "donor"
+    // };
+    // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest}/>);
 
     if(props.search != undefined){
         if(results.length == 0){
@@ -62,11 +66,11 @@ const AccountSearch = (props) => {
             <div className="p-10">
                 <div className="login-form justify-text">
                     <div>
-                        <div className="title">Cozinhas Solidárias</div>
+                        <div className="title">Resultados</div>
                         <div>
                             <form className="main-form">
                                 <div className="input-container">
-                                    <input placeholder="Pesquisar por cozinhas" type="text" name="search" />
+                                    <input placeholder="Pesquisar" type="text" name="search" />
                                 </div>
                             </form>
                         </div>
