@@ -55,20 +55,19 @@ const Profile = (props) => {
                                     {"(99) 987654321"}
                                 </div>
                             </div>
-                            <div className="profile-properties">
-                                <div className="gray-text">Whatsapp</div>
-                                <div>
-                                    {"(99) 987654321"}
-                                </div>
-                            </div>
-                            <div className="profile-properties">
+                            {/* <div className="profile-properties">
                                 <div className="gray-text">Site</div>
                                 <div>
                                     <a className="link" href="https://cozinhasolidaria.com.br">cozinhasolidaria.com.br</a>
                                 </div>
-                            </div>
-                            <ProfileProp propName={"Endereço"} propValue={"Av. Bento Gonçalves, nº 999"}/>
-                            <ProfileProp propName={"CEP"} propValue={"987654321"}/>
+                            </div> */}
+                            <ProfileProp propName={"Endereço"} propValue={"Av. Bento Gonçalves, nº 999, Porto Alegre - RS"}/>
+                            {/* TODO add backend integration to get profile info */}
+                            {true || props.state.profile_utype === "kitchen" ?
+                                <ProfileProp propName={"CNPJ"} propValue={"987654321"}/>
+                                :
+                                <div></div>
+                            }
                         </div>
                     </div>
                 </div>
