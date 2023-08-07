@@ -16,11 +16,20 @@ const Content = (props) => {
               <img className="w-100" src={logo}></img>
           </div>
           <div className="input-container">
+              <input placeholder="Email" type="email" name="email" required />
+          </div>
+          <div className="input-container">
+              <input placeholder="Senha" type="password" name="pass" required />
+          </div>
+          <div className="input-container">
+              <input placeholder="Digite a senha novamente" type="password" name="pass2" required />
+          </div>
+          <div className="input-container">
               <input placeholder="Nome" type="text" name="username" required />
           </div>
           {props.state.reg_utype === "doador" ?
             <div className="input-container">
-              {/* make selection tool */}
+              {/* TODO make date selection tool */}
                 <input placeholder="Data de Nascimento" type="text" name="birthDate" required />
             </div>
             :
@@ -31,25 +40,16 @@ const Content = (props) => {
               <input placeholder="Telefone" type="text" name="username" />
           </div>
           <div className="input-container">
-              <input placeholder="Estado" type="text" name="address" />
+              <input placeholder="Endereço" type="text" name="address" />
           </div>
           <div className="input-container">
               <input placeholder="Cidade" type="text" name="address" />
           </div>
           <div className="input-container">
-              <input placeholder="Endereço" type="text" name="address" />
+              <input placeholder="Estado" type="text" name="address" />
           </div>
           <div className="input-container">
               <input placeholder="CPF/CNPJ" type="text" name="address" required />
-          </div>
-          <div className="input-container">
-              <input placeholder="Email" type="email" name="email" required />
-          </div>
-          <div className="input-container">
-              <input placeholder="Senha" type="password" name="pass" required />
-          </div>
-          <div className="input-container">
-              <input placeholder="Digite a senha novamente" type="password" name="pass2" required />
           </div>
           <div className="w-100 button-container">
               <input type="submit" value="Criar Conta"/>

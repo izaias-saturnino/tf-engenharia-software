@@ -58,7 +58,7 @@ const Home = (props) => {
     };
 
     if (state.username === undefined) {
-        //return <Login/>;
+        return <Login/>;
     }
 
     return (
