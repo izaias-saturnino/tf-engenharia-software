@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 import Login from "./Login";
+import Profile from "./Profile";
+import ProfileProp from "../components/ProfileProp";
+
+import defaultProfilePic from '../images/default-profile-picture.png';
 
 const Event = (props) => {
     return (
@@ -27,6 +31,20 @@ const Event = (props) => {
 }
 
 const ProfileKitchen = (props) => {
+    const state = { ...localStorage };
+
+    //fetch profile
+    let profile = {};
+
+    profile = {
+        "Nome": "Cozinha solidária",
+        "Email": "cozinhasolidaria@gmail.com",
+        "Telefone": "(99) 987654321",
+        "Endereço": "Av. Bento Gonçalves, nº 999, Porto Alegre - RS",
+        "CNPJ": "987654321",
+        "utype": "kitchen",
+    };
+
     //fetch events
     let events = [];
 
@@ -38,13 +56,13 @@ const ProfileKitchen = (props) => {
         }
     }
 
-    let eventTest = {
-        "name": "Evento promocional do filme Oppenheimer",
-        "location": "Shopping Bourbon",
-        "date": "24/09/2023",
-        "public": "300 pessoas",
-    };
-    results.push(<Event className={"default-border-bottom"} event={eventTest}/>);
+    // let eventTest = {
+    //     "name": "Evento promocional do filme Oppenheimer",
+    //     "location": "Shopping Bourbon",
+    //     "date": "24/09/2023",
+    //     "public": "300 pessoas",
+    // };
+    // results.push(<Event className={"default-border-bottom"} event={eventTest}/>);
 
     if(props.search != undefined){
         if(events.length == 0){
@@ -54,24 +72,61 @@ const ProfileKitchen = (props) => {
             results.push(<div className="pt-5">Fim dos resultados.</div>);
         }
     }
+    if(events.length == 0){
+        results.push(<div className="pt-3">Não há eventos disponíveis.</div>);
+    }
 
     //results.push(<div className="pt-5">Fim dos resultados.</div>);
 
     return (
-        <div className="app">
-            <div className="p-10">
-                <div className="login-form">
-                    <div>
-                        <div className="title">{"Eventos"}</div>
+        <div>
+            <div className="app">
+                <div className="py-10">
+                    <div className="kitchen-profile justify-text min-w-100">
                         <div>
-                            <form className="main-form">
-                                <div className="input-container">
-                                    <input placeholder={"Filtrar"} type="text" name="search" />
+                            <img className="w-100 h-50" src={defaultProfilePic}></img>
+                            <div className="p-2rem">
+                                <div className="title">Cozinha Solidária</div>
+                                <div className="profile-properties">
+                                    <ProfileProp propName={"Nome"} propValue={profile.Nome}/>
+                                    <div className="profile-properties">
+                                        <div className="gray-text">Email</div>
+                                        <div>
+                                            {profile.Email}
+                                        </div>
+                                    </div>
+                                    <div className="profile-properties">
+                                        <div className="gray-text">Telefone</div>
+                                        <div>
+                                            {profile.Telefone}
+                                        </div>
+                                    </div>
+                                    {/* <div className="profile-properties">
+                                        <div className="gray-text">Site</div>
+                                        <div>
+                                            <a className="link" href="https://cozinhasolidaria.com.br">cozinhasolidaria.com.br</a>
+                                        </div>
+                                    </div> */}
+                                    <ProfileProp propName={"Endereço"} propValue={profile.Endereço}/>
+                                    <ProfileProp propName={"CNPJ"} propValue={profile.CNPJ}/>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <div className="search-results">
-                            {results}
+                    </div>
+                    <div className="pb-15"></div>
+                    <div className="login-form">
+                        <div>
+                            <div className="title">{"Eventos"}</div>
+                            <div>
+                                <form className="main-form">
+                                    <div className="input-container">
+                                        <input placeholder={"Filtrar"} type="text" name="search" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="search-results">
+                                {results}
+                            </div>
                         </div>
                     </div>
                 </div>
