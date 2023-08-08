@@ -3,6 +3,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 import Login from "./Login.js";
 import AccountForm from "../components/AccountForm";
+import UpperMenu from "./UpperMenu.js"
 
 const events = [
     { title: "Event 1", content: "Event 1 description" },
@@ -20,6 +21,7 @@ const events = [
 const Content = (props) => {
     return (
         <div>
+            {/*
             <div>Usuário {props.state.username} logado com sucesso.</div>
             <div>Usuário logado como {props.state.utype}.</div>
             {!props.state.validatedKitchen && props.state.utype === "cozinha solidária" ? (
@@ -32,6 +34,8 @@ const Content = (props) => {
             ) : (
                 <div></div>
             )}
+            */}
+            <UpperMenu/>
             <div className="event-list-container">
             {events.map((event, index) => (
                 <EventCard
@@ -64,7 +68,7 @@ const Home = (props) => {
     return (
         <div className="app">
             <div className="p-10">
-                <AccountForm title={"Home"} content={<Content state={state} />} />
+                <div className="screen-area"><Content state={state} /></div>
             </div>
         </div>
     )
