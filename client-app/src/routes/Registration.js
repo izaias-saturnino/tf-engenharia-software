@@ -76,9 +76,9 @@ const Registration = (props) => {
           return;
         }
     
-        var user_type = user_type === "donor" ? "donor" : "kitchen";
+        var url_user_type = user_type === "donor" ? "donor" : "kitchen";
     
-        let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/SignUp/'+user_type;
+        let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/SignUp/'+url_user_type;
     
         const item = {
           emailAddress: email.value,
