@@ -11,6 +11,7 @@ import AccountSearch from "./routes/AccountSearch.js";
 import Profile from "./routes/Profile.js";
 import DonationHistory from "./routes/DonationHistory.js";
 import ProfileKitchen from "./routes/ProfileKichen.js";
+import Donation from "./routes/Donation.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/donation_history",
     element: <DonationHistory/>
+  },
+  {
+    path: "/donation",
+    element: <Donation/>
   },
   {
     path: "/profile_kitchen",
