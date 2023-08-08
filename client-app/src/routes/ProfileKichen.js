@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 
 import Login from "./Login";
 import Profile from "./Profile";
@@ -31,6 +31,7 @@ const Event = (props) => {
 }
 
 const ProfileKitchen = (props) => {
+    const {kitchen} = useParams();
     const state = { ...localStorage };
 
     //fetch profile

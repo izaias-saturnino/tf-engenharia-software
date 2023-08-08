@@ -53,11 +53,11 @@ const router = createBrowserRouter([
     element: <DonationHistory/>
   },
   {
-    path: "/donation",
+    path: "/donation/:donation_id",
     element: <Donation/>
   },
   {
-    path: "/profile_kitchen",
+    path: "/profile_kitchen/:kitchen",
     element: <ProfileKitchen/>
   },
   // {

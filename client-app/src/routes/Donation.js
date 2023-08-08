@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 
 import logo from '../images/doaresLogo.png';
 
@@ -30,6 +30,8 @@ const Content = (props) => {
 }
 
 const Donation = (props) => {
+
+    const {donation_id} = useParams();
 
     // state.isLoggedIn = undefined;
     // state.email = undefined;
