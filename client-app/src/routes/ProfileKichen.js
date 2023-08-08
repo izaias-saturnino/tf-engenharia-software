@@ -113,7 +113,12 @@ const ProfileKitchen = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="pb-15"></div>
+                    <div className="py-8 px-10">
+                        <div className="w-100 button-container button-font">
+                            {/* TODO add link */}
+                            <input type="submit" value="Quero doar"/>
+                        </div>
+                    </div>
                     <div className="login-form">
                         <div>
                             <div className="title">{"Eventos"}</div>
