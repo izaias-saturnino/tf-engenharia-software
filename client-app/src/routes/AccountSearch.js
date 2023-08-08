@@ -29,7 +29,7 @@ const AccountResult = (props) => {
 }
 
 const AccountSearch = (props) => {
-    const {query} = useParams();
+    const {search_query} = useParams();
 
     //fetch profiles
     let profiles = [];
@@ -55,7 +55,7 @@ const AccountSearch = (props) => {
     // };
     // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest}/>);
 
-    if(query != undefined){
+    if(search_query != undefined){
         if(profiles.length == 0){
             results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
         }
