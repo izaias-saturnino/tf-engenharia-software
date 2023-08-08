@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     element: <SelectUserType/>
   },
   {
-    path: "/account_search",
+    path: "/account_search/:search_query",
     element: <AccountSearch/>
   },
   {

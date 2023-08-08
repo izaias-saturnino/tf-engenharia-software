@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 import SearchPage from "../components/SeachPage.js";
 
 import Login from "./Login.js";
@@ -29,6 +29,8 @@ const AccountResult = (props) => {
 }
 
 const AccountSearch = (props) => {
+    const {query} = useParams();
+
     //fetch profiles
     let profiles = [];
 
@@ -53,7 +55,7 @@ const AccountSearch = (props) => {
     // };
     // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest}/>);
 
-    if(props.search != undefined){
+    if(query != undefined){
         if(profiles.length == 0){
             results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
         }

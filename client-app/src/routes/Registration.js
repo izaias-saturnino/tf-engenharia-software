@@ -63,7 +63,6 @@ const Registration = (props) => {
 
     let state = { ...localStorage };
     const {user_type} = useParams();
-    console.log(user_type);
 
     const navigate = useNavigate();
 
