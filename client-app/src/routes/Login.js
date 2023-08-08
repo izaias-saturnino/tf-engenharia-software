@@ -4,6 +4,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
+import { backend_base_url } from "../App";
 
 const Content = (props) => {
   return (
@@ -62,7 +63,7 @@ const Login = (props) => {
     
         var { email, pass } = document.getElementsByClassName("main-form")[0];
     
-        let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/SignIn';
+        let uri = backend_base_url+'/API/SignIn';
     
         const item = {
           emailAddress: email.value,

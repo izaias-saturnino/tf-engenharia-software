@@ -4,6 +4,7 @@ import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
+import { backend_base_url } from "../App";
 
 const Content = (props) => {
   return (
@@ -78,7 +79,7 @@ const Registration = (props) => {
     
         var url_user_type = user_type === "donor" ? "donor" : "kitchen";
     
-        let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/SignUp/'+url_user_type;
+        let uri = backend_base_url+'/API/SignUp/'+url_user_type;
     
         const item = {
           emailAddress: email.value,

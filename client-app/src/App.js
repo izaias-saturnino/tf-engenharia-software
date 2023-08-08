@@ -17,3 +17,5 @@ function App() {
 }
 
 export default App;
+
+export const backend_base_url = "https://e30a-143-54-52-136.ngrok-free.app";
