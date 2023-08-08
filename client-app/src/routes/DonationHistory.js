@@ -27,7 +27,7 @@ const Donation = (props) => {
     )
 }
 
-const Donations = (props) => {
+const DonationHistory = (props) => {
     //fetch donations
     let donations = [];
 
@@ -63,4 +63,4 @@ const Donations = (props) => {
     )
 };
 
-export default Donations;
+export default DonationHistory;
