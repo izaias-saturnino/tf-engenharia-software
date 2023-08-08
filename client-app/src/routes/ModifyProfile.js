@@ -22,13 +22,13 @@ const Content = (props) => {
           <input placeholder="Endereço" type="text" name="address" />
         </div>
         <div className="input-container">
-          <input placeholder="Email" type="email" name="email" />
+          <input placeholder="Senha atual" type="password" name="pass" />
         </div>
         <div className="input-container">
-          <input placeholder="Senha" type="password" name="pass" />
+          <input placeholder="Nova senha" type="password" name="pass" />
         </div>
         <div className="input-container">
-          <input placeholder="Digite a senha novamente" type="password" name="pass2" />
+          <input placeholder="Digite a nova senha novamente" type="password" name="pass2" />
         </div>
         <div className="w-100 button-container">
           <input type="submit" value="Alterar"/>

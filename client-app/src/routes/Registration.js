@@ -49,7 +49,7 @@ const Content = (props) => {
               <input placeholder="Estado" type="text" name="address" />
           </div>
           <div className="input-container">
-              <input placeholder="CPF/CNPJ" type="text" name="address" required />
+              <input placeholder={props.state.reg_utype === "doador" ? "CPF" : "CNPJ"} type="text" name="address" required />
           </div>
           <div className="w-100 button-container">
               <input type="submit" value="Criar Conta"/>

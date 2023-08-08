@@ -20,6 +20,9 @@ const Donation = (props) => {
                     Valor: {props.donation.value}
                 </div>
                 <div className="search-item-propertie">
+                    Ingrediente: {props.donation.ingredient}
+                </div>
+                <div className="search-item-propertie">
                     Data: {props.donation.date}
                 </div>
             </div>
@@ -43,7 +46,8 @@ const DonationHistory = (props) => {
     //     "kitchenName": "Nome",
     //     "CNPJ": "987654321",
     //     "value": "R$ 3.00",
-    //     "date": "24/05/2022",
+    //     "ingreddient": "Cenoura",
+    //     "date": "24/05/2022 12:12",
     // };
     // results.push(<Donation className={"default-border-bottom"} donation={donationTest}/>);
 

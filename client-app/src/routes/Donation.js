@@ -16,9 +16,6 @@ const Content = (props) => {
             <img className="w-100" src={logo}></img>
         </div>
         <div className="input-container">
-            <input placeholder="Evento" type="text" name="event" required />
-        </div>
-        <div className="input-container">
             <input placeholder="Ingrediente" type="text" name="ingredient" required />
         </div>
         <div className="input-container">
