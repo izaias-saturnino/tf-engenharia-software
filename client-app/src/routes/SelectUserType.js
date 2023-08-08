@@ -37,14 +37,12 @@ const SelectUserType = (props) => {
 
     const toRegistrationDonor = (event) => {
         event.preventDefault();
-        localStorage.setItem("utype", JSON.stringify("doador"));
-        navigate("/registration");
+        navigate("/registration/donor");
     };
 
     const toRegistrationKitchen = (event) => {
         event.preventDefault();
-        localStorage.setItem("utype", JSON.stringify("cozinha solidária"));
-        navigate("/registration");
+        navigate("/registration/kitchen");
     };
 
     return (

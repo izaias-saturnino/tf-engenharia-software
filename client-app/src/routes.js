@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     element: <ModifyProfile/>
   },
   {
-    path: "/registration",
+    path: "/registration/:user_type",
     element: <Registration/>
   },
   {

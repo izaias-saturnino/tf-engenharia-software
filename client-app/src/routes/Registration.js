@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 
 import logo from '../images/doaresLogo.png';
 
@@ -27,7 +27,7 @@ const Content = (props) => {
           <div className="input-container">
               <input placeholder="Nome" type="text" name="username" required />
           </div>
-          {props.state.reg_utype === "doador" ?
+          {props.utype === "donor" ?
             <div className="input-container">
               {/* TODO make date selection tool */}
                 <input placeholder="Data de Nascimento" type="text" name="birthDate" required />
@@ -49,7 +49,7 @@ const Content = (props) => {
               <input placeholder="Estado" type="text" name="address" />
           </div>
           <div className="input-container">
-              <input placeholder={props.state.reg_utype === "doador" ? "CPF" : "CNPJ"} type="text" name="address" required />
+              <input placeholder={props.utype === "donor" ? "CPF" : "CNPJ"} type="text" name="address" required />
           </div>
           <div className="w-100 button-container">
               <input type="submit" value="Criar Conta"/>
@@ -61,7 +61,9 @@ const Content = (props) => {
 
 const Registration = (props) => {
 
-    const state = { ...localStorage };
+    let state = { ...localStorage };
+    const {user_type} = useParams();
+    console.log(user_type);
 
     const navigate = useNavigate();
 
@@ -75,7 +77,7 @@ const Registration = (props) => {
           return;
         }
     
-        var user_type = state.utype === "doador" ? "donor" : "kitchen";
+        var user_type = user_type === "donor" ? "donor" : "kitchen";
     
         let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/SignUp/'+user_type;
     
@@ -132,7 +134,7 @@ const Registration = (props) => {
     return (
       <div className="app">
         <div className="p-10">
-            <AccountForm title={"Criar Conta"} content={<Content formFunction={handleRegistration} state={state}/>}/>
+            <AccountForm title={"Criar Conta"} content={<Content formFunction={handleRegistration} state={state} utype={user_type}/>}/>
         </div>
       </div>
     )
