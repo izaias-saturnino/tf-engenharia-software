@@ -10,15 +10,30 @@ const UpperMenu = () => {
         setIsBurgerMenuOpen(!isBurgerMenuOpen);
     };
 
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(searchTerm);
+    }
+
     return (
-        <div className = "upper-menu-bar">
+        <div className="upper-menu-bar">
             <Link to="/home">
-                <button className = "home-button">
-                    <img src={homeIcon} alt="Menu"/>
+                <button className="home-button">
+                    <img src={homeIcon} alt="Menu" />
                 </button>
             </Link>
-            <div className = "search-bar"/>
-            <div className = "burger-menu-container">
+            <form className="search-bar" onSubmit={handleSearchSubmit}>
+                <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Busque por uma cozinha"
+                />
+            </form>
+            <div className="burger-menu-container">
                 <button className="burger-menu-button" onClick={toggleBurgerMenu}>
                     <img src={burgerIcon} alt="Menu" />
                 </button>
@@ -31,7 +46,7 @@ const UpperMenu = () => {
                         <button className="burger-dropdown-menu-button">Requisições</button>
                         <button className="burger-dropdown-menu-button">Eventos</button>
                         <Link to="/login">
-                        <button className="burger-dropdown-menu-button">Sair</button>
+                            <button className="burger-dropdown-menu-button">Sair</button>
                         </Link>
                     </div>
                 )}
@@ -39,7 +54,5 @@ const UpperMenu = () => {
         </div>
     )
 }
-
-
 
 export default UpperMenu;
