@@ -22,9 +22,9 @@ const Content = (props) => {
         <div className="input-container">
           <input placeholder="Nome" type="text" name="username" />
         </div>
-        <div className="input-container">
+        {/* <div className="input-container">
           <input placeholder="Endereço" type="text" name="address" />
-        </div>
+        </div> */}
         <div className="input-container">
           <input placeholder="Nova senha" type="password" name="new_pass" />
         </div>
@@ -52,9 +52,10 @@ const ModifyProfile = (props) => {
     const handleModifyProfile = (event) => {
       event.preventDefault();
     
-      var { current_pass, username, addres, new_pass, new_pass2 } = document.getElementsByClassName("main-form")[0];
+      var { current_pass, username, address, new_pass, new_pass2 } = document.getElementsByClassName("main-form")[0];
 
-      let end_points = ["Password", "Name", "EmailAddres", "", ""];
+      let change_list = [username, address, new_pass];
+      let end_points = ["Name", "Addres", "Password"];
 
       if(new_pass.value !== new_pass2.value){
         alert("As duas senhas precisam ser iguais.");
@@ -62,53 +63,63 @@ const ModifyProfile = (props) => {
       }
 
       let url_user_type = user_type == '"cozinha solidária"' ? "kitchen" : "donor";
-  
-      let uri = backend_base_url+'/API/ChangeAccountInformation/'+url_user_type+"/"+"Password";
-  
-      const item = {
-        identification: state.id,
-        password: current_pass.value,
-        change: new_pass.value,
-      };
 
-      console.log(item);
+      var everything_ok = true;
+
+      for(var i = 0; i < change_list.length; i++){
+        if(change_list[i] == undefined || change_list[i] == ""){
+          continue;
+        }
+        let uri = backend_base_url+'/API/ChangeAccountInformation/'+url_user_type+"/"+end_points[i];
   
-      var resp_ok = true;
-  
-      fetch(uri, {
-        method: 'PATCH',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(item)
-      })
-        .then((resp) => {
-          if(resp.status === 400){
-            resp_ok = false;
-          }
-          return resp.json();
+        const item = {
+          identification: state.id,
+          password: current_pass.value,
+          change: change_list[i].value,
+        };
+
+        console.log(item);
+    
+        var resp_ok = true;
+    
+        fetch(uri, {
+          method: 'PATCH',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(item)
         })
-        .then((data) => {
-          //console.log(data);
-          if(resp_ok){
-            alert("Usuário cadastrado com sucesso.");
-          }else{
-            if(data.errors === undefined){
-              alert(data);
+          .then((resp) => {
+            if(resp.status === 400){
+              resp_ok = false;
             }
-            else{
-              var str = "";
-              for(var element in data.errors){
-                str += data.errors[element] + "\n";
+            return resp.json();
+          })
+          .then((data) => {
+            if(resp_ok){
+              //do nothing
+            }else{
+              everything_ok = false;
+              if(data.errors === undefined){
+                alert(data);
               }
-              alert(str);
+              else{
+                var str = "";
+                for(var element in data.errors){
+                  str += data.errors[element] + "\n";
+                }
+                alert(str);
+              }
             }
-          }
-        })
-        .catch(error => {
-          //TO DO
-        });
+          })
+          .catch(error => {
+            //TO DO
+          });
+        }
+        if(everything_ok){
+          alert("Mudanças realizadas com sucesso.");
+        }
     };
 
     //add user verification step?
