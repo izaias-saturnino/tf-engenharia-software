@@ -394,6 +394,7 @@ a {
 }
 
 .burger-menu-container{
+  position: relative;
   margin-left: auto;
   height: 100%;
   width: 50px;
@@ -502,4 +503,8 @@ a {
   width: 50px;
   background-color: yellow;
   height: 30px;
+}
+
+.hidden {
+  display: none;
 }
