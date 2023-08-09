@@ -55,7 +55,7 @@ const ModifyProfile = (props) => {
       var { current_pass, username, address, new_pass, new_pass2 } = document.getElementsByClassName("main-form")[0];
 
       let change_list = [username, address, new_pass];
-      let end_points = ["Name", "Addres", "Password"];
+      let end_points = ["Name", undefined, "Password"];
 
       if(new_pass.value !== new_pass2.value){
         alert("As duas senhas precisam ser iguais.");
@@ -67,7 +67,7 @@ const ModifyProfile = (props) => {
       var everything_ok = true;
 
       for(var i = 0; i < change_list.length; i++){
-        if(change_list[i] == undefined || change_list[i] == ""){
+        if(change_list[i] == undefined || change_list[i] == "" || end_points[i] == undefined){
           continue;
         }
         let uri = backend_base_url+'/API/ChangeAccountInformation/'+url_user_type+"/"+end_points[i];
