@@ -92,9 +92,10 @@ const Login = (props) => {
               localStorage.setItem("email", JSON.stringify(email.value));
               localStorage.setItem("isLoggedIn", JSON.stringify(true));
               var str = getUtype(data.actor_type);
-              localStorage.setItem("utype", JSON.stringify(true));
+              localStorage.setItem("id", JSON.stringify(data.actor.identification));
+              localStorage.setItem("utype", JSON.stringify(str));
               //localStorage.setItem("username", JSON.stringify(data.username));
-              if(str === "cozinha solidária"){
+              if(str == "cozinha solidária"){
                 localStorage.setItem("validatedKitchen", JSON.stringify(data.actor.validated));
               }
               navigate('/home');

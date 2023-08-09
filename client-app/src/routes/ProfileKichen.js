@@ -40,11 +40,12 @@ const ProfileKitchen = (props) => {
     profile = {
         "Nome": "Cozinha solidária",
         "Email": "cozinhasolidaria@gmail.com",
-        "Telefone": "(99) 987654321",
-        "Endereço": "Av. Bento Gonçalves, nº 999, Porto Alegre - RS",
-        "CNPJ": "987654321",
-        "utype": "kitchen",
+        //"Telefone": "(99) 987654321",
+        //"Endereço": "Av. Bento Gonçalves, nº 999, Porto Alegre - RS",
+        //"CNPJ": "987654321",
     };
+
+    profile.utype = "kitchen";
 
     //fetch events
     let events = [];

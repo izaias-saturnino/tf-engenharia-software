@@ -31,7 +31,7 @@ const Content = (props) => {
 
 const Donation = (props) => {
 
-    const {donation_id} = useParams();
+    const {kitchen_id} = useParams();
 
     // state.isLoggedIn = undefined;
     // state.email = undefined;

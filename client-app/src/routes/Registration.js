@@ -17,6 +17,9 @@ const Content = (props) => {
               <img className="w-100" src={logo}></img>
           </div>
           <div className="input-container">
+              <input placeholder="Nome" type="text" name="username" required />
+          </div>
+          <div className="input-container">
               <input placeholder="Email" type="email" name="email" required />
           </div>
           <div className="input-container">
@@ -25,10 +28,7 @@ const Content = (props) => {
           <div className="input-container">
               <input placeholder="Digite a senha novamente" type="password" name="pass2" required />
           </div>
-          <div className="input-container">
-              <input placeholder="Nome" type="text" name="username" required />
-          </div>
-          {props.utype === "donor" ?
+          {props.utype === "batata" ? // donor
             <div className="input-container">
               {/* TODO make date selection tool */}
                 <input placeholder="Data de Nascimento" type="text" name="birthDate" required />
@@ -36,11 +36,11 @@ const Content = (props) => {
             :
             <div></div>
           }
-          <div className="input-container">
+          {/* <div className="input-container"> */}
             {/* make js mask for input (after modifying number) */}
-              <input placeholder="Telefone" type="text" name="username" />
-          </div>
-          <div className="input-container">
+              {/* <input placeholder="Telefone" type="text" name="username" /> */}
+          {/* </div> */}
+          {/* <div className="input-container">
               <input placeholder="Endereço" type="text" name="address" />
           </div>
           <div className="input-container">
@@ -51,7 +51,7 @@ const Content = (props) => {
           </div>
           <div className="input-container">
               <input placeholder={props.utype === "donor" ? "CPF" : "CNPJ"} type="text" name="address" required />
-          </div>
+          </div> */}
           <div className="w-100 button-container">
               <input type="submit" value="Criar Conta"/>
           </div>
