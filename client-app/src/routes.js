@@ -37,6 +37,10 @@ const router = createBrowserRouter([
     element: <Registration/>
   },
   {
+    path: "/registration",
+    element: <SelectUserType/>
+  },
+  {
     path: "/select_user_type",
     element: <SelectUserType/>
   },
