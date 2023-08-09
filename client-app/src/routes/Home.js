@@ -11,12 +11,6 @@ const Content = (props) => {
         <div>
             <UpperMenu/>
             <EventsList/>
-
-            <div className="bar">
-                <div className="bar-a"/>
-                <div className="bar-b"/>
-                <div className="bar-c"/>
-            </div>
         </div>
     )
 }
