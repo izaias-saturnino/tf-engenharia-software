@@ -12,6 +12,8 @@ import Profile from "./routes/Profile.js";
 import DonationHistory from "./routes/DonationHistory.js";
 import ProfileKitchen from "./routes/ProfileKichen.js";
 import Donation from "./routes/Donation.js";
+import FoodRequisition from "./routes/FoodRequisition.js";
+import CreateEvent from "./routes/CreateEvent.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
   {
     path: "/profile_kitchen/:kitchen",
     element: <ProfileKitchen/>
+  },
+  {
+    path: "/foodRequisition",
+    element: <FoodRequisition/>
+  },
+  {
+    path: "/createEvent",
+    element: <CreateEvent/>
   },
   // {
   //   path: "*",
