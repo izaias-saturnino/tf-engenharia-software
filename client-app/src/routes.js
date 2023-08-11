@@ -9,6 +9,8 @@ import Registration from "./routes/Registration.js";
 import SelectUserType from "./routes/SelectUserType.js";
 import KitchenSearch from "./routes/KitchenSearch.js";
 import Profile from "./routes/Profile.js";
+import FoodRequisition from "./routes/FoodRequisition.js";
+import CreateEvent from "./routes/CreateEvent.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile/>
+  },
+  {
+    path: "/foodRequisition",
+    element: <FoodRequisition/>
+  },
+  {
+    path: "/createEvent",
+    element: <CreateEvent/>
   },
 ])
 
