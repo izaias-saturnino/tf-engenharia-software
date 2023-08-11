@@ -18,12 +18,12 @@ const KitchenHome = (props) => {
             <div className="pt-5 px-10">
                 <img className="w-100" src={kitchenLogo}></img>
             </div>    
-            <Link to="foodRequisition">
+            <Link to="/foodRequisition">
                 <div className="w-100 button-container">
                     <input type="submit" value="Criar pedido de doação"/>
                 </div>
             </Link>
-            <Link to="createEvent">
+            <Link to="/createEvent">
                 <div className="w-100 button-container">
                     <input type="submit" value="Criar Evento"/>
                 </div>
