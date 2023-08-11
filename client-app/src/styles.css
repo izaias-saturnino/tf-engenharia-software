@@ -502,3 +502,14 @@ a {
 .hidden {
   display: none;
 }
+
+.verify-mark {
+  width: 40px;
+  height: 35px;
+}
+
+.kitchen-profile-container {
+  margin-left: 1em;
+  display: flex;
+  flex-direction: row;
+}
