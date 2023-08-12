@@ -18,4 +18,4 @@ function App() {
 
 export default App;
 
-export const backend_base_url = "https://3b54-2804-14d-4c85-1043-5966-90fc-e354-18fa.ngrok-free.app";
+export const backend_base_url = "https://77f3-2804-14d-4c85-1043-aa26-768b-c743-3dc.ngrok-free.app";

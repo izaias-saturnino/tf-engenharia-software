@@ -21,8 +21,8 @@ const Content = (props) => {
 const Home = (props) => {
 
     //localStorage.setItem("username", "user");
-    localStorage.setItem("utype", "cozinha solidária");
-    localStorage.setItem("username", "Cozinha Solidária");
+    //localStorage.setItem("utype", "cozinha solidária");
+    //localStorage.setItem("username", "Cozinha Solidária");
     //localStorage.setItem("validatedKitchen", true);
     const state = { ...localStorage };
     //const state = {username: "user", utype: "cozinha solidária", validatedKitchen: true};
