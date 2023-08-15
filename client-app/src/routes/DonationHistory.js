@@ -44,7 +44,7 @@ const DonationHistory = (props) => {
     const {kitchen_id} = useParams();
 
     let donations = state.donations;
-    let kitchen = state.kitchen_donation_history;
+    let kitchen = state.kitchen;
 
     if(kitchen_id != undefined && kitchen.id != kitchen_id){
         //fetch kitchen donations
@@ -70,7 +70,7 @@ const DonationHistory = (props) => {
             .then((data) => {
                 if(resp_ok){
                     localStorage.setItem('donations', data.donations);
-                    localStorage.setItem('kitchen_donation_history', data.kitchen);
+                    localStorage.setItem('kitchen', data.kitchen);
                     console.log("resp_ok");
                     navigate("/donation_history/" + kitchen_id);
                 }else{
@@ -90,8 +90,8 @@ const DonationHistory = (props) => {
                 //TO DO
             });
     }else if(kitchen_id == undefined){
-        if(state.kitchen_donation_history != undefined){
-            localStorage.setItem('kitchen_donation_history', undefined);
+        if(state.kitchen != undefined){
+            localStorage.setItem('kitchen', undefined);
 
             //fetch donor donations
 
