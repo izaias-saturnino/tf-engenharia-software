@@ -42,6 +42,7 @@ const DonationHistory = (props) => {
     const state = { ...localStorage };
 
     const {kitchen_id} = useParams();
+    const navigate = useNavigate();
 
     let donations = state.donations;
     let kitchen = state.kitchen;
