@@ -4,7 +4,10 @@ import homeIcon from "../images/homeIcon.png"
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 const UpperMenu = (props) => {
-    const userType = "doador";
+
+    const state = { ...localStorage };
+
+    const userType = state.utype;
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
     const toggleBurgerMenu = () => {
@@ -44,22 +47,23 @@ const UpperMenu = (props) => {
                     <div className="burger-menu-dropdown">
 
                         {userType === "doador" && (
-                        <Link to="/profile">
-                            <button className="burger-dropdown-menu-button">Credenciais</button>
-                        </Link>)}
-
-                        {userType === "cozinha solidária" && (
                             <button className="burger-dropdown-menu-button">Perfil</button>)}
 
                         <button className="burger-dropdown-menu-button">Doações</button>
 
-                        {userType === "doador" && (
+                        {userType === "cozinha solidária" && (
                         <button className="burger-dropdown-menu-button">Requisições</button>)}
 
-                        {userType === "doador" && (
+                        {userType === "cozinha solidária" && (
                         <button className="burger-dropdown-menu-button">Eventos</button>)}
 
+                        {userType === "doador" && (
+                        <Link to="/modify_profile">
+                            <button className="burger-dropdown-menu-button">Credenciais</button>
+                        </Link>)}
+
                         <Link to="/login">
+                            {/*TODO add function that clears local state*/}
                             <button className="burger-dropdown-menu-button">Sair</button>
                         </Link>
 
