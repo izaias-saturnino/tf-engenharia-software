@@ -39,24 +39,27 @@ const Donation = (props) => {
 
 const DonationHistory = (props) => {
 
+    const state = { ...localStorage };
+
     const {kitchen_id} = useParams();
 
-    let donations = [];
-    let kitchen = {};
+    let donations = state.donations;
+    let kitchen = state.kitchen_donation_history;
 
-    if(kitchen_id != undefined){
+    if(kitchen_id != undefined && kitchen.id != kitchen_id){
         //fetch kitchen donations
     
-        let uri = backend_base_url+'/API/KitchenHistory/'+kitchen_id;
+        let uri = backend_base_url+'/API/KitchenHistory';
     
         var resp_ok = true;
     
         fetch(uri, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
+            body: kitchen_id
         })
             .then((resp) => {
                 if(resp.status === 400){
@@ -66,9 +69,10 @@ const DonationHistory = (props) => {
             })
             .then((data) => {
                 if(resp_ok){
-                    kitchen = data.kitchen;
-                    donations = data.donations;
+                    localStorage.setItem('donations', data.donations);
+                    localStorage.setItem('kitchen_donation_history', data.kitchen);
                     console.log("resp_ok");
+                    navigate("/donation_history/" + kitchen_id);
                 }else{
                     if(data.errors === undefined){
                         alert(data);
@@ -85,9 +89,14 @@ const DonationHistory = (props) => {
             .catch(error => {
                 //TO DO
             });
-    }else{
-        //TO DO
-        //fetch donor donations
+    }else if(kitchen_id == undefined){
+        if(state.kitchen_donation_history != undefined){
+            localStorage.setItem('kitchen_donation_history', undefined);
+
+            //fetch donor donations
+
+            navigate("/donation_history");
+        }
     }
 
     //console.log(donations);
