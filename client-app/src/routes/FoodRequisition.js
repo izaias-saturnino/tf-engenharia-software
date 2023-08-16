@@ -22,7 +22,13 @@ const Content = (props) => {
               <input placeholder="Quantidade" type="text" name="Quantity" required />
           </div>
           <div className="input-container">
-              <input placeholder="Unidades" type="text" name="Unit" required />
+              <select name="Unit" required >
+                <option value="" disabled selected>Unidade</option>
+                <option value="Quilos">Quilos</option>
+                <option value="Litros">Litros</option>
+                <option value="Gramas">Gramas</option>
+                <option value="Bandejas">Bandejas</option>
+              </select>
           </div>
           <div className="input-container">
               <input placeholder="Preço" type="text" name="Price" required />
