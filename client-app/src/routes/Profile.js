@@ -6,7 +6,7 @@ import defaultProfilePic from '../images/default-profile-picture.png';
 import ProfileProp from "../components/ProfileProp.js";
 
 const Profile = (props) => {
-    {/* TODO get profile info on login */}
+    /* TODO get profile info on login */
 
     var state = { ...localStorage };
     state = {};
@@ -19,11 +19,11 @@ const Profile = (props) => {
         "utype": "kitchen",
     };
 
-    if(state == undefined){
+    if(state === undefined){
         return (<Login/>)
     }
-    if(state.profile == undefined){
-        if(state.username == undefined){
+    if(state.profile === undefined){
+        if(state.username === undefined){
             return (<Login/>)
         }
         //fetch this user info and assign it to state.profile

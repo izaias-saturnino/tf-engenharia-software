@@ -44,16 +44,14 @@ const Requisitions = (props) => {
     const state = { ...localStorage };
 
     var requisitions = state.requisitions;
+    var kitchen = state.kitchen;
 
     localStorage.setItem('requisitions', '');
 
-    var requisitions = state.requisitions;
-    var kitchen = state.kitchen;
-
     const {kitchen_id} = useParams();
 
-    if(requisitions == '' || requisitions == undefined){
-        if(kitchen_id == undefined){
+    if(requisitions === '' || requisitions === undefined){
+        if(kitchen_id === undefined){
             navigate('/get_donation_history');
         }
         else{
@@ -64,7 +62,7 @@ const Requisitions = (props) => {
     let results = [];
     let i = 0;
 
-    if(requisitions != '' && requisitions != undefined){
+    if(requisitions !== '' && requisitions !== undefined){
         for (i = 0; i < requisitions.length; i++) {
             results.push(<Requisition className={"default-border-bottom"} requisition={requisitions[i]} kitchenName={kitchen.Name}/>);
         }

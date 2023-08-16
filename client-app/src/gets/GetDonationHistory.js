@@ -13,7 +13,7 @@ const GetDonationHistory = (props) => {
 
     const state = { ...localStorage };
 
-    if(kitchen_id != undefined){
+    if(kitchen_id !== undefined){
         //fetch kitchen donations
     
         let uri = backend_base_url+'/API/KitchenHistory';

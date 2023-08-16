@@ -44,16 +44,14 @@ const DonationHistory = (props) => {
     const state = { ...localStorage };
 
     var donations = state.donations;
+    var kitchen = state.kitchen;
 
     localStorage.setItem('donations', '');
 
-    var donations = state.donations;
-    var kitchen = state.kitchen;
-
     const {kitchen_id} = useParams();
 
-    if(donations == '' || donations == undefined){
-        if(kitchen_id == undefined){
+    if(donations === '' || donations === undefined){
+        if(kitchen_id === undefined){
             navigate('/get_donation_history');
         }
         else{
@@ -64,7 +62,7 @@ const DonationHistory = (props) => {
     let results = [];
     let i = 0;
 
-    if(donations != '' && donations != undefined){
+    if(donations !== '' && donations !== undefined){
         for (i = 0; i < donations.length; i++) {
             results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchenName={kitchen.Name}/>);
         }
