@@ -4,6 +4,7 @@ import foodLogo from '../images/foodLogo.png';
 
 import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
+import UpperMenu from "../components/UpperMenu";
 
 const Content = (props) => {
   return (
@@ -99,9 +100,12 @@ const FoodRequisition = () => {
     };
 
     return (
-      <div className="app">
-        <div className="p-10">
-            <AccountForm title={"Criar pedido de doação"} content={<Content formFunction={handleFoodRequisition}/>}/>
+      <div>
+        <UpperMenu/>
+        <div className="app">
+          <div className="p-10">
+              <AccountForm title={"Criar pedido de doação"} content={<Content formFunction={handleFoodRequisition}/>} backNavigation="skip"/>
+          </div>
         </div>
       </div>
     )

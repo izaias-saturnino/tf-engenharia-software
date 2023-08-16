@@ -4,6 +4,7 @@ import eventLogo from '../images/eventLogo.png';
 
 import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
+import UpperMenu from "../components/UpperMenu";
 
 const Content = (props) => {
   return (
@@ -89,9 +90,12 @@ const CreateEvent = () => {
     };
 
     return (
-      <div className="app">
-        <div className="p-10">
-            <AccountForm title={"Criar evento"} content={<Content formFunction={handleEventCreation}/>}/>
+      <div>
+        <UpperMenu/>
+        <div className="app">
+          <div className="p-10">
+              <AccountForm title={"Criar evento"} content={<Content formFunction={handleEventCreation}/>} backNavigation="skip" />
+          </div>
         </div>
       </div>
     )

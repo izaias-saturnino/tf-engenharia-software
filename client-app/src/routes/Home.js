@@ -29,11 +29,7 @@ const Home = (props) => {
 
     return (
         <div>
-            <div className="w-100 d-flex center-content box-shadow">
-                <div className="screen-area">
-                    <UpperMenu/>
-                </div>
-            </div>
+            <UpperMenu/>
             <div className="app">
                 <Content state={state} />
             </div>

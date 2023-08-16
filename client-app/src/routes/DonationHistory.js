@@ -4,6 +4,7 @@ import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 import Login from "./Login";
 import SearchPage from "../components/SeachPage"
 import { backend_base_url } from "../App";
+import UpperMenu from "../components/UpperMenu";
 
 const Donation = (props) => {
     return (
@@ -80,7 +81,10 @@ const DonationHistory = (props) => {
     //results.push(<div className="pt-5">Fim dos resultados.</div>);
 
     return (
-        <SearchPage title={"Doações"} results={results} placeholder={"Filtrar"}/>
+        <div>
+            <UpperMenu/>
+            <SearchPage title={"Doações"} results={results} placeholder={"Filtrar"}/>
+        </div>
     )
 };
 
