@@ -3,6 +3,7 @@ import React from "react";
 import foodLogo from '../images/foodLogo.png';
 
 import AccountForm from "../components/AccountForm";
+import { backend_base_url } from "../App";
 
 const Content = (props) => {
   return (
@@ -18,10 +19,10 @@ const Content = (props) => {
               <input placeholder="Nome do produto" type="text" name="Name" required />
           </div>
           <div className="input-container">
-              <input placeholder="Quantidade" type="text" name="Quanitity" required />
+              <input placeholder="Quantidade" type="text" name="Quantity" required />
           </div>
           <div className="input-container">
-              <input placeholder="Unidades" type="number" name="Unity" required />
+              <input placeholder="Unidades" type="text" name="Unit" required />
           </div>
           <div className="input-container">
               <input placeholder="Preço" type="text" name="Price" required />
@@ -41,15 +42,15 @@ const FoodRequisition = () => {
     const handleFoodRequisition = (event) => {
         event.preventDefault();
     
-        var { Name, Quanitity, Unity, Price } = document.getElementsByClassName("main-form")[0];
+        var { Name, Quantity, Unit, Price } = document.getElementsByClassName("main-form")[0];
     
-        let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/RequestDonation';
+        let uri = backend_base_url+'/API/RequestDonation';
     
         const item = {
-          Id: state.id,
+          kitchenIdentification: state.id,
           Name: Name.value,
-          Quanitity: Quanitity.value,
-          Unity: Unity.value,
+          Quantity: Quantity.value,
+          Unit: Unit.value,
           Price: Price.value
         };
     
@@ -72,7 +73,7 @@ const FoodRequisition = () => {
           .then((data) => {
             //console.log(data);
             if(resp_ok){
-              alert("Doação requisitada com sucesso.");
+              alert(data);
             }else{
               if(data.errors === undefined){
                 alert(data);

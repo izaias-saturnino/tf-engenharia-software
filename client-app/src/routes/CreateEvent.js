@@ -3,6 +3,7 @@ import React from "react";
 import eventLogo from '../images/eventLogo.png';
 
 import AccountForm from "../components/AccountForm";
+import { backend_base_url } from "../App";
 
 const Content = (props) => {
   return (
@@ -40,13 +41,13 @@ const CreateEvent = () => {
     
         var { Date, Location, Public } = document.getElementsByClassName("main-form")[0];
     
-        let uri = 'https://e30a-143-54-52-136.ngrok-free.app/API/RequestDonation';
+        let uri = backend_base_url+'/API/Event';
     
         const item = {
-          Id: state.id,
-          Date: Date.value,
-          Location: Location.value,
-          Public: Public.value,
+          kitchenIdentification: state.id,
+          /*Date: Date.value,*/
+          location: Location.value,
+          public: Public.value,
         };
     
         var resp_ok = true;

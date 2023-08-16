@@ -16,6 +16,7 @@ import FoodRequisition from "./routes/FoodRequisition.js";
 import CreateEvent from "./routes/CreateEvent.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import GetDonationHistory from "./routes/GetDonationHistory.js";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
   {
     path: "/createEvent",
     element: <CreateEvent/>
+  },
+  {
+    path: '/get_donation_history',
+    element: <GetDonationHistory/>
+  },
+  {
+    path: '/get_donation_history/:kitchen',
+    element: <GetDonationHistory/>
   },
   // {
   //   path: "*",

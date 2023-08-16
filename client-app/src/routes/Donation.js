@@ -32,12 +32,6 @@ const Content = (props) => {
 const Donation = (props) => {
 
     const {kitchen_id} = useParams();
-
-    // state.isLoggedIn = undefined;
-    // state.email = undefined;
-    // state.username = undefined;
-    // state.utype = undefined;
-    // state.validatedKitchen = undefined;
     const state = { ...localStorage };
 
     const navigate = useNavigate();

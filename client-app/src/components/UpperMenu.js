@@ -39,37 +39,37 @@ const UpperMenu = (props) => {
                 />
                 <button type="submit" className="hidden"/>
             </form>)}
-            <div className="burger-menu-container">
-                <button className="burger-menu-button" onClick={toggleBurgerMenu}>
-                    <img src={burgerIcon} alt="Menu" />
-                </button>
-                {isBurgerMenuOpen && (
-                    <div className="burger-menu-dropdown">
+            <button className="burger-menu-button" onClick={toggleBurgerMenu}>
+                <img src={burgerIcon} alt="Menu" />
+            </button>
+            {isBurgerMenuOpen && (
+                <div className="burger-menu-dropdown">
 
-                        {userType === "doador" && (
-                            <button className="burger-dropdown-menu-button">Perfil</button>)}
+                    {userType === "doador" && (
+                        <button className="burger-dropdown-menu-button">Perfil</button>)}
 
-                        <button className="burger-dropdown-menu-button">Doações</button>
+                    <Link to="/donation_history">
+                    <button className="burger-dropdown-menu-button">Doações</button>
+                    </Link>
 
-                        {userType === "cozinha solidária" && (
-                        <button className="burger-dropdown-menu-button">Requisições</button>)}
+                    {userType === "cozinha solidária" && (
+                    <button className="burger-dropdown-menu-button">Requisições</button>)}
 
-                        {userType === "cozinha solidária" && (
-                        <button className="burger-dropdown-menu-button">Eventos</button>)}
+                    {userType === "cozinha solidária" && (
+                    <button className="burger-dropdown-menu-button">Eventos</button>)}
 
-                        {userType === "doador" && (
-                        <Link to="/modify_profile">
-                            <button className="burger-dropdown-menu-button">Credenciais</button>
-                        </Link>)}
+                    {userType === "doador" && (
+                    <Link to="/modify_profile">
+                        <button className="burger-dropdown-menu-button">Credenciais</button>
+                    </Link>)}
 
-                        <Link to="/login">
-                            {/*TODO add function that clears local state*/}
-                            <button className="burger-dropdown-menu-button">Sair</button>
-                        </Link>
+                    <Link to="/login">
+                        {/*TODO add function that clears local state*/}
+                        <button className="burger-dropdown-menu-button">Sair</button>
+                    </Link>
 
-                    </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     )
 }
