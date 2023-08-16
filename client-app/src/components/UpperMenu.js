@@ -24,11 +24,10 @@ const UpperMenu = (props) => {
 
     return (
         <div className="upper-menu-bar">
-            <Link to="/home">
-                <button className="home-button">
-                    <img src={homeIcon} alt="Menu" />
-                </button>
+            <Link to="/home" className="d-flex">
+                <img className="home-icon p-1" src={homeIcon} alt="Menu" />
             </Link>
+            <div className="w-100">
             {userType === "doador" && (
             <form className="search-bar" onSubmit={handleSearchSubmit}>
                 <input
@@ -39,39 +38,48 @@ const UpperMenu = (props) => {
                 />
                 <button type="submit" className="hidden"/>
             </form>)}
-            <button className="burger-menu-button" onClick={toggleBurgerMenu}>
-                <img src={burgerIcon} alt="Menu" />
-            </button>
-            {isBurgerMenuOpen && (
-                <div className="burger-menu-dropdown">
+            </div>
+            <button className="d-flex burger-menu-button" onClick={toggleBurgerMenu}>
+                <img className="burger-icon p-1" src={burgerIcon} alt="Menu" />
+                <div className="relative">
+                {isBurgerMenuOpen && (
+                    <div className="burger-menu-dropdown">
 
-                    {userType === "doador" && (
-                        <button className="burger-dropdown-menu-button">Perfil</button>)}
+                        {userType === "doador" && (
+                            <button className="burger-dropdown-menu-button">Perfil</button>)}
 
-                    <Link to="/donation_history">
-                    <button className="burger-dropdown-menu-button">Doações</button>
-                    </Link>
+                        <Link to="/donation_history">
+                            <button className="burger-dropdown-menu-button">Doações</button>
+                        </Link>
 
-                    {userType === "cozinha solidária" && (
-                    <button className="burger-dropdown-menu-button">Requisições</button>)}
-
-                    {userType === "cozinha solidária" && (
-                    <button className="burger-dropdown-menu-button">Eventos</button>)}
-
-                    {userType === "doador" && (
-                    <Link to="/modify_profile">
-                        <button className="burger-dropdown-menu-button">Credenciais</button>
-                    </Link>)}
-
-                    <Link to="/login">
-                        {/*TODO add function that clears local state*/}
-                        {userType !== '' && userType !== undefined && (
-                            <button className="burger-dropdown-menu-button">Sair</button>
+                        {userType === '"cozinha solidária"' && (
+                        <Link to="/foodRequisition">
+                            <button className="burger-dropdown-menu-button">Requisições</button>
+                        </Link>
                         )}
-                    </Link>
 
+                        {userType === '"cozinha solidária"' && (
+                        <Link to="/createEvent">
+                            <button className="burger-dropdown-menu-button">Eventos</button>
+                        </Link>
+                        )}
+
+                        {userType === "doador" && (
+                        <Link to="/modify_profile">
+                            <button className="burger-dropdown-menu-button">Credenciais</button>
+                        </Link>)}
+
+                        <Link to="/login">
+                            {/*TODO add function that clears local state*/}
+                            {userType !== '' && userType !== undefined && (
+                                <button className="burger-dropdown-menu-button">Sair</button>
+                            )}
+                        </Link>
+
+                    </div>
+                )}
                 </div>
-            )}
+            </button>
         </div>
     )
 }

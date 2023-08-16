@@ -34,7 +34,9 @@ input {
 
 input[type="text"],
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+input[type="number"],
+input[type="date"] {
   height: 25px;
   border-top: 0;
   border-right: 0;
@@ -43,13 +45,16 @@ input[type="email"] {
 
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
-input[type="email"]::placeholder {
+input[type="email"]::placeholder,
+input[type="number"]::placeholder {
   color: rgb(0.4, 0.4, 0.4);
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
-input[type="email"]:focus {
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus {
   outline: none;
 }
 
@@ -105,8 +110,16 @@ input[type="submit"]:hover, input[type="image"]:hover {
 .screen-area {
   box-sizing: border-box;
   max-width: min(80vw, 18em);
-  min-width: 300px;
+  min-width: min(max(300px, 95%), 600px);
   background-color: white;
+}
+
+.default-page-content-size{
+  max-width: min(80vw, 18em);
+  min-width: min(max(300px, 95%), 600px);
+}
+
+.box-shadow{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -202,8 +215,30 @@ input[type="submit"]:hover, input[type="image"]:hover {
   padding-bottom: 0em !important;
 }
 
+.px-1{
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+
+.pl-1{
+  padding-left: 0.2em;
+}
+
+.p-1{
+  padding: 0.2em;
+}
+
 .pb-1{
   padding-bottom: 0.2em;
+}
+
+.px-2{
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+}
+
+.pl-2{
+  padding-left: 0.4em;
 }
 
 .pt-3{
@@ -245,6 +280,11 @@ input[type="submit"]:hover, input[type="image"]:hover {
   padding-right: 1em;
 }
 
+.py-5{
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
 .py-8{
   padding-top: 1.6em;
   padding-bottom: 1.6em;
@@ -265,6 +305,14 @@ input[type="submit"]:hover, input[type="image"]:hover {
 
 .pb-10{
   padding-bottom: 2em;
+}
+
+.pt-10{
+  padding-top: 2em;
+}
+
+.mt-10{
+  margin-top: 2em;
 }
 
 .pb-15{
@@ -376,7 +424,6 @@ a {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 16px;
-  width: 90%;
   box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
 }
 
@@ -390,31 +437,21 @@ a {
 }
 
 .event-list-container {
-  max-height: 400px;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .upper-menu-bar{
-  
+  display: flex;
   align-items: center;
   width: 100%;
-  background-color: #c0c0c0;
 }
 
 .burger-menu-button{
   border: none;
   background-color: inherit;
   padding: 0;
-  width: 50px;
-  height: 50px;
-}
-
-.burger-menu-button img{
-  width: 100%;
-  height: auto;
 }
 
 .burger-menu-dropdown {
@@ -439,17 +476,32 @@ a {
   text-align: right;
 }
 
-.home-button {
-  padding: 0em;
-  border: none;
-  background-color: inherit;
-  width: 50px;
-  height: 50px;
+.relative{
+  position: relative;
 }
 
-.home-button img{
-  width: 100%;
-  height: auto;
+.overlay-link-container{
+  position: relative;
+  display: inline-block;
+}
+
+.overlay-link{
+  position: absolute; /* Position the link relative to the container */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.d-inline-block{
+  display: inline-block;
+}
+
+.d-flex{
+  display: flex;
+}
+
+.home-icon, .burger-icon{
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .search-bar{

@@ -13,7 +13,7 @@ const Content = (props) => {
             Marque um evento para divulgar sua cozinha!
           </div>
           <div className="pt-5 px-10">
-              <img className="w-100" src={eventLogo}></img>
+              <img className="pl-1 w-100" src={eventLogo}></img>
           </div>
           <div className="input-container">
               <input placeholder="Local do evento" type="text" name="Location" required />

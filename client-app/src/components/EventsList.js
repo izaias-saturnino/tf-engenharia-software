@@ -15,13 +15,11 @@ const events = [
 
 const EventsList = () => {
     return (
-    <div className="event-list-container">
+    <div className="event-list-container py-5 px-2">
     {events.map((event, index) => (
-        <EventCard
-        key={index}
-        title={event.title}
-        content={event.content}
-        />
+        <div className="py-3 w-100">
+            <EventCard key={index} title={event.title} content={event.content}/>
+        </div>
     ))}
     </div>
     );
@@ -29,7 +27,7 @@ const EventsList = () => {
 
 const EventCard = ({ title, content }) => {
     return (
-        <div className="event-card-container">
+        <div className="event-card-container w-100">
             <div className="event-card-title">{title}</div>
             <div className="event-card-content">{content}</div>
         </div>
