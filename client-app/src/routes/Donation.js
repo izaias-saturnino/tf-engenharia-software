@@ -22,7 +22,7 @@ const Content = (props) => {
             <input placeholder="Valor da doação" type="text" name="value" required />
         </div>
         <div className="w-100 button-container">
-            <input type="submit" value="Doar"/>
+            <input type="submit" className="form-btn" value="Doar"/>
         </div>
       </form>
     </div>

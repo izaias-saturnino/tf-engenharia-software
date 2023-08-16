@@ -36,7 +36,7 @@ const Content = (props) => {
           <input placeholder="Digite a nova senha novamente" type="password" name="new_pass2" />
         </div>
         <div className="w-100 button-container">
-          <input type="submit" value="Alterar"/>
+          <input type="submit" className="form-btn" value="Alterar"/>
         </div>
       </form>
     </div>

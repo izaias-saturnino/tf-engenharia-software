@@ -23,13 +23,6 @@ const AccountForm = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="col">
-                        <div className="flex-row right-content">
-                            <div className="pb-5 headerBtn flex-row">
-                            <input type="submit" value="H"/>
-                            </div>
-                        </div>
-                        </div> */}
                     </div>
                 </form>
                 :

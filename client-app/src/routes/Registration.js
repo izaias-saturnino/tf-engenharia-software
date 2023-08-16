@@ -53,7 +53,7 @@ const Content = (props) => {
               <input placeholder={props.utype === "donor" ? "CPF" : "CNPJ"} type="text" name="address" required />
           </div> */}
           <div className="w-100 button-container">
-              <input type="submit" value="Criar Conta"/>
+              <input type="submit" className="form-btn" value="Criar Conta"/>
           </div>
       </form>
     </div>

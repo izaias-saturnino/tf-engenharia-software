@@ -17,12 +17,12 @@ const Content = (props) => {
         <div className="pt-5"></div>
         <form onSubmit={props.formFunction1}>
             <div className="w-100 button-container">
-                <input type="submit" value="Sou uma cozinha solidária"/>
+                <input type="submit" className="form-btn" value="Sou uma cozinha solidária"/>
             </div>
         </form>
         <form onSubmit={props.formFunction2}>
             <div className="w-100 button-container">
-                <input type="submit" value="Sou um doador"/>
+                <input type="submit" className="form-btn" value="Sou um doador"/>
             </div>
         </form>
       </div>

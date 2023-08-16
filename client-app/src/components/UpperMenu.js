@@ -7,7 +7,9 @@ const UpperMenu = (props) => {
 
     const state = { ...localStorage };
 
-    const userType = state.utype;
+    const navigate = useNavigate();
+
+    var userType = undefined;
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
     const toggleBurgerMenu = () => {
@@ -21,6 +23,12 @@ const UpperMenu = (props) => {
 
         console.log(searchTerm);
     }
+
+    const logout = (event) => {
+        event.preventDefault();
+        localStorage.clear();
+        navigate("/login");
+    };
 
     return (
         <div className="w-100 d-flex center-content box-shadow-small bg-white">
@@ -38,7 +46,7 @@ const UpperMenu = (props) => {
                             onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="Busque por uma cozinha"
                         />
-                        <button type="submit" className="hidden"/>
+                        <button type="submit" className="hidden form-btn"/>
                     </form>)}
                     </div>
                     <button className="d-flex burger-menu-button" onClick={toggleBurgerMenu}>
@@ -50,9 +58,11 @@ const UpperMenu = (props) => {
                                 {userType === "doador" && (
                                     <button className="burger-dropdown-menu-button">Perfil</button>)}
 
+                                {userType !== undefined && (
                                 <Link to="/donation_history">
                                     <button className="burger-dropdown-menu-button">Doações</button>
                                 </Link>
+                                )}
 
                                 {userType === '"cozinha solidária"' && (
                                 <Link to="/foodRequisition">
@@ -69,15 +79,22 @@ const UpperMenu = (props) => {
                                 {userType === "doador" && (
                                 <Link to="/modify_profile">
                                     <button className="burger-dropdown-menu-button">Credenciais</button>
-                                </Link>)}
-
-                                <Link to="/login">
-                                    {/*TODO add function that clears local state*/}
-                                    {userType !== '' && userType !== undefined && (
-                                        <button className="burger-dropdown-menu-button">Sair</button>
-                                    )}
                                 </Link>
+                                )}
 
+                                {userType !== undefined && (
+                                    <Link to="/login">
+                                        <form onSubmit={logout}>
+                                            <input type="submit" className="burger-dropdown-menu-button" value="Sair"/>
+                                        </form>
+                                    </Link>
+                                )}
+
+                                {userType === undefined && (
+                                    <Link to="/registration">
+                                        <button className="burger-dropdown-menu-button">Registrar</button>
+                                    </Link>
+                                )}
                             </div>
                         )}
                         </div>

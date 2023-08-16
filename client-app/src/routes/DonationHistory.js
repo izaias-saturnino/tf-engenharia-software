@@ -47,11 +47,11 @@ const DonationHistory = (props) => {
     var donations = state.donations;
     var kitchen = state.kitchen;
 
-    localStorage.setItem('donations', '');
+    localStorage.removeItem('donations');
 
     const {kitchen_id} = useParams();
 
-    if(donations === '' || donations === undefined){
+    if(donations === undefined){
         if(kitchen_id === undefined){
             navigate('/get_donation_history');
         }

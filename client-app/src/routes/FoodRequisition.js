@@ -35,7 +35,7 @@ const Content = (props) => {
               <input placeholder="Preço" type="text" name="Price" required />
           </div>
           <div className="w-100 button-container">
-              <input type="submit" value="Criar Requisição"/>
+              <input type="submit" className="form-btn" value="Criar Requisição"/>
           </div>
       </form>
     </div>

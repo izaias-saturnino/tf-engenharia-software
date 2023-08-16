@@ -46,11 +46,11 @@ const Requisitions = (props) => {
     var requisitions = state.requisitions;
     var kitchen = state.kitchen;
 
-    localStorage.setItem('requisitions', '');
+    localStorage.removeItem('requisitions');
 
     const {kitchen_id} = useParams();
 
-    if(requisitions === '' || requisitions === undefined){
+    if(requisitions === undefined){
         if(kitchen_id === undefined){
             navigate('/get_donation_history');
         }

@@ -103,12 +103,6 @@ const ProfileKitchen = (props) => {
                                             {profile.Telefone}
                                         </div>
                                     </div>
-                                    {/* <div className="profile-properties">
-                                        <div className="gray-text">Site</div>
-                                        <div>
-                                            <a className="link" href="https://cozinhasolidaria.com.br">cozinhasolidaria.com.br</a>
-                                        </div>
-                                    </div> */}
                                     <ProfileProp propName={"Endereço"} propValue={profile.Endereço}/>
                                     <ProfileProp propName={"CNPJ"} propValue={profile.CNPJ}/>
                                 </div>
@@ -118,7 +112,7 @@ const ProfileKitchen = (props) => {
                     <div className="py-8 px-10">
                         <div className="w-100 button-container button-font">
                             {/* TODO add link */}
-                            <input type="submit" value="Quero doar"/>
+                            <input type="submit" className="form-btn" value="Quero doar"/>
                         </div>
                     </div>
                     <div className="login-form">

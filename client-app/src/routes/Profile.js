@@ -51,12 +51,6 @@ const Profile = (props) => {
                                     {state.profile.Telefone}
                                 </div>
                             </div>
-                            {/* <div className="profile-properties">
-                                <div className="gray-text">Site</div>
-                                <div>
-                                    <a className="link" href="https://cozinhasolidaria.com.br">cozinhasolidaria.com.br</a>
-                                </div>
-                            </div> */}
                             <ProfileProp propName={"Endereço"} propValue={state.profile.Endereço}/>
                             {state.profile.utype === "kitchen" ?
                                 <ProfileProp propName={"CNPJ"} propValue={state.profile.CNPJ}/>

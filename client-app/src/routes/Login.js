@@ -23,12 +23,12 @@ const Content = (props) => {
             <input placeholder="Senha" type="password" name="pass" required />
         </div>
         <div className="w-100 button-container">
-            <input type="submit" value="Entrar"/>
+            <input type="submit" className="form-btn" value="Entrar"/>
         </div>
       </form>
       <Link to="/select_user_type">
           <div className="w-100 button-container">
-              <input type="submit" value="Criar Conta"/>
+              <input type="submit" className="form-btn" value="Criar Conta"/>
           </div>
       </Link>
     </div>

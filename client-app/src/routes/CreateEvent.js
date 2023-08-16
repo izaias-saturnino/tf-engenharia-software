@@ -26,7 +26,7 @@ const Content = (props) => {
               <input placeholder="Público esperado" type="number" name="Public" required />
           </div>
           <div className="w-100 button-container">
-              <input type="submit" value="Criar Evento"/>
+              <input type="submit" className="form-btn" value="Criar Evento"/>
           </div>
       </form>
     </div>
