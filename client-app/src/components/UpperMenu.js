@@ -65,7 +65,9 @@ const UpperMenu = (props) => {
 
                     <Link to="/login">
                         {/*TODO add function that clears local state*/}
-                        <button className="burger-dropdown-menu-button">Sair</button>
+                        {userType !== '' && userType !== undefined && (
+                            <button className="burger-dropdown-menu-button">Sair</button>
+                        )}
                     </Link>
 
                 </div>

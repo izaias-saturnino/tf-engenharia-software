@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 
-import Login from "./Login";
+import Login from "../routes/Login";
 import SearchPage from "../components/SeachPage"
 import { backend_base_url } from "../App";
 

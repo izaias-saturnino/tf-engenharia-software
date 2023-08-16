@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./routes/Home.js";
 import Login from "./routes/Login.js";
@@ -14,9 +15,10 @@ import ProfileKitchen from "./routes/ProfileKichen.js";
 import Donation from "./routes/Donation.js";
 import FoodRequisition from "./routes/FoodRequisition.js";
 import CreateEvent from "./routes/CreateEvent.js";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import GetDonationHistory from "./routes/GetDonationHistory.js";
+import GetDonationHistory from "./gets/GetDonationHistory.js";
+import Requisitions from "./routes/Requisitions.js";
+import GetRequisitions from "./gets/GetRequisitions.js";
+import GetEvents from "./gets/GetEvents.js";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home/>
+  },
+  {
+    path: "/get_events",
+    element: <GetEvents/>
   },
   {
     path: "/login",
@@ -64,6 +70,14 @@ const router = createBrowserRouter([
     element: <DonationHistory/>
   },
   {
+    path: '/get_donation_history',
+    element: <GetDonationHistory/>
+  },
+  {
+    path: '/get_donation_history/:kitchen',
+    element: <GetDonationHistory/>
+  },
+  {
     path: "/donation/:kitchen_id",
     element: <Donation/>
   },
@@ -72,20 +86,24 @@ const router = createBrowserRouter([
     element: <ProfileKitchen/>
   },
   {
+    path: "/get_profile_kitchen/:kitchen",
+    element: <GetDonationHistory/>
+  },
+  {
+    path: "/requisitions/:kitchen",
+    element: <Requisitions/>
+  },
+  {
+    path: "/get_requisitions/:kitchen",
+    element: <GetRequisitions/>
+  },
+  {
     path: "/foodRequisition",
     element: <FoodRequisition/>
   },
   {
     path: "/createEvent",
     element: <CreateEvent/>
-  },
-  {
-    path: '/get_donation_history',
-    element: <GetDonationHistory/>
-  },
-  {
-    path: '/get_donation_history/:kitchen',
-    element: <GetDonationHistory/>
   },
   // {
   //   path: "*",

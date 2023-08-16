@@ -6,11 +6,9 @@ import defaultProfilePic from '../images/default-profile-picture.png';
 import ProfileProp from "../components/ProfileProp.js";
 
 const Profile = (props) => {
-    {/* TODO add backend integration to get profile info */}
+    {/* TODO get profile info on login */}
 
-    let state = { ...localStorage };
-
-    //fetch user info
+    var state = { ...localStorage };
     state = {};
     state.profile = {
         "Nome": "Cozinha solidária",
@@ -20,7 +18,6 @@ const Profile = (props) => {
         "CNPJ": "987654321",
         "utype": "kitchen",
     };
-    //replace later
 
     if(state == undefined){
         return (<Login/>)

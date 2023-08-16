@@ -5,7 +5,7 @@ import Login from "./Login";
 import SearchPage from "../components/SeachPage"
 import { backend_base_url } from "../App";
 
-const Donation = (props) => {
+const Requisition = (props) => {
     return (
         <div className={"search-item " + props.className}>
             {/* TODO add link */}
@@ -15,44 +15,44 @@ const Donation = (props) => {
             <div className="search-item-properties">
                 <div className="mb-3"></div>
                 {/* <div className="search-item-propertie">
-                    CNPJ: {props.donation.CNPJ}
+                    CNPJ: {props.requisition.CNPJ}
                 </div> */}
                 <div className="search-item-propertie">
-                    Ingrediente: {props.donation.name}
+                    Ingrediente: {props.requisition.name}
                 </div>
                 <div className="search-item-propertie">
-                    Preço: {props.donation.price}
+                    Preço: {props.requisition.price}
                 </div>
                 <div className="search-item-propertie">
-                    Quantidade: {props.donation.quantity}
+                    Quantidade: {props.requisition.quantity}
                 </div>
                 <div className="search-item-propertie">
-                    Unidade: {props.donation.unit}
+                    Unidade: {props.requisition.unit}
                 </div>
                 {/* <div className="search-item-propertie">
-                    Data: {props.donation.date}
+                    Data: {props.requisition.date}
                 </div> */}
             </div>
         </div>
     )
 }
 
-const DonationHistory = (props) => {
+const Requisitions = (props) => {
 
     const navigate = useNavigate();
 
     const state = { ...localStorage };
 
-    var donations = state.donations;
+    var requisitions = state.requisitions;
 
-    localStorage.setItem('donations', '');
+    localStorage.setItem('requisitions', '');
 
-    var donations = state.donations;
+    var requisitions = state.requisitions;
     var kitchen = state.kitchen;
 
     const {kitchen_id} = useParams();
 
-    if(donations == '' || donations == undefined){
+    if(requisitions == '' || requisitions == undefined){
         if(kitchen_id == undefined){
             navigate('/get_donation_history');
         }
@@ -64,26 +64,15 @@ const DonationHistory = (props) => {
     let results = [];
     let i = 0;
 
-    if(donations != '' && donations != undefined){
-        for (i = 0; i < donations.length; i++) {
-            results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchenName={kitchen.Name}/>);
+    if(requisitions != '' && requisitions != undefined){
+        for (i = 0; i < requisitions.length; i++) {
+            results.push(<Requisition className={"default-border-bottom"} requisition={requisitions[i]} kitchenName={kitchen.Name}/>);
         }
     }
 
-    // if(props.search != undefined){
-    //     if(donations.length == 0){
-    //         results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
-    //     }
-    //     else{
-    //         results.push(<div className="pt-5">Fim dos resultados.</div>);
-    //     }
-    // }
-
-    //results.push(<div className="pt-5">Fim dos resultados.</div>);
-
     return (
-        <SearchPage title={"Doações"} results={results} placeholder={"Filtrar"}/>
+        <SearchPage title={"Fazer uma doação"} results={results} placeholder={"Filtrar"}/>
     )
 };
 
-export default DonationHistory;
+export default Requisitions;
