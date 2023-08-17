@@ -47,7 +47,12 @@ const Content = (props) => {
 
 const Donation = (props) => {
 
-    const requisition = useLocation().state;
+    var requisition = useLocation().state;
+
+    if(requisition === undefined || requisition === null){
+        requisition = {};
+    }
+
     const state = { ...localStorage };
 
     console.log("donation page");

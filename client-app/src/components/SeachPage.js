@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import UpperMenu from "../components/UpperMenu";
 
 const SearchPage = (props) => {
     return (
