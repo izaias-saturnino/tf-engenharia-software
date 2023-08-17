@@ -1,19 +1,10 @@
 import React, { useState } from "react";
-
-const events = [
-    { title: "Event 1", content: "Event 1 description" },
-    { title: "Event 2", content: "Event 2 description" },
-    { title: "Event 3", content: "Event 3 description" },
-    { title: "Event 4", content: "Event 4 description" },
-    { title: "Event 5", content: "Event 5 description" },
-    { title: "Event 6", content: "Event 6 description" },
-    { title: "Event 7", content: "Event 7 description" },
-    { title: "Event 8", content: "Event 8 description" },
-    { title: "Event 9", content: "Event 9 description" },
-    { title: "Event 10", content: "Event 10 description" },
-]
+import { backend_base_url } from "../App";
+import fetchContent from "../gets/Fetch";
 
 const EventsList = () => {
+    var uri = backend_base_url+'/API/Events';
+    var events = fetchContent(uri, '', 'POST');
     return (
     <div className="event-list-container py-5 px-2">
     {events.map((event, index) => (

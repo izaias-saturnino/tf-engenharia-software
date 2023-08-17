@@ -91,8 +91,8 @@ const UpperMenu = (props) => {
                                 )}
 
                                 {userType === undefined && (
-                                    <Link to="/registration">
-                                        <button className="burger-dropdown-menu-button">Registrar</button>
+                                    <Link to="/login">
+                                        <button className="burger-dropdown-menu-button">Entrar</button>
                                     </Link>
                                 )}
                             </div>

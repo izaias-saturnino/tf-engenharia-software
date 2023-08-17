@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import ProfileProp from "../components/ProfileProp";
 
 import defaultProfilePic from '../images/default-profile-picture.png';
+import getProfileKitchen from "../gets/GetProfileKitchen";
 
 const Event = (props) => {
     return (
@@ -35,7 +36,7 @@ const ProfileKitchen = (props) => {
     const state = { ...localStorage };
 
     //fetch profile
-    let profile = {};
+    var profile = {};
 
     profile = {
         "Nome": "Cozinha solidária",
@@ -45,13 +46,14 @@ const ProfileKitchen = (props) => {
         //"CNPJ": "987654321",
     };
 
-    console.log(state.kitchen_profile);
+    var kitchen_profile = getProfileKitchen(kitchen);
+    var events = kitchen_profile.events;
+    profile = kitchen_profile.kitchen;
+
+    console.log(state.kitchen);
     console.log(state.events);
 
     profile.utype = "kitchen";
-
-    //fetch events
-    let events = [];
 
     let results = [];
     let i = 0;

@@ -1,20 +1,12 @@
-import React, { useState } from "react";
-
-import { backend_base_url } from "../App";
-
-const getRequisitions = async (kitchen_id) => {
-
-    let uri = backend_base_url+'/API/';
-
+const fetchContent = async (uri, body, method) => {
     var resp_ok = true;
-
-    var response = await fetch(uri, {
-        method: 'POST',
+    var response = fetch(uri, {
+        method: method,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: kitchen_id
+        body: body
     })
     .then((resp) => {
         if(resp.status === 400){
@@ -41,7 +33,6 @@ const getRequisitions = async (kitchen_id) => {
     .catch(error => {
         //TO DO
     });
-
     var data;
     if(response == undefined){
         data = {};
@@ -50,6 +41,6 @@ const getRequisitions = async (kitchen_id) => {
         data = await response.json();
     }
     return data;
-};
+}
 
-export default getRequisitions;
+export default fetchContent;

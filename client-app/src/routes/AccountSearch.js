@@ -29,16 +29,21 @@ const AccountResult = (props) => {
 }
 
 const AccountSearch = (props) => {
-    const {search_query} = useParams();
 
     //fetch profiles
     let profiles = [];
 
     let results = [];
     let i = 0;
-    if(profiles != undefined){
+    if(profiles !== undefined){
         for (i = 0; i < profiles.length; i++) {
             results.push(<AccountResult className={"default-border-bottom"} profile={profiles[i]}/>);
+        }
+        if(profiles.length == 0){
+            results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
+        }
+        else{
+            results.push(<div className="pt-5">Fim dos resultados.</div>);
         }
     }
 
@@ -54,15 +59,6 @@ const AccountSearch = (props) => {
     //     "utype": "donor"
     // };
     // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest}/>);
-
-    if(search_query != undefined){
-        if(profiles.length == 0){
-            results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
-        }
-        else{
-            results.push(<div className="pt-5">Fim dos resultados.</div>);
-        }
-    }
 
     //results.push(<div className="pt-5">Fim dos resultados.</div>);
 

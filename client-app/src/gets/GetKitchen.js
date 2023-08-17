@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 
-import Login from "../routes/Login";
-import SearchPage from "../components/SeachPage"
 import { backend_base_url } from "../App";
 
-const GetEvents = (props) => {
+const getKitchen = async (kitchen_id) => {
 
-    const navigate = useNavigate();
+    let uri = backend_base_url+'/API/AccessKitchenProfile';
 
-    const state = { ...localStorage };
-
-    let uri = backend_base_url+'/API/';
-    
     var resp_ok = true;
 
-    fetch(uri, {
+    var response = await fetch(uri, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: ''
+        body: kitchen_id
     })
         .then((resp) => {
             if(resp.status === 400){
@@ -31,9 +25,7 @@ const GetEvents = (props) => {
         })
         .then((data) => {
             if(resp_ok){
-                localStorage.setItem('events', data.events);
                 console.log("resp_ok");
-                navigate("/home");
             }else{
                 if(data.errors === undefined){
                     alert(data);
@@ -51,9 +43,14 @@ const GetEvents = (props) => {
             //TO DO
         });
 
-    return (
-        <div></div>
-    )
+    var data;
+    if(response == undefined){
+        data = {};
+    }
+    else{
+        data = await response.json();
+    }
+    return data.kitchen;
 };
 
-export default GetEvents;
+export default getKitchen;
