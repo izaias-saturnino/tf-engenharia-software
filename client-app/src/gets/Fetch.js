@@ -34,7 +34,7 @@ const fetchContent = async (uri, body, method) => {
         //TO DO
     });
     var data;
-    if(response == undefined){
+    if(response === undefined){
         data = {};
     }
     else{

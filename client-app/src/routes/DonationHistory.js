@@ -7,106 +7,6 @@ import { backend_base_url } from "../App";
 import UpperMenu from "../components/UpperMenu";
 import fetchContent from "../gets/Fetch";
 
-const getDonationHistory = async (kitchen_id) => {
-
-    const state = {...localStorage};
-
-    var response;
-    if(kitchen_id !== undefined){
-        //fetch kitchen donations
-    
-        let uri = backend_base_url+'/API/KitchenHistory';
-    
-        var resp_ok = true;
-    
-        response = await fetch(uri, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: kitchen_id
-        })
-            .then((resp) => {
-                if(resp.status === 400){
-                    resp_ok = false;
-                }
-                return resp.json();
-            })
-            .then((data) => {
-                if(resp_ok){
-                    localStorage.setItem('donations', data.donations);
-                    localStorage.setItem('kitchen', data.kitchen);
-                    console.log("resp_ok");
-                    //navigate("/donation_history/" + kitchen_id);
-                }else{
-                    if(data.errors === undefined){
-                        alert(data);
-                    }
-                    else{
-                        var str = "";
-                        for(var element in data.errors){
-                        str += data.errors[element] + "\n";
-                        }
-                        alert(str);
-                    }
-                }
-            })
-            .catch(error => {
-                //TO DO
-            });
-    }
-    else{
-        let uri = backend_base_url+'/API/DonationHistory';
-    
-        var resp_ok = true;
-    
-        response = await fetch(uri, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: state.id
-        })
-            .then((resp) => {
-                if(resp.status === 400){
-                    resp_ok = false;
-                }
-                return resp.json();
-            })
-            .then((data) => {
-                if(resp_ok){
-                    localStorage.setItem('donations', data.donations);
-                    console.log("resp_ok");
-                    //navigate("/donation_history");
-                }else{
-                    if(data.errors === undefined){
-                        alert(data);
-                    }
-                    else{
-                        var str = "";
-                        for(var element in data.errors){
-                        str += data.errors[element] + "\n";
-                        }
-                        alert(str);
-                    }
-                }
-            })
-            .catch(error => {
-                //TO DO
-            });
-    }
-    var data;
-    if(response == undefined){
-        data = {};
-    }
-    else{
-        data = await response.json();
-    }
-    return data;
-}
-
 const Donation = (props) => {
     return (
         <div className={"search-item " + props.className}>
@@ -151,18 +51,24 @@ const DonationHistory = (props) => {
 
     const {kitchen_id} = useParams();
 
-    var data = getDonationHistory(kitchen_id).donations;
+    var data;
+    if(kitchen_id === undefined){
+        data = fetchContent(backend_base_url+'/API/KitchenHistory', kitchen_id, 'POST');
+    }
+    else{
+        data = fetchContent(backend_base_url+'/API/DonationHistory', state.id, 'POST');
+    }
+
     var donations = data.donations;
     //preciso que tu me passe os dados da cozinha no donation history do donor
     var kitchen = fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen_id, 'POST').kitchen;
-    var undefinedKitchen = kitchen === undefined;
 
     let results = [];
     let i = 0;
 
     if(donations !== undefined){
         for (i = 0; i < donations.length; i++) {
-            if(undefinedKitchen){
+            if(kitchen_id === undefined){
                 kitchen = fetchContent(backend_base_url+'/API/AccessKitchenProfile', donations[i].kitchenIdentification, 'POST').kitchen;
             }
             results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchen}/>);

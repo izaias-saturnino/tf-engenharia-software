@@ -13,7 +13,7 @@ const Content = (props) => {
     )
 }
 
-const Home = (props) => {
+const Home = () => {
     const state = { ...localStorage };
 
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Home = (props) => {
     };
 
     // if (state.username === undefined) {
-    //     return <Login/>;
+    //    return (<Navigate to="/" replace />)
     // }
 
     return (

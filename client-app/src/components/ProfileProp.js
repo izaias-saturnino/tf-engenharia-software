@@ -1,9 +1,9 @@
 const ProfileProp = (props) => {
 
-    if(props.propValue == undefined){
+    if(props.propValue === undefined){
         return;
     }
-    if(props.img != undefined){
+    if(props.img !== undefined){
         //TODO
         return (
             <div className="profile-properties">

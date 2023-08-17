@@ -4,6 +4,8 @@ import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
+import fetchContent from "../gets/Fetch";
+import { backend_base_url } from "../App";
 
 const Content = (props) => {
   return (
@@ -15,14 +17,26 @@ const Content = (props) => {
         <div className="pt-5 px-10">
             <img className="w-100" src={logo}></img>
         </div>
-        <div className="input-container">
-            <input placeholder="Ingrediente" type="text" name="ingredient" required />
-        </div>
-        <div className="input-container">
-            <input placeholder="Valor da doação" type="text" name="value" required />
-        </div>
-        <div className="w-100 button-container">
-            <input type="submit" className="form-btn" value="Doar"/>
+        <div className="search-item-properties">
+            <div className="mb-3"></div>
+            {/* <div className="search-item-propertie">
+                CNPJ: {props.requisition.CNPJ}
+            </div> */}
+            <div className="search-item-propertie">
+                Ingrediente: {props.requisition.name}
+            </div>
+            <div className="search-item-propertie">
+                Preço: {props.requisition.price}
+            </div>
+            <div className="search-item-propertie">
+                Quantidade: {props.requisition.quantity}
+            </div>
+            <div className="search-item-propertie">
+                Unidade: {props.requisition.unit}
+            </div>
+            {/* <div className="search-item-propertie">
+                Data: {props.requisition.date}
+            </div> */}
         </div>
       </form>
     </div>
@@ -31,10 +45,11 @@ const Content = (props) => {
 
 const Donation = (props) => {
 
-    const {kitchen_id} = useParams();
+    const requisition = useLocation().state;
     const state = { ...localStorage };
 
-    const navigate = useNavigate();
+    console.log("donation page");
+    console.log(requisition);
 
     const handleDonation = (event) => {
         event.preventDefault();
@@ -43,7 +58,7 @@ const Donation = (props) => {
     return (
         <div className="app">
             <div className="p-10">
-                <AccountForm title={"Fazer uma doação"} content={<Content formFunction={handleDonation}/>} backNavigation={"skip"}/>
+                <AccountForm title={"Fazer uma doação"} content={<Content formFunction={handleDonation} requisition={requisition}/>} backNavigation={"skip"}/>
             </div>
         </div>
     )

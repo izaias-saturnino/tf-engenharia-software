@@ -13,6 +13,13 @@ const EventsList = () => {
             </div>
         );
     }
+    if(results.length == 0){
+        results.push(
+            <div className="py-3 w-100">
+                <EventCard key={''} title={''} content={'Ainda não há eventos.'}/>
+            </div>
+        );
+    }
     return (
     <div className="event-list-container py-5 px-2">
         {results}

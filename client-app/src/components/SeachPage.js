@@ -8,13 +8,15 @@ const SearchPage = (props) => {
                 <div className="login-form">
                     <div>
                         <div className="title">{props.title}</div>
-                        <div>
-                            <form className="main-form">
-                                <div className="input-container">
-                                    <input placeholder={props.placeholder} type="text" name="search" />
-                                </div>
-                            </form>
-                        </div>
+                        {props.placeholder !== undefined && (
+                            <div>
+                                <form className="main-form">
+                                    <div className="input-container">
+                                        <input placeholder={props.placeholder} type="text" name="search" />
+                                    </div>
+                                </form>
+                            </div>
+                        )}
                         <div className="search-results">
                             {props.results}
                         </div>

@@ -59,41 +59,33 @@ const UpperMenu = (props) => {
                                     <button className="burger-dropdown-menu-button">Perfil</button>)}
 
                                 {userType !== undefined && (
-                                <Link to="/donation_history">
-                                    <button className="burger-dropdown-menu-button">Doações</button>
-                                </Link>
+                                    <Link to="/donation_history">
+                                        <button className="burger-dropdown-menu-button">Doações</button>
+                                    </Link>
                                 )}
 
                                 {userType === '"cozinha solidária"' && (
-                                <Link to="/foodRequisition">
-                                    <button className="burger-dropdown-menu-button">Requisições</button>
-                                </Link>
+                                    <Link to="/foodRequisition">
+                                        <button className="burger-dropdown-menu-button">Requisições</button>
+                                    </Link>
                                 )}
 
                                 {userType === '"cozinha solidária"' && (
-                                <Link to="/createEvent">
-                                    <button className="burger-dropdown-menu-button">Eventos</button>
-                                </Link>
+                                    <Link to="/createEvent">
+                                        <button className="burger-dropdown-menu-button">Eventos</button>
+                                    </Link>
                                 )}
 
                                 {userType === "doador" && (
-                                <Link to="/modify_profile">
-                                    <button className="burger-dropdown-menu-button">Credenciais</button>
-                                </Link>
+                                    <Link to="/modify_profile">
+                                        <button className="burger-dropdown-menu-button">Credenciais</button>
+                                    </Link>
                                 )}
 
                                 {userType !== undefined && (
-                                    <Link to="/login">
-                                        <form onSubmit={logout}>
-                                            <input type="submit" className="burger-dropdown-menu-button" value="Sair"/>
-                                        </form>
-                                    </Link>
-                                )}
-
-                                {userType === undefined && (
-                                    <Link to="/login">
-                                        <button className="burger-dropdown-menu-button">Entrar</button>
-                                    </Link>
+                                    <form onSubmit={logout}>
+                                        <input type="submit" className="burger-dropdown-menu-button" value="Sair"/>
+                                    </form>
                                 )}
                             </div>
                         )}
