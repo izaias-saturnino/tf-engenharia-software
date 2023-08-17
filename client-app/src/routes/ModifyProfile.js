@@ -5,6 +5,8 @@ import defaultProfilePic from '../images/default-profile-picture.png';
 
 import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
+import fetchContent from "../gets/Fetch";
+import UpperMenu from "../components/UpperMenu";
 
 const Content = (props) => {
   return (
@@ -85,8 +87,6 @@ const ModifyProfile = (props) => {
           password: current_pass.value,
           change: change_list[i],
         };
-
-        console.log(item);
     
         var resp_ok = true;
     
@@ -138,10 +138,13 @@ const ModifyProfile = (props) => {
     };
 
     return (
-      <div className="app">
-          <div className="p-10">
-              <AccountForm title={"Modificar Informações"} content={<Content formFunction={handleModifyProfile} state={state}/>}/>
-          </div>
+      <div>
+        <UpperMenu/>
+        <div className="app">
+            <div className="p-10">
+                <AccountForm title={"Modificar Informações"} content={<Content formFunction={handleModifyProfile} state={state}/>}/>
+            </div>
+        </div>
       </div>
     )
 };

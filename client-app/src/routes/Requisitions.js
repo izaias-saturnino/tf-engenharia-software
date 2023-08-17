@@ -46,7 +46,7 @@ const Requisition = (props) => {
                     </div> */}
                 </div>
                 <div className="w-100 button-container pt-3">
-                    <input type="submit" className="form-btn" value="Doar"/>
+                    <input type="submit" className="form-btn" value="Doe agora"/>
                 </div>
             </div>
         </form>

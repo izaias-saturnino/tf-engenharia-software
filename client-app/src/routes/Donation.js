@@ -4,8 +4,7 @@ import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
-import fetchContent from "../gets/Fetch";
-import { backend_base_url } from "../App";
+import UpperMenu from "../components/UpperMenu";
 
 const Content = (props) => {
   return (
@@ -38,6 +37,9 @@ const Content = (props) => {
                 Data: {props.requisition.date}
             </div> */}
         </div>
+        <div className="w-100 button-container pt-3">
+            <input type="submit" className="form-btn" value="Doar"/>
+        </div>
       </form>
     </div>
   )
@@ -56,9 +58,12 @@ const Donation = (props) => {
     };
 
     return (
-        <div className="app">
-            <div className="p-10">
-                <AccountForm title={"Fazer uma doação"} content={<Content formFunction={handleDonation} requisition={requisition}/>} backNavigation={"skip"}/>
+        <div>
+            <UpperMenu/>
+            <div className="app">
+                <div className="p-10">
+                    <AccountForm title={"Fazer uma doação"} content={<Content formFunction={handleDonation} requisition={requisition}/>} backNavigation={"skip"}/>
+                </div>
             </div>
         </div>
     )

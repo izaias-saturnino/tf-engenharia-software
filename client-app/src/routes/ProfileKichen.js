@@ -8,6 +8,7 @@ import ProfileProp from "../components/ProfileProp";
 import defaultProfilePic from '../images/default-profile-picture.png';
 import fetchContent from "../gets/Fetch";
 import { backend_base_url } from "../App";
+import UpperMenu from "../components/UpperMenu";
 
 const Event = (props) => {
     return (
@@ -88,6 +89,7 @@ const ProfileKitchen = (props) => {
 
     return (
         <div>
+            <UpperMenu/>
             <div className="app">
                 <div className="py-10">
                     <div className="kitchen-profile justify-text min-w-100">

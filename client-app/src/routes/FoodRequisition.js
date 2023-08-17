@@ -5,6 +5,7 @@ import foodLogo from '../images/foodLogo.png';
 import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
 import UpperMenu from "../components/UpperMenu";
+import fetchContent from "../gets/Fetch";
 
 const Content = (props) => {
   return (
@@ -60,43 +61,9 @@ const FoodRequisition = () => {
           Unit: Unit.value,
           Price: Price.value
         };
-    
-        var resp_ok = true;
-    
-        fetch(uri, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(item)
-        })
-          .then((resp) => {
-            if(resp.status === 400){
-              resp_ok = false;
-            }
-            return resp.json();
-          })
-          .then((data) => {
-            //console.log(data);
-            if(resp_ok){
-              alert(data);
-            }else{
-              if(data.errors === undefined){
-                alert(data);
-              }
-              else{
-                var str = "";
-                for(var element in data.errors){
-                  str += data.errors[element] + "\n";
-                }
-                alert(str);
-              }
-            }
-          })
-          .catch(error => {
-            //TO DO
-          });
+
+        var data = fetchContent(uri, JSON.stringify(item), 'POST');
+        alert(data);
     };
 
     return (

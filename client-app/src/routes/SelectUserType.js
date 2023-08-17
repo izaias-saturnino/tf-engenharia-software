@@ -4,6 +4,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
+import UpperMenu from "../components/UpperMenu";
 
 const Content = (props) => {
     return (
@@ -46,9 +47,12 @@ const SelectUserType = (props) => {
     };
 
     return (
-        <div className="app">
-            <div className="p-10">
-                <AccountForm title={"Criar Conta"} content={<Content formFunction1={toRegistrationKitchen} formFunction2={toRegistrationDonor}/>}/>
+        <div>
+            <UpperMenu/>
+            <div className="app">
+                <div className="p-10">
+                    <AccountForm title={"Criar Conta"} content={<Content formFunction1={toRegistrationKitchen} formFunction2={toRegistrationDonor}/>}/>
+                </div>
             </div>
         </div>
     )

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
-import SearchPage from "../components/SeachPage.js";
 
 import Login from "./Login.js";
+import UpperMenu from "../components/UpperMenu.js";
 
 const AccountResult = (props) => {
     return (

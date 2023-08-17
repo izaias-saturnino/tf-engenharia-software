@@ -5,6 +5,7 @@ import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
+import fetchContent from "../gets/Fetch";
 
 const Content = (props) => {
   return (
@@ -69,52 +70,18 @@ const Login = (props) => {
           emailAddress: email.value,
           password: pass.value
         };
-      
-        var resp_ok = true;
-    
-        fetch(uri, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(item)
-        })
-          .then((resp) => {
-            if(resp.status === 400){
-              resp_ok = false;
-            }
-            return resp.json();
-          })
-          .then((data) => {
-            //console.log(data);
-            if(resp_ok){
-              localStorage.setItem("email", JSON.stringify(email.value));
-              localStorage.setItem("isLoggedIn", JSON.stringify(true));
-              var str = getUtype(data.actor_type);
-              localStorage.setItem("id", JSON.stringify(data.actor.identification));
-              localStorage.setItem("utype", JSON.stringify(str));
-              //localStorage.setItem("username", JSON.stringify(data.username));
-              if(str == "cozinha solidária"){
-                localStorage.setItem("validatedKitchen", JSON.stringify(data.actor.validated));
-              }
-              navigate('/home');
-            }else{
-              if(data.errors === undefined){
-                alert(data);
-              }
-              else{
-                var str = "";
-                for(var element in data.errors){
-                  str += data.errors[element] + "\n";
-                }
-                alert(str);
-              }
-            }
-          })
-          .catch(error => {
-            //TO DO
-          });
+
+        var data = fetchContent(uri, JSON.stringify(item), 'POST');
+        localStorage.setItem("email", JSON.stringify(email.value));
+        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        var str = getUtype(data.actor_type);
+        localStorage.setItem("id", JSON.stringify(data.actor.identification));
+        localStorage.setItem("utype", JSON.stringify(str));
+        //localStorage.setItem("username", JSON.stringify(data.username));
+        if(str == "cozinha solidária"){
+          localStorage.setItem("validatedKitchen", JSON.stringify(data.actor.validated));
+        }
+        navigate('/home');
     };
 
     const backNavigation = (event) => {

@@ -5,6 +5,7 @@ import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
+import fetchContent from "../gets/Fetch";
 
 const Content = (props) => {
   return (
@@ -88,42 +89,7 @@ const Registration = (props) => {
           location: address.value
         };
     
-        var resp_ok = true;
-    
-        fetch(uri, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(item)
-        })
-          .then((resp) => {
-            if(resp.status === 400){
-              resp_ok = false;
-            }
-            return resp.json();
-          })
-          .then((data) => {
-            //console.log(data);
-            if(resp_ok){
-              alert("Usuário cadastrado com sucesso.");
-            }else{
-              if(data.errors === undefined){
-                alert(data);
-              }
-              else{
-                var str = "";
-                for(var element in data.errors){
-                  str += data.errors[element] + "\n";
-                }
-                alert(str);
-              }
-            }
-          })
-          .catch(error => {
-            //TO DO
-          });
+        fetchContent(uri, JSON.stringify(item), 'POST');
     };
 
     const backNavigation = (event) => {
