@@ -45,6 +45,9 @@ const ProfileKitchen = (props) => {
         //"CNPJ": "987654321",
     };
 
+    console.log(state.kitchen_profile);
+    console.log(state.events);
+
     profile.utype = "kitchen";
 
     //fetch events
@@ -52,7 +55,7 @@ const ProfileKitchen = (props) => {
 
     let results = [];
     let i = 0;
-    if(events != undefined){
+    if(events !== undefined){
         for (i = 0; i < events.length; i++) {
             results.push(<Event className={"default-border-bottom"} event={events[i]}/>);
         }
@@ -66,15 +69,15 @@ const ProfileKitchen = (props) => {
     // };
     // results.push(<Event className={"default-border-bottom"} event={eventTest}/>);
 
-    if(props.search != undefined){
-        if(events.length == 0){
+    if(props.search !== undefined){
+        if(events.length === 0){
             results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
         }
         else{
             results.push(<div className="pt-5">Fim dos resultados.</div>);
         }
     }
-    if(events.length == 0){
+    if(events.length === 0){
         results.push(<div className="pt-3">Não há eventos disponíveis.</div>);
     }
 

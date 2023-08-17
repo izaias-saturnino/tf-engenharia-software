@@ -13,9 +13,11 @@ const GetProfileKitchen = (props) => {
 
     const state = { ...localStorage };
 
-    let uri = backend_base_url+'/API/';
+    let uri = backend_base_url+'/API/AccessKitchenProfile';
 
     var resp_ok = true;
+
+    console.log(kitchen_id);
 
     fetch(uri, {
         method: 'POST',
@@ -33,7 +35,10 @@ const GetProfileKitchen = (props) => {
         })
         .then((data) => {
             if(resp_ok){
-                localStorage.setItem('kitchen_profile', data.kitchen);
+                localStorage.setItem('kitchen_profile', JSON.stringify(data.kitchen));
+                localStorage.setItem('events', JSON.stringify(data.events));
+                console.log(data.kitchen);
+                console.log(data.events);
                 console.log("resp_ok");
                 navigate("/profile_kitchen/" + kitchen_id);
             }else{

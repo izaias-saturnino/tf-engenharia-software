@@ -51,6 +51,8 @@ const DonationHistory = (props) => {
 
     const {kitchen_id} = useParams();
 
+    console.log(donations);
+
     if(donations === undefined){
         if(kitchen_id === undefined){
             navigate('/get_donation_history');

@@ -19,6 +19,7 @@ import GetDonationHistory from "./gets/GetDonationHistory.js";
 import Requisitions from "./routes/Requisitions.js";
 import GetRequisitions from "./gets/GetRequisitions.js";
 import GetEvents from "./gets/GetEvents.js";
+import GetProfileKitchen from "./gets/GetProfileKitchen.js";
 
 const router = createBrowserRouter([
   {
@@ -86,8 +87,8 @@ const router = createBrowserRouter([
     element: <ProfileKitchen/>
   },
   {
-    path: "/get_profile_kitchen/:kitchen",
-    element: <GetDonationHistory/>
+    path: "/get_profile_kitchen/:kitchen_id",
+    element: <GetProfileKitchen/>
   },
   {
     path: "/requisitions/:kitchen",

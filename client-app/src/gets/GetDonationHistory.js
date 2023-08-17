@@ -78,7 +78,7 @@ const GetDonationHistory = (props) => {
             })
             .then((data) => {
                 if(resp_ok){
-                    localStorage.setItem('donations', data.donations);
+                    localStorage.setItem('donations', JSON.stringify(data));
                     console.log("resp_ok");
                     navigate("/donation_history");
                 }else{
