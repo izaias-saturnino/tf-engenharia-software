@@ -1,6 +1,6 @@
 const fetchContent = async (uri, body, method) => {
     var resp_ok = true;
-    var response = fetch(uri, {
+    var response = await fetch(uri, {
         method: method,
         headers: {
             'Accept': 'application/json',

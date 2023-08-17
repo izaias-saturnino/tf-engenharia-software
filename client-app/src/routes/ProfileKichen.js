@@ -6,7 +6,8 @@ import Profile from "./Profile";
 import ProfileProp from "../components/ProfileProp";
 
 import defaultProfilePic from '../images/default-profile-picture.png';
-import getProfileKitchen from "../gets/GetProfileKitchen";
+import fetchContent from "../gets/Fetch";
+import { backend_base_url } from "../App";
 
 const Event = (props) => {
     return (
@@ -46,7 +47,7 @@ const ProfileKitchen = (props) => {
         //"CNPJ": "987654321",
     };
 
-    var kitchen_profile = getProfileKitchen(kitchen);
+    var kitchen_profile = fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST');
     var events = kitchen_profile.events;
     profile = kitchen_profile.kitchen;
 

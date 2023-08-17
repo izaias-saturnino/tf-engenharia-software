@@ -5,13 +5,17 @@ import fetchContent from "../gets/Fetch";
 const EventsList = () => {
     var uri = backend_base_url+'/API/Events';
     var events = fetchContent(uri, '', 'POST');
+    var results = [];
+    for(var event in events){
+        results.push(
+            <div className="py-3 w-100">
+                <EventCard key={event.id} title={event.title} content={event.content}/>
+            </div>
+        );
+    }
     return (
     <div className="event-list-container py-5 px-2">
-    {events.map((event, index) => (
-        <div className="py-3 w-100">
-            <EventCard key={index} title={event.title} content={event.content}/>
-        </div>
-    ))}
+        {results}
     </div>
     );
 }

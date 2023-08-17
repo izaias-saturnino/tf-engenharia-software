@@ -5,7 +5,7 @@ import Login from "./Login";
 import SearchPage from "../components/SeachPage"
 import { backend_base_url } from "../App";
 import UpperMenu from "../components/UpperMenu";
-import getKitchen from "../gets/GetKitchen";
+import fetchContent from "../gets/Fetch";
 
 const getDonationHistory = async (kitchen_id) => {
 
@@ -151,10 +151,10 @@ const DonationHistory = (props) => {
 
     const {kitchen_id} = useParams();
 
-    var data = getDonationHistory(kitchen_id);
+    var data = getDonationHistory(kitchen_id).donations;
     var donations = data.donations;
     //preciso que tu me passe os dados da cozinha no donation history do donor
-    var kitchen = getKitchen(kitchen_id);
+    var kitchen = fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen_id, 'POST').kitchen;
     var undefinedKitchen = kitchen === undefined;
 
     let results = [];
@@ -163,7 +163,7 @@ const DonationHistory = (props) => {
     if(donations !== undefined){
         for (i = 0; i < donations.length; i++) {
             if(undefinedKitchen){
-                kitchen = getKitchen(donations[i].kitchenIdentification);
+                kitchen = fetchContent(backend_base_url+'/API/AccessKitchenProfile', donations[i].kitchenIdentification, 'POST').kitchen;
             }
             results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchen}/>);
         }
