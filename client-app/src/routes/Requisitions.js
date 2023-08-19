@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import Login from "./Login";
 import SearchPage from "../components/SeachPage"
 import { backend_base_url } from "../App";
 import fetchContent from "../gets/Fetch";
@@ -56,8 +55,6 @@ const Requisition = (props) => {
 const Requisitions = (props) => {
 
     const {kitchen_id} = useParams();
-
-    const navigate = useNavigate();
 
     const state = {...localStorage};
 

@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
+import React from "react";
 
-import Login from "./Login.js";
-import UpperMenu from "../components/UpperMenu.js";
 import SearchPage from "../components/SeachPage.js";
 
 const AccountResult = (props) => {

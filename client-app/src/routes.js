@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./routes/Home.js";

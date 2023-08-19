@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
+import React from "react";
 
 import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
 import UpperMenu from "../components/UpperMenu";
+import { useLocation } from "react-router-dom";
 
 const Content = (props) => {
   return (
@@ -52,8 +52,6 @@ const Donation = (props) => {
     if(requisition === undefined || requisition === null){
         requisition = {};
     }
-
-    const state = { ...localStorage };
 
     console.log("donation page");
     console.log(requisition);

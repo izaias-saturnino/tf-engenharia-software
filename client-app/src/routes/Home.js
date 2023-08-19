@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React from "react";
 
-import Login from "./Login.js";
 import UpperMenu from "../components/UpperMenu.js"
 import EventsList from "../components/EventsList.js";
 
@@ -15,13 +13,6 @@ const Content = (props) => {
 
 const Home = () => {
     const state = { ...localStorage };
-
-    const navigate = useNavigate();
-
-    const backNavigation = (event) => {
-        event.preventDefault();
-        window.history.back();
-    };
 
     // if (state.username === undefined) {
     //    return (<Navigate to="/" replace />)

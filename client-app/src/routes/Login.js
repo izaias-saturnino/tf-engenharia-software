@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React from "react";
+import { useNavigate, Link } from 'react-router-dom';
 
 import logo from '../images/doaresLogo.png';
 
@@ -38,13 +38,6 @@ const Content = (props) => {
 
 const Login = (props) => {
 
-    // state.isLoggedIn = undefined;
-    // state.email = undefined;
-    // state.username = undefined;
-    // state.utype = undefined;
-    // state.validatedKitchen = undefined;
-    const state = { ...localStorage };
-
     const navigate = useNavigate();
 
     function getUtype(int){
@@ -78,16 +71,11 @@ const Login = (props) => {
             localStorage.setItem("utype", str);
             localStorage.setItem("id", JSON.stringify(data.actor.identification));
             //localStorage.setItem("username", JSON.stringify(data.username));
-            if(str == "cozinha solidária"){
+            if(str === "cozinha solidária"){
                 localStorage.setItem("validatedKitchen", JSON.stringify(data.actor.validated));
             }
             navigate('/home');
         });
-    };
-
-    const backNavigation = (event) => {
-        event.preventDefault();
-        window.history.back();
     };
 
     return (

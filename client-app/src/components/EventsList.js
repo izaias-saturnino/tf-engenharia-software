@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const EventsList = (props) => {
     var events = props.events;

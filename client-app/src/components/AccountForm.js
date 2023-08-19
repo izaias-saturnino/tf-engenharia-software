@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
-
-import logo from '../images/doaresLogo.png';
+import React from "react";
 import backArrow from '../images/backArrow.png';
 
 const AccountForm = (props) => {

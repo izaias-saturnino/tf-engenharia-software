@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import burgerIcon from "../images/burgerIcon.png"
 import homeIcon from "../images/homeIcon.png"
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const UpperMenu = (props) => {
-
-    const state = { ...localStorage };
 
     const navigate = useNavigate();
 

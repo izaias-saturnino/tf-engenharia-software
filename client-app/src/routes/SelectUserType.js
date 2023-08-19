@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 import logo from '../images/doaresLogo.png';
 
@@ -31,8 +31,6 @@ const Content = (props) => {
 }
 
 const SelectUserType = (props) => {
-
-    const state = { ...localStorage };
 
     const navigate = useNavigate();
 

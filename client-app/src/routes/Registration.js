@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from 'react-router-dom';
 
 import logo from '../images/doaresLogo.png';
 
@@ -66,8 +66,6 @@ const Registration = (props) => {
     let state = { ...localStorage };
     const {user_type} = useParams();
 
-    const navigate = useNavigate();
-
     const handleRegistration = (event) => {
         event.preventDefault();
     
@@ -90,11 +88,6 @@ const Registration = (props) => {
         };
     
         fetchContent(uri, JSON.stringify(item), 'POST', (data)=>alert(data));
-    };
-
-    const backNavigation = (event) => {
-        event.preventDefault();
-        window.history.back();
     };
 
     return (
