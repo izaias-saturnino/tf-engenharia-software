@@ -9,7 +9,6 @@ import ModifyProfile from "./routes/ModifyProfile.js";
 import Registration from "./routes/Registration.js";
 import SelectUserType from "./routes/SelectUserType.js";
 import AccountSearch from "./routes/AccountSearch.js";
-import Profile from "./routes/Profile.js";
 import DonationHistory from "./routes/DonationHistory.js";
 import ProfileKitchen from "./routes/ProfileKichen.js";
 import Donation from "./routes/Donation.js";
@@ -49,10 +48,6 @@ const router = createBrowserRouter([
   {
     path: "/account_search",
     element: <AccountSearch/>
-  },
-  {
-    path: "/profile",
-    element: <Profile/>
   },
   {
     path: "/donation_history",

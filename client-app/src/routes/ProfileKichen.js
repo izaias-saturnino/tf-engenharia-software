@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useLocation, Link, useParams } from 'react-router-dom';
 
 import Login from "./Login";
-import Profile from "./Profile";
 import ProfileProp from "../components/ProfileProp";
 
 import defaultProfilePic from '../images/default-profile-picture.png';

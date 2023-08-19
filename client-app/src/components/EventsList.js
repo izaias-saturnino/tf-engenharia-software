@@ -16,7 +16,7 @@ const EventsList = (props) => {
             </div>
         );
     }
-    if(results.length == 0){
+    if(results.length === 0){
         results.push(
             <div className="py-3 w-100">
                 <EventCard title={''} content={'Ainda não há eventos.'}/>

@@ -1,7 +1,7 @@
 const fetchContent = async (uri, body, method, callback = ()=>{}) => {
     var resp_ok = true;
     var content;
-    var response = await fetch(uri, {
+    await fetch(uri, {
         method: method,
         headers: {
             'Accept': 'application/json',
@@ -32,9 +32,6 @@ const fetchContent = async (uri, body, method, callback = ()=>{}) => {
                 alert(str);
             }
         }
-    })
-    .catch(error => {
-        //TO DO
     });
     return content;
 }

@@ -12,7 +12,7 @@ const AccountResult = (props) => {
             <div className="title2 link">
                 {props.profile.name}
             </div>
-            {props.profile.utype == "kitchen" ?
+            {props.profile.utype === "kitchen" ?
                 <div className="search-item-properties">
                     <div className="mb-3"></div>
                     <div className="search-item-propertie">
@@ -40,7 +40,7 @@ const AccountSearch = (props) => {
         for (i = 0; i < profiles.length; i++) {
             results.push(<AccountResult className={"default-border-bottom"} profile={profiles[i]}/>);
         }
-        if(profiles.length == 0){
+        if(profiles.length === 0){
             results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
         }
         else{
