@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React from "react";
 
 import defaultProfilePic from '../images/default-profile-picture.png';
 
 import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
-import fetchContent from "../gets/Fetch";
 import UpperMenu from "../components/UpperMenu";
+import fetchContent from "../gets/Fetch";
 
 const Content = (props) => {
   return (
@@ -24,7 +23,7 @@ const Content = (props) => {
         <div className="input-container">
           <input placeholder="Nome" type="text" name="username" />
         </div>
-        {props.state.utype == "cozinha solidária" ?
+        {props.state.utype === "cozinha solidária" ?
           <div></div>
           :
           <div className="input-container">
@@ -53,8 +52,6 @@ const ModifyProfile = (props) => {
 
     const user_type = state.utype;
 
-    const navigate = useNavigate();
-
     const handleModifyProfile = (event) => {
       event.preventDefault();
     
@@ -68,13 +65,13 @@ const ModifyProfile = (props) => {
         return;
       }
 
-      let url_user_type = user_type == "cozinha solidária" ? "kitchen" : "donor";
+      let url_user_type = user_type === "cozinha solidária" ? "kitchen" : "donor";
 
       var everything_ok = 0;
       var changes_counter = 0;
 
       for(var i = 0; i < change_list.length; i++){
-        if(change_list[i] == undefined || change_list[i] == "" || end_points[i] == undefined){
+        if(change_list[i] === undefined || change_list[i] === "" || end_points[i] === undefined){
           continue;
         }
 
@@ -88,54 +85,16 @@ const ModifyProfile = (props) => {
           change: change_list[i],
         };
     
-        var resp_ok = true;
-    
-        fetch(uri, {
-          method: 'PATCH',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(item)
-        })
-          .then((resp) => {
-            if(resp.status === 400){
-              resp_ok = false;
-            }
-            return resp.json();
-          })
-          .then((data) => {
-            if(resp_ok){
-              everything_ok++;
-              if(everything_ok == changes_counter){
-                alert("Mudanças realizadas com sucesso.");
-              }
-            }else{
-              everything_ok = false;
-              if(data.errors === undefined){
-                alert(data);
-              }
-              else{
-                var str = "";
-                for(var element in data.errors){
-                  str += data.errors[element] + "\n";
-                }
-                alert(str);
-              }
-            }
-          })
-          .catch(error => {
-            //TO DO
-          });
+        fetchContent(uri, JSON.stringify(item), 'PATCH', ()=>{
+          everything_ok++;
+          if(everything_ok === changes_counter){
+            alert("Mudanças realizadas com sucesso.");
+          }
+        });
       }
     };
 
     //add user verification step?
-    
-    const backNavigation = (event) => {
-        event.preventDefault();
-        window.history.back();
-    };
 
     return (
       <div>
