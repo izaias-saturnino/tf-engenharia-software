@@ -1,5 +1,6 @@
-const fetchContent = async (uri, body, method) => {
+const fetchContent = async (uri, body, method, callback = ()=>{}) => {
     var resp_ok = true;
+    var content;
     var response = await fetch(uri, {
         method: method,
         headers: {
@@ -16,6 +17,8 @@ const fetchContent = async (uri, body, method) => {
     })
     .then((data) => {
         if(resp_ok){
+            content = data;
+            callback(data);
             console.log("resp_ok");
         }else{
             if(data.errors === undefined){
@@ -33,14 +36,7 @@ const fetchContent = async (uri, body, method) => {
     .catch(error => {
         //TO DO
     });
-    var data;
-    if(response === undefined){
-        data = {};
-    }
-    else{
-        data = await response.json();
-    }
-    return data;
+    return content;
 }
 
 export default fetchContent;

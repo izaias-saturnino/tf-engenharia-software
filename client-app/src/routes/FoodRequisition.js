@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import foodLogo from '../images/foodLogo.png';
 
@@ -62,8 +62,7 @@ const FoodRequisition = () => {
           Price: Price.value
         };
 
-        var data = fetchContent(uri, JSON.stringify(item), 'POST');
-        alert(data);
+        fetchContent(uri, JSON.stringify(item), 'POST', (data)=>alert(data));
     };
 
     return (

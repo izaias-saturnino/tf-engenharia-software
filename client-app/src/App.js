@@ -18,4 +18,4 @@ function App() {
 
 export default App;
 
-export const backend_base_url = "https://58b7-2804-14d-4c85-1043-186e-fe29-c17f-3ad.ngrok-free.app";
+export const backend_base_url = "https://elknoblich2.sa-1.sharedwithexpose.com";

@@ -71,17 +71,18 @@ const Login = (props) => {
           password: pass.value
         };
 
-        var data = fetchContent(uri, JSON.stringify(item), 'POST');
-        localStorage.setItem("email", JSON.stringify(email.value));
-        localStorage.setItem("isLoggedIn", JSON.stringify(true));
-        var str = getUtype(data.actor_type);
-        localStorage.setItem("id", JSON.stringify(data.actor.identification));
-        localStorage.setItem("utype", JSON.stringify(str));
-        //localStorage.setItem("username", JSON.stringify(data.username));
-        if(str == "cozinha solidária"){
-          localStorage.setItem("validatedKitchen", JSON.stringify(data.actor.validated));
-        }
-        navigate('/home');
+        fetchContent(uri, JSON.stringify(item), 'POST', (data)=>{
+            localStorage.setItem("email", JSON.stringify(email.value));
+            localStorage.setItem("isLoggedIn", JSON.stringify(true));
+            var str = getUtype(data.actor_type);
+            localStorage.setItem("utype", str);
+            localStorage.setItem("id", JSON.stringify(data.actor.identification));
+            //localStorage.setItem("username", JSON.stringify(data.username));
+            if(str == "cozinha solidária"){
+                localStorage.setItem("validatedKitchen", JSON.stringify(data.actor.validated));
+            }
+            navigate('/home');
+        });
     };
 
     const backNavigation = (event) => {

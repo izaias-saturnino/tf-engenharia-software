@@ -50,27 +50,33 @@ const DonationHistory = (props) => {
 
     const {kitchen_id} = useParams();
 
-    var data;
+    const [data, setData] = useState({});
     if(kitchen_id === undefined){
-        data = fetchContent(backend_base_url+'/API/KitchenHistory', kitchen_id, 'POST');
+        fetchContent(backend_base_url+'/API/KitchenHistory', kitchen_id, 'POST', (data)=>{setData(data)});
     }
     else{
-        data = fetchContent(backend_base_url+'/API/DonationHistory', state.id, 'POST');
+        fetchContent(backend_base_url+'/API/DonationHistory', state.id, 'POST', (data)=>{setData(data)});
     }
 
     var donations = data.donations;
     //preciso que tu me passe os dados da cozinha no donation history do donor
-    var kitchen = fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen_id, 'POST').kitchen;
+    const [kitchen, setKitchen] = useState({});
+    fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen_id, 'POST', (data)=>setKitchen(data.kitchen));
 
     let results = [];
     let i = 0;
 
+    const [kitchenList, setKitchenList] = useState([]);
+
     if(donations !== undefined){
         for (i = 0; i < donations.length; i++) {
             if(kitchen_id === undefined){
-                kitchen = fetchContent(backend_base_url+'/API/AccessKitchenProfile', donations[i].kitchenIdentification, 'POST').kitchen;
+                fetchContent(backend_base_url+'/API/AccessKitchenProfile', donations[i].kitchenIdentification, 'POST', (data)=>setKitchenList(kitchenList.concat([data.kitchen])));
+                results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchenList[i]}/>);
             }
-            results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchen}/>);
+            else{
+                results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchen}/>);
+            }
         }
     }
 

@@ -1,22 +1,25 @@
 import React, { useState } from "react";
-import { backend_base_url } from "../App";
-import fetchContent from "../gets/Fetch";
 
-const EventsList = () => {
-    var uri = backend_base_url+'/API/Events';
-    var events = fetchContent(uri, '', 'POST');
+const EventsList = (props) => {
+    var events = props.events;
     var results = [];
     for(var event in events){
         results.push(
             <div className="py-3 w-100">
-                <EventCard key={event.id} title={event.title} content={event.content}/>
+                <EventCard title={''} content=
+                    {
+                        "Localização: " + event.location + "\n" +
+                        "Público: " + event.public + "\n" +
+                        "Data: " + event.data
+                    }
+                />
             </div>
         );
     }
     if(results.length == 0){
         results.push(
             <div className="py-3 w-100">
-                <EventCard key={''} title={''} content={'Ainda não há eventos.'}/>
+                <EventCard title={''} content={'Ainda não há eventos.'}/>
             </div>
         );
     }

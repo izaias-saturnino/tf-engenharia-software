@@ -64,13 +64,13 @@ const UpperMenu = (props) => {
                                     </Link>
                                 )}
 
-                                {userType === '"cozinha solidária"' && (
+                                {userType === "cozinha solidária" && (
                                     <Link to="/foodRequisition">
                                         <button className="burger-dropdown-menu-button">Requisições</button>
                                     </Link>
                                 )}
 
-                                {userType === '"cozinha solidária"' && (
+                                {userType === "cozinha solidária" && (
                                     <Link to="/createEvent">
                                         <button className="burger-dropdown-menu-button">Eventos</button>
                                     </Link>

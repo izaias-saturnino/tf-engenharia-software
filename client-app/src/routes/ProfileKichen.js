@@ -33,59 +33,29 @@ const Event = (props) => {
     )
 }
 
+const updateResults = (setResults, content) =>{
+    var results = [];
+    if(content !== undefined){
+        for (var i = 0; i < content.length; i++) {
+            results.push(<Event className={"default-border-bottom"} event={content[i]}/>);
+        }
+    }
+    if(content.length === 0){
+        results.push(<div className="pt-3">Fim dos resultados.</div>);
+    }
+    return results;
+}
+
 const ProfileKitchen = (props) => {
     const {kitchen} = useParams();
-    const state = { ...localStorage };
+    const [results, setResults] = useState([]);
+    const [profile, setProfile] = useState({});
 
-    //fetch profile
-    var profile = {};
-
-    profile = {
-        "Nome": "Cozinha solidária",
-        "Email": "cozinhasolidaria@gmail.com",
-        //"Telefone": "(99) 987654321",
-        //"Endereço": "Av. Bento Gonçalves, nº 999, Porto Alegre - RS",
-        //"CNPJ": "987654321",
-    };
-
-    var kitchen_profile = fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST');
-    var events = kitchen_profile.events;
-    profile = kitchen_profile.kitchen;
-
-    console.log(state.kitchen);
-    console.log(state.events);
-
-    profile.utype = "kitchen";
-
-    let results = [];
-    let i = 0;
-    if(events !== undefined){
-        for (i = 0; i < events.length; i++) {
-            results.push(<Event className={"default-border-bottom"} event={events[i]}/>);
-        }
-    }
-
-    // let eventTest = {
-    //     "name": "Evento promocional do filme Oppenheimer",
-    //     "location": "Shopping Bourbon",
-    //     "date": "24/09/2023",
-    //     "public": "300 pessoas",
-    // };
-    // results.push(<Event className={"default-border-bottom"} event={eventTest}/>);
-
-    if(props.search !== undefined){
-        if(events.length === 0){
-            results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
-        }
-        else{
-            results.push(<div className="pt-5">Fim dos resultados.</div>);
-        }
-    }
-    if(events.length === 0){
-        results.push(<div className="pt-3">Não há eventos disponíveis.</div>);
-    }
-
-    //results.push(<div className="pt-5">Fim dos resultados.</div>);
+    fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
+    (data)=>{
+        setResults(updateResults(data.events));
+        setProfile(data.kitchen);
+    });
 
     return (
         <div>
@@ -96,21 +66,10 @@ const ProfileKitchen = (props) => {
                         <div>
                             <img className="w-100 h-50" src={defaultProfilePic}></img>
                             <div className="p-2rem">
-                                <div className="title">Cozinha Solidária</div>
+                                <div className="title">{profile.Nome}</div>
                                 <div className="profile-properties">
-                                    <ProfileProp propName={"Nome"} propValue={profile.Nome}/>
-                                    <div className="profile-properties">
-                                        <div className="gray-text">Email</div>
-                                        <div>
-                                            {profile.Email}
-                                        </div>
-                                    </div>
-                                    <div className="profile-properties">
-                                        <div className="gray-text">Telefone</div>
-                                        <div>
-                                            {profile.Telefone}
-                                        </div>
-                                    </div>
+                                    <ProfileProp propName={"Email"} propValue={profile.Email}/>
+                                    <ProfileProp propName={"Telefone"} propValue={profile.Telefone}/>
                                     <ProfileProp propName={"Endereço"} propValue={profile.Endereço}/>
                                     <ProfileProp propName={"CNPJ"} propValue={profile.CNPJ}/>
                                 </div>

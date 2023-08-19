@@ -61,7 +61,9 @@ const Requisitions = (props) => {
 
     const state = {...localStorage};
 
-    var data = fetchContent(backend_base_url+'/API/', kitchen_id, 'POST');
+    const [data, setData] = useState({});
+
+    fetchContent(backend_base_url+'/API/', kitchen_id, 'POST', (data)=>setData(data));
     var requisitions = data.requisitions;
     var kitchen = state.kitchen;
 

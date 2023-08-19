@@ -52,7 +52,7 @@ const CreateEvent = () => {
           public: Public.value,
         };
     
-        fetchContent(uri,JSON.stringify(item),'POST');
+        fetchContent(uri, JSON.stringify(item), 'POST', (data)=>alert(data));
     };
 
     return (

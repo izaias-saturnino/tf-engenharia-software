@@ -24,7 +24,7 @@ const Content = (props) => {
         <div className="input-container">
           <input placeholder="Nome" type="text" name="username" />
         </div>
-        {props.state.utype == '"cozinha solidária"' ?
+        {props.state.utype == "cozinha solidária" ?
           <div></div>
           :
           <div className="input-container">
@@ -68,7 +68,7 @@ const ModifyProfile = (props) => {
         return;
       }
 
-      let url_user_type = user_type == '"cozinha solidária"' ? "kitchen" : "donor";
+      let url_user_type = user_type == "cozinha solidária" ? "kitchen" : "donor";
 
       var everything_ok = 0;
       var changes_counter = 0;

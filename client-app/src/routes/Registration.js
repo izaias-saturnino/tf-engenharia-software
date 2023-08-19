@@ -89,7 +89,7 @@ const Registration = (props) => {
           location: address.value
         };
     
-        fetchContent(uri, JSON.stringify(item), 'POST');
+        fetchContent(uri, JSON.stringify(item), 'POST', (data)=>alert(data));
     };
 
     const backNavigation = (event) => {
