@@ -1,17 +1,33 @@
 import React from "react";
 
 import SearchPage from "../components/SeachPage.js";
+import { Link, useParams } from "react-router-dom";
 
-const AccountResult = (props) => {
+export const AccountResult = (props) => {
+    var isKitchen = props.profile.utype === "kitchen";
+
+    if(!isKitchen && !props.admin){
+        return (<div></div>);
+    }
+
     return (
         <div className={"search-item " + props.className}>
-            {/* TODO: add navigation to profile */}
-            <div className="title2 link">
-                {props.profile.name}
-            </div>
-            {props.profile.utype === "kitchen" ?
-                <div className="search-item-properties">
-                    <div className="mb-3"></div>
+            {isKitchen ?
+                <Link className="title2 link" to={"/profile_kitchen/"+props.profile.identification}>
+                    {props.profile.name}
+                </Link>
+                :
+                <div className="title2">
+                    {props.profile.name}
+                </div>
+            }
+            <div className="search-item-properties">
+                <div className="mb-3"></div>
+                <div className="search-item-propertie">
+                    {props.profile.email}
+                </div>
+                {isKitchen ?
+                <div>
                     <div className="search-item-propertie">
                         {props.profile.addres}
                     </div>
@@ -21,6 +37,23 @@ const AccountResult = (props) => {
                 </div>
                 :
                 <div></div>
+                }
+            </div>
+            {props.admin?
+            <div className="pt-3 flex center-content">
+                {isKitchen ?
+                <form className="d-flex right-content w-100 px-2">
+                    <input type="submit" className="form-btn" value="Validar"/>
+                </form>
+                :
+                <div></div>
+                }
+                <form className={"d-flex left-content px-2 "+(isKitchen ? "w-100" : "")}>
+                    <input type="submit" className="form-btn" value="Deletar"/>
+                </form>
+            </div>
+            :
+            <div></div>
             }
         </div>
     )
@@ -28,37 +61,51 @@ const AccountResult = (props) => {
 
 const AccountSearch = (props) => {
 
-    //fetch profiles
-    let profiles = [];
+    const {query} = useParams();
 
-    let results = [];
-    let i = 0;
-    if(profiles !== undefined){
-        for (i = 0; i < profiles.length; i++) {
-            results.push(<AccountResult className={"default-border-bottom"} profile={profiles[i]}/>);
-        }
-        if(profiles.length === 0){
-            results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
-        }
-        else{
-            results.push(<div className="pt-5">Fim dos resultados.</div>);
-        }
+    //fetch profiles
+    var profiles = [];
+    const state = { ...localStorage };
+    if(state.utype === "doador"){
+        //fetch profiles as donor
+    }
+    else{
+        //fetch profiles as manager
     }
 
-    // let profileTest = {
-    //     "name": "name",
-    //     "addres": "addres",
-    //     "utype": "kitchen",
-    //     "CNPJ" : "987654321"
-    // };
-    // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest}/>);
-    // profileTest = {
-    //     "name": "name",
-    //     "utype": "donor"
-    // };
-    // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest}/>);
+    var admin = state.utype === 0;
+    //admin = true;
 
-    //results.push(<div className="pt-5">Fim dos resultados.</div>);
+    let results = [];
+
+    // let profileTest = {
+    //     "identification": 1,
+    //     "name": "name",
+    //     "addres": "Av. Bento Gonçalves, n° 1",
+    //     "utype": "kitchen",
+    //     "CNPJ" : "987654321",
+    //     "email": "kitchen@email.com"
+    // };
+    // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest} admin={admin}/>);
+    // profileTest = {
+    //     "identification": 2,
+    //     "name": "name",
+    //     "utype": "donor",
+    //     "email": "donor@email.com"
+    // };
+    // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest} admin={admin}/>);
+
+    if(query !== undefined){
+        for (var i = 0; i < profiles.length; i++) {
+            results.push(<AccountResult key={"result"+i} className={"default-border-bottom"} profile={profiles[i]}/>);
+        }
+        if(profiles.length === 0){
+            results.push(<div key={"final result"} className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
+        }
+        else{
+            results.push(<div key={"final result"} className="pt-5">Fim dos resultados.</div>);
+        }
+    }
 
     return (
         <SearchPage title={"Resultados"} results={results} placeholder={"Pesquisar"}/>

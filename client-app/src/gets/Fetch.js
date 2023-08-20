@@ -33,7 +33,6 @@ const fetchContent = async (uri, body, method, callback = ()=>{}) => {
             }
         }
     });
-    return content;
 }
 
 export default fetchContent;

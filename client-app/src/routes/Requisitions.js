@@ -60,9 +60,10 @@ const Requisitions = (props) => {
 
     const [data, setData] = useState({});
 
-    fetchContent(backend_base_url+'/API/', kitchen_id, 'POST', (data)=>setData(data));
-    var requisitions = data.requisitions;
+    //fetch kitchen?
     var kitchen = state.kitchen;
+    //fetchContent(backend_base_url+'/API/', kitchen_id, 'POST', (data)=>setData(data));
+    var requisitions = data.requisitions;
 
     if(requisitions === undefined){
         requisitions = [];

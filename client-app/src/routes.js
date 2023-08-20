@@ -13,6 +13,7 @@ import Donation from "./routes/Donation.js";
 import FoodRequisition from "./routes/FoodRequisition.js";
 import CreateEvent from "./routes/CreateEvent.js";
 import Requisitions from "./routes/Requisitions.js";
+import ConfirmAction from "./routes/ConfirmAction.js";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
     element: <SelectUserType/>
   },
   {
-    path: "/account_search",
+    path: "/account_search/:query",
     element: <AccountSearch/>
   },
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
     path: "/createEvent",
     element: <CreateEvent/>
   },
+  {
+    path: "/confirm_action/:action/:user_id",
+    element: <ConfirmAction/>
+  }
   // {
   //   path: "*",
   //   element: <NotFound/>

@@ -58,6 +58,7 @@ const Donation = (props) => {
 
     const handleDonation = (event) => {
         event.preventDefault();
+        //fetch to send donation
     };
 
     return (

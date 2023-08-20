@@ -6,20 +6,19 @@ import { useNavigate, Link } from 'react-router-dom';
 const UpperMenu = (props) => {
 
     const navigate = useNavigate();
+    const state = { ...localStorage };
 
-    var userType = undefined;
+    var userType = state.utype;
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
     const toggleBurgerMenu = () => {
         setIsBurgerMenuOpen(!isBurgerMenuOpen);
     };
 
-    const [searchTerm, setSearchTerm] = useState("");
-
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-
-        console.log(searchTerm);
+        var { query } = document.getElementsByClassName("search-bar")[0];
+        navigate("/account_search/"+query.value);
     }
 
     const logout = (event) => {
@@ -35,19 +34,22 @@ const UpperMenu = (props) => {
                     <Link to="/home" className="d-flex">
                         <img className="home-icon p-1" src={homeIcon} alt="Menu" />
                     </Link>
-                    <div className="w-100">
-                    {userType === "doador" && (
-                    <form className="search-bar" onSubmit={handleSearchSubmit}>
-                        <input
-                            type="text"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            placeholder="Busque por uma cozinha"
-                        />
-                        <button type="submit" className="hidden form-btn"/>
-                    </form>)}
+                    <div className="px-2 w-100">
+                        <div className="px-2">
+                            <div className="px-2 border-gray">
+                            {userType === "doador" && (
+                            <form className="search-bar" onSubmit={handleSearchSubmit}>
+                                <input
+                                    type="text"
+                                    name="query"
+                                    placeholder={userType === "doador" ? "Busque por uma cozinha" : "Busque por uma conta"}
+                                />
+                                <button type="submit" className="hidden form-btn"/>
+                            </form>)}
+                            </div>
+                        </div>
                     </div>
-                    <button className="d-flex burger-menu-button" onClick={toggleBurgerMenu}>
+                    <div className="d-flex burger-menu-button" onClick={toggleBurgerMenu}>
                         <img className="burger-icon p-1" src={burgerIcon} alt="Menu" />
                         <div className="relative">
                         {isBurgerMenuOpen && (
@@ -88,7 +90,7 @@ const UpperMenu = (props) => {
                             </div>
                         )}
                         </div>
-                    </button>
+                    </div>
                 </div>
             </div>
         </div>

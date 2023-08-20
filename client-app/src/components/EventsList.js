@@ -3,9 +3,10 @@ import React from "react";
 const EventsList = (props) => {
     var events = props.events;
     var results = [];
+    var key = 0;
     for(var event in events){
         results.push(
-            <div className="py-3 w-100">
+            <div key={key} className="py-3 w-100">
                 <EventCard title={''} content=
                     {
                         "Localização: " + event.location + "\n" +
@@ -15,13 +16,15 @@ const EventsList = (props) => {
                 />
             </div>
         );
+        key++;
     }
     if(results.length === 0){
         results.push(
-            <div className="py-3 w-100">
+            <div key={key} className="py-3 w-100">
                 <EventCard title={''} content={'Ainda não há eventos.'}/>
             </div>
         );
+        key++;
     }
     return (
     <div className="event-list-container py-5 px-2">

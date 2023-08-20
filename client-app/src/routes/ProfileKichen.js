@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import ProfileProp from "../components/ProfileProp";
 
@@ -75,10 +75,11 @@ const ProfileKitchen = (props) => {
                         </div>
                     </div>
                     <div className="py-8 px-10">
-                        <div className="w-100 button-container button-font">
-                            {/* TODO add link */}
-                            <input type="submit" className="form-btn" value="Quero doar"/>
-                        </div>
+                        <Link to={"/requisitions/"+kitchen}>
+                            <div className="w-100 button-container button-font">
+                                <input type="submit" className="form-btn" value="Quero doar"/>
+                            </div>
+                        </Link>
                     </div>
                     <div className="login-form">
                         <div>
