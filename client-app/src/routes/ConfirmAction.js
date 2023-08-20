@@ -6,43 +6,13 @@ import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
 import UpperMenu from "../components/UpperMenu";
 import fetchContent from "../gets/Fetch";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 const Content = (props) => {
-    var isKitchen = props.profile.utype === "kitchen";
     return (
         <div>
-            <div className={"search-item " + props.className}>
-                {isKitchen ?
-                    <div className="title2 link" to={"/profile_kitchen/"+props.profile.identification}>
-                        {props.profile.name}
-                    </div>
-                    :
-                    <div className="title2">
-                        {props.profile.name}
-                    </div>
-                }
-                <div className="search-item-properties">
-                    <div className="mb-3"></div>
-                    <div className="search-item-propertie">
-                        {props.profile.email}
-                    </div>
-                    {isKitchen ?
-                    <div>
-                        <div className="search-item-propertie">
-                            {props.profile.addres}
-                        </div>
-                        <div className="search-item-propertie">
-                            CNPJ: {props.profile.CNPJ}
-                        </div>
-                    </div>
-                    :
-                    <div></div>
-                    }
-                </div>
-            </div>
             <div>
-                <div className="justify-text gray-text pb-1">
+                <div className="justify-text gray-text pb-1 pt-3">
                     Deseja mesmo {props.action} esse usuário?
                 </div>
                 <div className="w-100 button-container pt-2">
@@ -62,25 +32,41 @@ const ConfirmAction = () => {
 
     var {action, user_id} = useParams();
 
-    var [user, setUser] = useState({});
-
-    //fetch user profile? yes
-    //fetchContent(uri, '', 'POST', (data)=>setUser(data));
-
-    const handleAction = (event) => {
-        event.preventDefault();
-    
-        let uri = backend_base_url+'/API/';
-    
-        fetchContent(uri, user_id, 'POST', (data)=>alert(data));
-    };
-
     if(action === "delete"){
         action = "deletar";
     }
     if(action === "validate"){
         action = "validar";
     }
+
+    //fetch profile
+    var profile = {};
+
+    const handleAction = (event) => {
+        event.preventDefault();
+    
+        var end_point;
+        var method;
+        
+        //ManagerIdentification: state.id,
+        const item = {
+            managerIdentification: state.id,
+            userIdentification: user_id
+        };  
+
+        if(action === "deletar"){
+            end_point = "DeleteRegistration";
+            method = "DELETE";
+        }
+        if(action === "validar"){
+            end_point = "ValidateKitchen";
+            method = "PATCH";
+        }
+
+        let uri = backend_base_url+'/API/'+end_point;
+    
+        fetchContent(uri, JSON.stringify(item), method, (data)=>alert(data));
+    };
 
     var upperCaseAction = action.charAt(0).toUpperCase() + action.slice(1);
 
@@ -91,27 +77,18 @@ const ConfirmAction = () => {
         window.history.back();
     };
 
-    // user = {
-    //     "identification": 1,
-    //     "name": "name",
-    //     "addres": "Av. Bento Gonçalves, n° 1",
-    //     "utype": "kitchen",
-    //     "CNPJ" : "987654321",
-    //     "email": "kitchen@email.com"
-    // };
-    // user2 = {
-    //     "identification": 2,
-    //     "name": "name",
-    //     "utype": "donor",
-    //     "email": "donor@email.com"
-    // };
+    var userTypeText = (upperCaseAction === "Validar" ? "cozinha" : "usuário");
+
+    if(!state.isLoggedIn){
+        return <Navigate to="/login"/>;
+    }
 
     return (
       <div>
         <UpperMenu/>
         <div className="app">
           <div className="p-10">
-              <AccountForm title={upperCaseAction+" usuário"} content={<Content profile={user} action={action} formFunction={handleAction} cancel={backNavigation}/>} backNavigation="skip" />
+              <AccountForm title={upperCaseAction+" "+userTypeText} content={<Content userTypeText={userTypeText} profile={profile} action={action} formFunction={handleAction} cancel={backNavigation}/>} backNavigation="skip" />
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 import SearchPage from "../components/SeachPage"
 import { backend_base_url } from "../App";
@@ -45,42 +45,51 @@ const DonationHistory = (props) => {
 
     const state = { ...localStorage };
 
-    localStorage.removeItem('donations');
-
     const {kitchen_id} = useParams();
 
-    const [data, setData] = useState({});
-    if(kitchen_id === undefined){
-        fetchContent(backend_base_url+'/API/KitchenHistory', kitchen_id, 'POST', (data)=>{setData(data)});
-    }
-    else{
-        fetchContent(backend_base_url+'/API/DonationHistory', state.id, 'POST', (data)=>{setData(data)});
-    }
+    //fetch donations
+    const [donations, setDonations] = useState([]);
+    useEffect(()=>{
+        if(kitchen_id !== undefined){
+            fetchContent(backend_base_url+'/API/KitchenHistory', kitchen_id, 'POST', (data)=>{setDonations(data)});
+        }
+        else{
+            fetchContent(backend_base_url+'/API/DonationHistory', state.id, 'POST', (data)=>{setDonations(data)});
+        }
+    }, [kitchen_id]);
 
-    var donations = data.donations;
-    //preciso que tu me passe os dados da cozinha no donation history do donor
+    //fetch kitchen
     const [kitchen, setKitchen] = useState({});
-    fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen_id, 'POST', (data)=>setKitchen(data.kitchen));
+    useEffect(()=>{
+        if(kitchen_id !== undefined){
+            fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen_id, 'POST', (data)=>setKitchen(data.kitchen));
+        }
+    }, [kitchen_id]);
 
-    let results = [];
-    let i = 0;
+    var results = [];
 
     const [kitchenList, setKitchenList] = useState([]);
 
-    if(donations !== undefined){
-        for (i = 0; i < donations.length; i++) {
-            if(kitchen_id === undefined){
-                fetchContent(backend_base_url+'/API/AccessKitchenProfile', donations[i].kitchenIdentification, 'POST', (data)=>setKitchenList(kitchenList.concat([data.kitchen])));
-                results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchenList[i]}/>);
-            }
-            else{
-                results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchen}/>);
+    useEffect(()=>{
+        results = [];
+        if(donations !== undefined){
+            for (var i = 0; i < donations.length; i++) {
+                if(kitchen_id === undefined){
+                    fetchContent(backend_base_url+'/API/AccessKitchenProfile', donations[i].kitchenIdentification, 'POST', (data)=>setKitchenList(kitchenList.concat([data.kitchen])));
+                    results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchenList[i]}/>);
+                }
+                else{
+                    results.push(<Donation className={"default-border-bottom"} donation={donations[i]} kitchen={kitchen}/>);
+                }
             }
         }
-    }
+        if(donations === undefined || donations.length === 0){
+            results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
+        }
+    }, [kitchen_id]);
 
-    if(donations === undefined || donations.length === 0){
-        results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
+    if(!state.isLoggedIn){
+        return <Navigate to="/login"/>;
     }
 
     return (

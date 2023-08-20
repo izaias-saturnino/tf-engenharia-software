@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
 import UpperMenu from "../components/UpperMenu";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import fetchContent from "../gets/Fetch";
 import { backend_base_url } from "../App";
 
@@ -49,6 +49,8 @@ const Content = (props) => {
 
 const Donation = (props) => {
 
+    const state = { ...localStorage };
+
     const {requisition_id} = useParams();
 
     const navigate = useNavigate();
@@ -57,10 +59,12 @@ const Donation = (props) => {
     var requisition = {};
     //fetch kitchen
     var [kitchen, setKitchen] = useState({});
-    fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
-    (data)=>{
-        setKitchen(data.kitchen);
-    });
+    useEffect(()=>{
+        fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
+        (data)=>{
+            setKitchen(data.kitchen);
+        });
+    }, requisition_id)
 
     if(requisition === undefined || requisition === null){
         requisition = {};
@@ -74,6 +78,10 @@ const Donation = (props) => {
         //send to payment page
         navigate("/payment/"+requisition.donationIdentification);
     };
+
+    if(!state.isLoggedIn){
+        return <Navigate to="/login"/>;
+    }
 
     return (
         <div>

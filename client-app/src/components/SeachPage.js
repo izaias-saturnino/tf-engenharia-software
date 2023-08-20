@@ -7,6 +7,13 @@ const SearchPage = (props) => {
             <UpperMenu/>
             <div className="app">
                 <div className="p-10">
+                    {props.before_content !== undefined?
+                    <div className="py-10">
+                        {props.before_content}
+                    </div>
+                    :
+                    <div></div>
+                    }
                     <div className="login-form">
                         <div>
                             <div className="title">{props.title}</div>

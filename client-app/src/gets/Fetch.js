@@ -1,6 +1,5 @@
 const fetchContent = async (uri, body, method, callback = ()=>{}) => {
     var resp_ok = true;
-    var content;
     await fetch(uri, {
         method: method,
         headers: {
@@ -17,7 +16,6 @@ const fetchContent = async (uri, body, method, callback = ()=>{}) => {
     })
     .then((data) => {
         if(resp_ok){
-            content = data;
             callback(data);
             console.log("resp_ok");
         }else{

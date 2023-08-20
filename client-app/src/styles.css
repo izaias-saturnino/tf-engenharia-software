@@ -75,7 +75,8 @@ input[type="submit"].form-btn, input[type="image"] {
   padding: 13px 20px;
 }
 
-.w-100 input[type="submit"].form-btn, .w-100 input[type="image"] {
+.w-100.button-container input[type="submit"].form-btn, .w-100.button-container input[type="image"] {
+  width: 100%;
   display: block;
 }
 
@@ -234,6 +235,11 @@ input[type="submit"]:hover.form-btn, input[type="image"]:hover {
 .px-1{
   padding-left: 0.2em;
   padding-right: 0.2em;
+}
+
+.py-1{
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
 }
 
 .pl-1{
@@ -451,10 +457,6 @@ a {
 .event-card-title{
   font-weight: bold;
   padding-bottom: 10px;
-}
-
-.event-card-content {
-  margin-bottom: 16px;
 }
 
 .event-list-container {

@@ -2,6 +2,7 @@ import React from "react";
 
 import UpperMenu from "../components/UpperMenu.js"
 import EventsList from "../components/EventsList.js";
+import { Navigate } from "react-router-dom";
 
 const Content = (props) => {
     return (
@@ -14,9 +15,9 @@ const Content = (props) => {
 const Home = () => {
     const state = { ...localStorage };
 
-    // if (state.username === undefined) {
-    //    return (<Navigate to="/" replace />)
-    // }
+    if(!state.isLoggedIn){
+        return <Navigate to="/login"/>;
+    }
 
     return (
         <div>

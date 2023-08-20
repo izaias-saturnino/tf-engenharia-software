@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
 import UpperMenu from "../components/UpperMenu";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import fetchContent from "../gets/Fetch";
 import { backend_base_url } from "../App";
 
@@ -51,8 +51,18 @@ const Payment = (props) => {
 
     const {requisition_id} = useParams();
 
+    const state = { ...localStorage };
+
     //fetch requisition
-    var requisition = {};
+    const [requisition, setRequisition] = useState({});
+
+    useEffect(()=>{
+        fetchContent(backend_base_url+'/API/Donate/DisplayDonationRequest', requisition_id, 'POST',
+        (data)=>{
+            setRequisition(data);
+        });
+    }, requisition_id);
+
     //fetch kitchen
     var [kitchen, setKitchen] = useState({});
     /*fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
@@ -60,19 +70,20 @@ const Payment = (props) => {
         setKitchen(data.kitchen);
     });*/
 
-    if(requisition === undefined || requisition === null){
-        requisition = {};
-    }
-
-    console.log("donation page");
-    console.log(requisition);
-
     const handlePayment = (event) => {
         event.preventDefault();
         //fetch send payment
-        let uri = backend_base_url+'/API/';
-        fetchContent(uri, requisition_id, 'POST', (data)=>alert(data));
+        const item = {
+            donationIdentification: requisition_id,
+            donotIdentification: state.id
+        }
+        let uri = backend_base_url+'/API/Donate';
+        fetchContent(uri, JSON.stringify(item), 'PATCH', (data)=>alert(data));
     };
+
+    if(!state.isLoggedIn){
+        return <Navigate to="/login"/>;
+    }
 
     return (
         <div>

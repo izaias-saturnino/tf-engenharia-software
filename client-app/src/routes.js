@@ -66,7 +66,7 @@ const router = createBrowserRouter([
     element: <ProfileKitchen/>
   },
   {
-    path: "/requisitions/:kitchen",
+    path: "/requisitions/:kitchen_id",
     element: <Requisitions/>
   },
   {

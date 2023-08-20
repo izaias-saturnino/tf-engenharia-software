@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 import ProfileProp from "../components/ProfileProp";
 
@@ -20,9 +20,9 @@ const Event = (props) => {
                 <div className="search-item-propertie">
                     Local: {props.event.location}
                 </div>
-                <div className="search-item-propertie">
+                {/* <div className="search-item-propertie">
                     Data: {props.event.date}
-                </div>
+                </div> */}
                 <div className="search-item-propertie">
                     Público esperado: {props.event.public}
                 </div>
@@ -31,7 +31,7 @@ const Event = (props) => {
     )
 }
 
-const updateResults = (setResults, content) =>{
+const updateResults = (content) =>{
     var results = [];
     if(content !== undefined){
         for (var i = 0; i < content.length; i++) {
@@ -45,15 +45,25 @@ const updateResults = (setResults, content) =>{
 }
 
 const ProfileKitchen = (props) => {
+
+    const state = { ...localStorage };
+
     const {kitchen} = useParams();
     const [results, setResults] = useState([]);
     const [profile, setProfile] = useState({});
 
-    fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
-    (data)=>{
-        setResults(updateResults(data.events));
-        setProfile(data.kitchen);
-    });
+    useEffect(()=>{
+        fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
+        (data)=>{
+            console.log(data);
+            setResults(updateResults(data.events));
+            setProfile(data.kitchen);
+        });
+    }, [kitchen]);
+
+    if(!state.isLoggedIn){
+        return <Navigate to="/login"/>;
+    }
 
     return (
         <div>
@@ -64,12 +74,18 @@ const ProfileKitchen = (props) => {
                         <div>
                             <img className="w-100 h-50" src={defaultProfilePic}></img>
                             <div className="p-2rem">
-                                <div className="title">{profile.Nome}</div>
+                                <div className="title">{profile.name}</div>
                                 <div className="profile-properties">
-                                    <ProfileProp propName={"Email"} propValue={profile.Email}/>
-                                    <ProfileProp propName={"Telefone"} propValue={profile.Telefone}/>
-                                    <ProfileProp propName={"Endereço"} propValue={profile.Endereço}/>
-                                    <ProfileProp propName={"CNPJ"} propValue={profile.CNPJ}/>
+                                    <div>
+                                        {profile.emailAddress}
+                                    </div>
+                                    <div>
+                                    {profile.location}
+                                    </div>
+                                    {/* <ProfileProp propName={"Email"} propValue={profile.emailAddress}/> */}
+                                    {/* <ProfileProp propName={"Telefone"} propValue={profile.Telefone}/> */}
+                                    {/* <ProfileProp propName={"Endereço"} propValue={profile.location}/> */}
+                                    {/* <ProfileProp propName={"CNPJ"} propValue={profile.CNPJ}/> */}
                                 </div>
                             </div>
                         </div>

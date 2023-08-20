@@ -63,7 +63,7 @@ const Content = (props) => {
 
 const Registration = (props) => {
 
-    let state = { ...localStorage };
+    const state = { ...localStorage };
     const {user_type} = useParams();
 
     const handleRegistration = (event) => {

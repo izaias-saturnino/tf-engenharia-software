@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import SearchPage from "../components/SeachPage.js";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
+import fetchContent from "../gets/Fetch.js";
+import { backend_base_url } from "../App.js";
 
 export const AccountResult = (props) => {
     var isKitchen = props.profile.utype === "kitchen";
@@ -59,42 +61,9 @@ export const AccountResult = (props) => {
     )
 }
 
-const AccountSearch = (props) => {
-
-    const {query} = useParams();
-
-    //fetch profiles
-    var profiles = [];
-    const state = { ...localStorage };
-    if(state.utype === "doador"){
-        //fetch profiles as donor
-    }
-    else{
-        //fetch profiles as manager
-    }
-
-    var admin = state.utype === 0;
-    //admin = true;
-
-    let results = [];
-
-    // let profileTest = {
-    //     "identification": 1,
-    //     "name": "name",
-    //     "addres": "Av. Bento Gonçalves, n° 1",
-    //     "utype": "kitchen",
-    //     "CNPJ" : "987654321",
-    //     "email": "kitchen@email.com"
-    // };
-    // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest} admin={admin}/>);
-    // profileTest = {
-    //     "identification": 2,
-    //     "name": "name",
-    //     "utype": "donor",
-    //     "email": "donor@email.com"
-    // };
-    // results.push(<AccountResult className={"default-border-bottom"} profile={profileTest} admin={admin}/>);
-
+const updateResults = (setResults, newProfiles, query = undefined) =>{
+    var profiles = newProfiles;
+    var results = [];
     if(query !== undefined){
         for (var i = 0; i < profiles.length; i++) {
             results.push(<AccountResult key={"result"+i} className={"default-border-bottom"} profile={profiles[i]}/>);
@@ -105,6 +74,42 @@ const AccountSearch = (props) => {
         else{
             results.push(<div key={"final result"} className="pt-5">Fim dos resultados.</div>);
         }
+    }
+    setResults(results);
+}
+
+const AccountSearch = (props) => {
+
+    const state = { ...localStorage };
+
+    const {query} = useParams();
+
+    const [admin, setAdmin] = useState(state.utype === 0);
+
+    const [results, setResults] = useState([]);
+
+    useEffect(()=>{
+        if(admin){
+            //fetch profiles as manager
+            let uri = backend_base_url+'/API/ManagerField';
+            fetchContent(uri, null, 'POST', (data)=>{
+                var profiles = data.donors.concat(data.kitchens)
+                console.log(profiles);
+                updateResults(setResults, profiles, query);
+            });
+        }
+        else{
+            let uri = backend_base_url+'/API/SearchForKitchens/All';
+            fetchContent(uri, null, 'POST', (data)=>{
+                var profiles = data.donors.concat(data.kitchens)
+                console.log(profiles);
+                updateResults(setResults, profiles, query);
+            });
+        }
+    }, query);
+
+    if(!state.isLoggedIn){
+        return <Navigate to="/login"/>;
     }
 
     return (

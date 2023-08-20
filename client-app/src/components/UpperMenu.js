@@ -36,17 +36,17 @@ const UpperMenu = (props) => {
                     </Link>
                     <div className="px-2 w-100">
                         <div className="px-2">
-                            <div className="px-2 border-gray">
                             {userType === "doador" && (
-                            <form className="search-bar" onSubmit={handleSearchSubmit}>
-                                <input
-                                    type="text"
-                                    name="query"
-                                    placeholder={userType === "doador" ? "Busque por uma cozinha" : "Busque por uma conta"}
-                                />
-                                <button type="submit" className="hidden form-btn"/>
-                            </form>)}
-                            </div>
+                            <div className="px-2 border-gray">
+                                <form className="search-bar" onSubmit={handleSearchSubmit}>
+                                    <input
+                                        type="text"
+                                        name="query"
+                                        placeholder={userType === "doador" ? "Busque por uma cozinha" : "Busque por uma conta"}
+                                    />
+                                    <button type="submit" className="hidden form-btn"/>
+                                </form>
+                            </div>)}
                         </div>
                     </div>
                     <div className="d-flex burger-menu-button" onClick={toggleBurgerMenu}>
@@ -83,9 +83,9 @@ const UpperMenu = (props) => {
                                 )}
 
                                 {userType !== undefined && (
-                                    <form onSubmit={logout}>
-                                        <input type="submit" className="burger-dropdown-menu-button" value="Sair"/>
-                                    </form>
+                                    <Link to="/login">
+                                        <button className="burger-dropdown-menu-button">Sair</button>
+                                    </Link>
                                 )}
                             </div>
                         )}

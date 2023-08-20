@@ -6,6 +6,7 @@ import AccountForm from "../components/AccountForm";
 import { backend_base_url } from "../App";
 import UpperMenu from "../components/UpperMenu";
 import fetchContent from "../gets/Fetch";
+import { Navigate } from "react-router-dom";
 
 const Content = (props) => {
   return (
@@ -94,7 +95,9 @@ const ModifyProfile = (props) => {
       }
     };
 
-    //add user verification step?
+    if(!state.isLoggedIn){
+        return <Navigate to="/login"/>;
+    }
 
     return (
       <div>

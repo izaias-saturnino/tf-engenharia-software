@@ -46,7 +46,6 @@ const SelectUserType = (props) => {
 
     return (
         <div>
-            <UpperMenu/>
             <div className="app">
                 <div className="p-10">
                     <AccountForm title={"Criar Conta"} content={<Content formFunction1={toRegistrationKitchen} formFunction2={toRegistrationDonor}/>}/>
