@@ -83,6 +83,10 @@ input[type="submit"].form-btn, input[type="image"] {
   width: 100%;
 }
 
+.min-w-50{
+  min-width: 50%;
+}
+
 .min-w-100{
   min-width: 100%;
 }

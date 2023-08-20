@@ -67,6 +67,14 @@ const ConfirmAction = () => {
     //fetch user profile? yes
     //fetchContent(uri, '', 'POST', (data)=>setUser(data));
 
+    const handleAction = (event) => {
+        event.preventDefault();
+    
+        let uri = backend_base_url+'/API/';
+    
+        fetchContent(uri, user_id, 'POST', (data)=>alert(data));
+    };
+
     if(action === "delete"){
         action = "deletar";
     }
@@ -77,14 +85,6 @@ const ConfirmAction = () => {
     var upperCaseAction = action.charAt(0).toUpperCase() + action.slice(1);
 
     const state = { ...localStorage };
-
-    const handleAction = (event) => {
-        event.preventDefault();
-    
-        let uri = backend_base_url+'/API/';
-    
-        fetchContent(uri, user_id, 'POST', (data)=>alert(data));
-    };
 
     const backNavigation = (event) => {
         event.preventDefault();

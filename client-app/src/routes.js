@@ -14,6 +14,7 @@ import FoodRequisition from "./routes/FoodRequisition.js";
 import CreateEvent from "./routes/CreateEvent.js";
 import Requisitions from "./routes/Requisitions.js";
 import ConfirmAction from "./routes/ConfirmAction.js";
+import Payment from "./routes/Payment.js";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
   {
     path: "/confirm_action/:action/:user_id",
     element: <ConfirmAction/>
+  },
+  {
+    path: "/payment/:requisition_id",
+    element: <Payment/>
   }
   // {
   //   path: "*",

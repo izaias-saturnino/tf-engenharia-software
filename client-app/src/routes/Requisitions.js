@@ -13,7 +13,7 @@ const Requisition = (props) => {
 
     const handleRequisition = (event) => {
         event.preventDefault();
-        navigate("/donation/"+props.requisition.donationIdentification, {state:props.requisition});
+        navigate("/donation/"+props.requisition.donationIdentification);
     }
 
     return (
@@ -60,10 +60,15 @@ const Requisitions = (props) => {
 
     const [data, setData] = useState({});
 
-    //fetch kitchen?
-    var kitchen = state.kitchen;
-    //fetchContent(backend_base_url+'/API/', kitchen_id, 'POST', (data)=>setData(data));
+    //fetch kitchen
+    var [kitchen, setKitchen] = useState({});
+    fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
+    (data)=>{
+        setKitchen(data.kitchen);
+    });
+    //fetch requisitions
     var requisitions = data.requisitions;
+    //fetchContent(backend_base_url+'/API/', kitchen_id, 'POST', (data)=>setData(data));
 
     if(requisitions === undefined){
         requisitions = [];

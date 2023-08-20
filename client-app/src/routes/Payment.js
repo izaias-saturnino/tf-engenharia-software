@@ -4,7 +4,7 @@ import logo from '../images/doaresLogo.png';
 
 import AccountForm from "../components/AccountForm";
 import UpperMenu from "../components/UpperMenu";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import fetchContent from "../gets/Fetch";
 import { backend_base_url } from "../App";
 
@@ -12,17 +12,17 @@ const Content = (props) => {
   return (
     <div>
       <form className="main-form" onSubmit={props.formFunction}>
-        <div className="justify-text gray-text pb-1">
-            Contribua e faça diferença na vida de pessoas que precisam através da doação de alimentos.
-        </div>
-        <div className="pt-5 px-10">
-            <img className="w-100" src={logo}></img>
-        </div>
         <div className="search-item-properties">
             <div className="mb-3"></div>
             {/* <div className="search-item-propertie">
                 CNPJ: {props.requisition.CNPJ}
             </div> */}
+            <Link to={"/profile_kitchen/"+props.kitchen.identification} className="search-item-propertie link">
+                {props.kitchen.name}
+            </Link>
+            <div className="search-item-propertie">
+                {props.kitchen.email}
+            </div>
             <div className="search-item-propertie">
                 Ingrediente: {props.requisition.name}
             </div>
@@ -40,27 +40,25 @@ const Content = (props) => {
             </div> */}
         </div>
         <div className="w-100 button-container pt-3">
-            <input type="submit" className="form-btn min-w-50" value="Doar"/>
+            <input type="submit" className="form-btn" value="Confirmar pagamento"/>
         </div>
       </form>
     </div>
   )
 }
 
-const Donation = (props) => {
+const Payment = (props) => {
 
     const {requisition_id} = useParams();
-
-    const navigate = useNavigate();
 
     //fetch requisition
     var requisition = {};
     //fetch kitchen
     var [kitchen, setKitchen] = useState({});
-    fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
+    /*fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
     (data)=>{
         setKitchen(data.kitchen);
-    });
+    });*/
 
     if(requisition === undefined || requisition === null){
         requisition = {};
@@ -69,10 +67,11 @@ const Donation = (props) => {
     console.log("donation page");
     console.log(requisition);
 
-    const handleDonation = (event) => {
+    const handlePayment = (event) => {
         event.preventDefault();
-        //send to payment page
-        navigate("/payment/"+requisition.donationIdentification);
+        //fetch send payment
+        let uri = backend_base_url+'/API/';
+        fetchContent(uri, requisition_id, 'POST', (data)=>alert(data));
     };
 
     return (
@@ -80,11 +79,11 @@ const Donation = (props) => {
             <UpperMenu/>
             <div className="app">
                 <div className="p-10">
-                    <AccountForm title={"Fazer uma doação"} content={<Content formFunction={handleDonation} requisition={requisition}/>} backNavigation={"skip"}/>
+                    <AccountForm title={"Dados da doação"} content={<Content formFunction={handlePayment} requisition={requisition} kitchen={kitchen}/>} backNavigation={"skip"}/>
                 </div>
             </div>
         </div>
     )
 };
 
-export default Donation;
+export default Payment;
