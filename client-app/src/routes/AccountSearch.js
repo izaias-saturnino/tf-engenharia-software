@@ -6,7 +6,9 @@ import fetchContent from "../gets/Fetch.js";
 import { backend_base_url } from "../App.js";
 
 export const AccountResult = (props) => {
-    var isKitchen = props.profile.utype === "kitchen";
+    var isKitchen = props.profile.validated !== undefined;
+
+    var isValidated = props.profile.validated === true;
 
     if(!isKitchen && !props.admin){
         return (<div></div>);
@@ -26,15 +28,12 @@ export const AccountResult = (props) => {
             <div className="search-item-properties">
                 <div className="mb-3"></div>
                 <div className="search-item-propertie">
-                    {props.profile.email}
+                    {props.profile.emailAddress}
                 </div>
                 {isKitchen ?
                 <div>
                     <div className="search-item-propertie">
-                        {props.profile.addres}
-                    </div>
-                    <div className="search-item-propertie">
-                        CNPJ: {props.profile.CNPJ}
+                        {props.profile.location}
                     </div>
                 </div>
                 :
@@ -43,7 +42,7 @@ export const AccountResult = (props) => {
             </div>
             {props.admin?
             <div className="pt-3 flex center-content">
-                {isKitchen ?
+                {isKitchen && !isValidated ?
                 <form className="d-flex right-content w-100 px-2">
                     <input type="submit" className="form-btn" value="Validar"/>
                 </form>
@@ -61,19 +60,17 @@ export const AccountResult = (props) => {
     )
 }
 
-const updateResults = (setResults, newProfiles, query = undefined) =>{
+const updateResults = (setResults, newProfiles) =>{
     var profiles = newProfiles;
     var results = [];
-    if(query !== undefined){
-        for (var i = 0; i < profiles.length; i++) {
-            results.push(<AccountResult key={"result"+i} className={"default-border-bottom"} profile={profiles[i]}/>);
-        }
-        if(profiles.length === 0){
-            results.push(<div key={"final result"} className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
-        }
-        else{
-            results.push(<div key={"final result"} className="pt-5">Fim dos resultados.</div>);
-        }
+    for (var i = 0; i < profiles.length; i++) {
+        results.push(<AccountResult className={"default-border-bottom"} profile={profiles[i]}/>);
+    }
+    if(profiles.length === 0){
+        results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
+    }
+    else{
+        results.push(<div className="pt-5">Fim dos resultados.</div>);
     }
     setResults(results);
 }
@@ -95,16 +92,35 @@ const AccountSearch = (props) => {
             fetchContent(uri, null, 'POST', (data)=>{
                 var profiles = data.donors.concat(data.kitchens)
                 console.log(profiles);
-                updateResults(setResults, profiles, query);
+                updateResults(setResults, profiles);
             });
         }
         else{
-            let uri = backend_base_url+'/API/SearchForKitchens/All';
-            fetchContent(uri, null, 'POST', (data)=>{
-                var profiles = data.donors.concat(data.kitchens)
-                console.log(profiles);
-                updateResults(setResults, profiles, query);
-            });
+            if(query === undefined){
+                let uri = backend_base_url+'/API/SearchForKitchens/All';
+
+                fetchContent(uri, 0, 'POST', (data)=>{
+                    var profiles = data;
+                    console.log("profiles");
+                    console.log(profiles);
+                    updateResults(setResults, profiles);
+                });
+            }
+            else{
+                let uri = backend_base_url+'/API/SearchForKitchens/ByFilter';
+
+                const item = {
+                    key: "Name",
+                    value: query
+                };
+
+                fetchContent(uri, JSON.stringify(item), 'POST', (data)=>{
+                    var profiles = data;
+                    console.log("profiles");
+                    console.log(profiles);
+                    updateResults(setResults, profiles);
+                });
+            }
         }
     }, query);
 

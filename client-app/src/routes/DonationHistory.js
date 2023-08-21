@@ -51,10 +51,25 @@ const DonationHistory = (props) => {
     const [donations, setDonations] = useState([]);
     useEffect(()=>{
         if(kitchen_id !== undefined){
-            fetchContent(backend_base_url+'/API/KitchenHistory', kitchen_id, 'POST', (data)=>{setDonations(data)});
+            fetchContent(backend_base_url+'/API/KitchenHistory', kitchen_id, 'POST', (data)=>{
+                console.log("KitchenHistory");
+                console.log(data);
+                setDonations(data);
+            });
+        }
+        else if(state.utype === "cozinha solidária"){
+            fetchContent(backend_base_url+'/API/KitchenHistory', state.id, 'POST', (data)=>{
+                console.log("KitchenHistory");
+                console.log(data);
+                setDonations(data);
+            });
         }
         else{
-            fetchContent(backend_base_url+'/API/DonationHistory', state.id, 'POST', (data)=>{setDonations(data)});
+            fetchContent(backend_base_url+'/API/DonationHistory', state.id, 'POST', (data)=>{
+                console.log("DonationHistory");
+                console.log(data);
+                setDonations(data);
+            });
         }
     }, [kitchen_id]);
 

@@ -55,9 +55,6 @@ const UpperMenu = (props) => {
                         {isBurgerMenuOpen && (
                             <div className="burger-menu-dropdown">
 
-                                {userType === "doador" && (
-                                    <button className="burger-dropdown-menu-button">Perfil</button>)}
-
                                 {userType !== undefined && (
                                     <Link to="/donation_history">
                                         <button className="burger-dropdown-menu-button">Doações</button>

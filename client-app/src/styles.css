@@ -1,3 +1,6 @@
+*{
+  overflow-wrap: break-word;
+}
 body{
   background-color: #f8f9fd;
 }

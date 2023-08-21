@@ -56,19 +56,21 @@ const Donation = (props) => {
     const navigate = useNavigate();
 
     //fetch requisition
-    var requisition = {};
-    //fetch kitchen
-    var [kitchen, setKitchen] = useState({});
+    var [requisition, setRequisition] = useState({});
     useEffect(()=>{
-        fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
+        fetchContent(backend_base_url+'/API/Donate/DisplayDonationRequest', requisition_id, 'POST',
         (data)=>{
-            setKitchen(data.kitchen);
+            setRequisition(data);
         });
     }, requisition_id)
-
-    if(requisition === undefined || requisition === null){
-        requisition = {};
-    }
+    //fetch kitchen
+    // var [kitchen, setKitchen] = useState({});
+    // useEffect(()=>{
+    //     fetchContent(backend_base_url+'/API/AccessKitchenProfile', kitchen, 'POST',
+    //     (data)=>{
+    //         setKitchen(data.kitchen);
+    //     });
+    // }, requisition_id)
 
     console.log("donation page");
     console.log(requisition);

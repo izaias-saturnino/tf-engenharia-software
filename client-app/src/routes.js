@@ -8,7 +8,7 @@ import Registration from "./routes/Registration.js";
 import SelectUserType from "./routes/SelectUserType.js";
 import AccountSearch from "./routes/AccountSearch.js";
 import DonationHistory from "./routes/DonationHistory.js";
-import ProfileKitchen from "./routes/ProfileKichen.js";
+import ProfileKitchen from "./routes/ProfileKitchen.js";
 import Donation from "./routes/Donation.js";
 import FoodRequisition from "./routes/FoodRequisition.js";
 import CreateEvent from "./routes/CreateEvent.js";
@@ -47,6 +47,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/account_search/:query",
+    element: <AccountSearch/>
+  },
+  {
+    path: "/account_search",
     element: <AccountSearch/>
   },
   {

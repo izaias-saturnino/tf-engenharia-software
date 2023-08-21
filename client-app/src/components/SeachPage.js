@@ -17,7 +17,7 @@ const SearchPage = (props) => {
                     <div className="login-form">
                         <div>
                             <div className="title">{props.title}</div>
-                            {props.placeholder !== undefined && (
+                            {false && (
                                 <div>
                                     <form className="main-form">
                                         <div className="input-container">

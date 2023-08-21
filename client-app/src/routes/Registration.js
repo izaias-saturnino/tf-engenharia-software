@@ -23,36 +23,24 @@ const Content = (props) => {
           <div className="input-container">
               <input placeholder="Email" type="email" name="email" required />
           </div>
+          {props.utype === "donor" ? 
+          <div>
+            <div className="input-container">
+                <input placeholder="Telefone" type="text" name="phone" />
+            </div>
+            <div className="input-container">
+                <input placeholder="CPF" type="text" name="cpf" />
+            </div>
+          </div>
+          :
+          <div></div>
+          }
           <div className="input-container">
               <input placeholder="Senha" type="password" name="pass" required />
           </div>
           <div className="input-container">
               <input placeholder="Digite a senha novamente" type="password" name="pass2" required />
           </div>
-          {props.utype === "batata" ? // donor
-            <div className="input-container">
-              {/* TODO make date selection tool */}
-                <input placeholder="Data de Nascimento" type="text" name="birthDate" required />
-            </div>
-            :
-            <div></div>
-          }
-          {/* <div className="input-container"> */}
-            {/* make js mask for input (after modifying number) */}
-              {/* <input placeholder="Telefone" type="text" name="username" /> */}
-          {/* </div> */}
-          {/* <div className="input-container">
-              <input placeholder="Endereço" type="text" name="address" />
-          </div>
-          <div className="input-container">
-              <input placeholder="Cidade" type="text" name="address" />
-          </div>
-          <div className="input-container">
-              <input placeholder="Estado" type="text" name="address" />
-          </div>
-          <div className="input-container">
-              <input placeholder={props.utype === "donor" ? "CPF" : "CNPJ"} type="text" name="address" required />
-          </div> */}
           <div className="w-100 button-container">
               <input type="submit" className="form-btn" value="Criar Conta"/>
           </div>
@@ -69,7 +57,7 @@ const Registration = (props) => {
     const handleRegistration = (event) => {
         event.preventDefault();
     
-        var { username, address, email, pass, pass2 } = document.getElementsByClassName("main-form")[0];
+        var { username, email, pass, pass2, phone, cpf } = document.getElementsByClassName("main-form")[0];
     
         if(pass.value !== pass2.value){
           alert("As duas senhas precisam ser iguais.");
@@ -80,14 +68,26 @@ const Registration = (props) => {
     
         let uri = backend_base_url+'/API/SignUp/'+url_user_type;
     
-        const item = {
-          emailAddress: email.value,
-          name: username.value,
-          password: pass.value,
-          location: address.value
-        };
+        var item;
+        
+        if(user_type === "donor"){
+          item = {
+            emailAddress: email.value,
+            name: username.value,
+            password: pass.value,
+            phoneNumber: phone.value,
+            itr: cpf.value,
+          };
+        }
+        else{
+          item = {
+            emailAddress: email.value,
+            name: username.value,
+            password: pass.value
+          };
+        }
     
-        fetchContent(uri, JSON.stringify(item), 'POST', (data)=>alert(data));
+        fetchContent(uri, JSON.stringify(item), 'POST');
     };
 
     return (
