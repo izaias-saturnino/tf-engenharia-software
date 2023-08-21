@@ -82,7 +82,7 @@ const router = createBrowserRouter([
     element: <CreateEvent/>
   },
   {
-    path: "/confirm_action/:action/:user_id",
+    path: "/confirm_action/:utype/:action/:user_id",
     element: <ConfirmAction/>
   },
   {

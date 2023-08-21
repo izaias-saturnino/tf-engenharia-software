@@ -8,6 +8,8 @@ const updateResults = (setResults, events) =>{
     var key = 0;
 
     for(var event in events){
+        const datePart = events[event].date.split("T")[0]; // Extrai a parte da data antes do "T"
+        const reversedDate = datePart.split("-").reverse().join("/");
         results.push(
             <div key={key} className="py-3 w-100">
                 <EventCard title={undefined} content=
@@ -19,9 +21,9 @@ const updateResults = (setResults, events) =>{
                             <div  className="py-1">
                                 Público: {events[event].public}
                             </div>
-                            {/* <div className="py-1">
-                                Data: {events[event].date}
-                            </div> */}
+                            <div className="py-1">
+                                Data: {reversedDate}
+                            </div>
                         </div>
                     }
                 />

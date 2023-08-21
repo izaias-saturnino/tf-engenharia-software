@@ -43,15 +43,15 @@ export const AccountResult = (props) => {
             {props.admin?
             <div className="pt-3 flex center-content">
                 {isKitchen && !isValidated ?
-                <form className="d-flex right-content w-100 px-2">
+                <Link to={"/confirm_action/"+"kitchen"+"/validate/"+props.profile.identification} className="d-flex center-content w-100 px-2">
                     <input type="submit" className="form-btn" value="Validar"/>
-                </form>
+                </Link>
                 :
                 <div></div>
                 }
-                <form className={"d-flex left-content px-2 "+(isKitchen ? "w-100" : "")}>
+                <Link to={"/confirm_action/"+(isKitchen? "kitchen" : "donor")+"/delete/"+props.profile.identification} className={"d-flex center-content px-2 "+(isKitchen ? "w-100" : "")}>
                     <input type="submit" className="form-btn" value="Deletar"/>
-                </form>
+                </Link>
             </div>
             :
             <div></div>
@@ -60,11 +60,11 @@ export const AccountResult = (props) => {
     )
 }
 
-const updateResults = (setResults, newProfiles) =>{
+const updateResults = (setResults, newProfiles, admin) =>{
     var profiles = newProfiles;
     var results = [];
     for (var i = 0; i < profiles.length; i++) {
-        results.push(<AccountResult className={"default-border-bottom"} profile={profiles[i]}/>);
+        results.push(<AccountResult className={"default-border-bottom"} profile={profiles[i]} admin={admin}/>);
     }
     if(profiles.length === 0){
         results.push(<div className="pt-3">Não houveram resultados para a sua pesquisa.</div>);
@@ -81,19 +81,33 @@ const AccountSearch = (props) => {
 
     const {query} = useParams();
 
-    const [admin, setAdmin] = useState(state.utype === 0);
+    const [admin, setAdmin] = useState(state.utype === "administrador");
 
     const [results, setResults] = useState([]);
 
     useEffect(()=>{
         if(admin){
             //fetch profiles as manager
-            let uri = backend_base_url+'/API/ManagerField';
-            fetchContent(uri, null, 'POST', (data)=>{
-                var profiles = data.donors.concat(data.kitchens)
-                console.log(profiles);
-                updateResults(setResults, profiles);
-            });
+            if(query === undefined){
+                let uri = backend_base_url+'/API/ManagerField/GetAllRegistrations';
+
+                fetchContent(uri, 0, 'POST', (data)=>{
+                    var profiles = data.donors.concat(data.kitchens);
+                    console.log("profiles");
+                    console.log(profiles);
+                    updateResults(setResults, profiles, admin);
+                });
+            }
+            else{
+                let uri = backend_base_url+'/API/ManagerField/GetRegistrationsByFilter';
+
+                fetchContent(uri, JSON.stringify(query), 'POST', (data)=>{
+                    var profiles = data.donors.concat(data.kitchens);
+                    console.log("profiles");
+                    console.log(profiles);
+                    updateResults(setResults, profiles, admin);
+                });
+            }
         }
         else{
             if(query === undefined){
@@ -103,7 +117,7 @@ const AccountSearch = (props) => {
                     var profiles = data;
                     console.log("profiles");
                     console.log(profiles);
-                    updateResults(setResults, profiles);
+                    updateResults(setResults, profiles, admin);
                 });
             }
             else{
@@ -118,7 +132,7 @@ const AccountSearch = (props) => {
                     var profiles = data;
                     console.log("profiles");
                     console.log(profiles);
-                    updateResults(setResults, profiles);
+                    updateResults(setResults, profiles, admin);
                 });
             }
         }

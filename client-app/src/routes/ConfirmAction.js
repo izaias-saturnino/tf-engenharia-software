@@ -16,12 +16,16 @@ const Content = (props) => {
                     Deseja mesmo {props.action} esse usuário?
                 </div>
                 <div className="w-100 button-container pt-2">
-                    <form className="flex center-content w-100" onSubmit={props.cancel}>
-                        <input type="submit" className="form-btn" value="Cancelar"/>
-                    </form>
-                    <form className="flex center-content w-100" onSubmit={props.formFunction}>
-                        <input type="submit" className="form-btn" value="Confirmar"/>
-                    </form>
+                    <div className="d-flex center-content w-100">
+                        <form onSubmit={props.cancel}>
+                            <input type="submit" className="form-btn" value="Cancelar"/>
+                        </form>
+                    </div>
+                    <div className="d-flex center-content w-100">
+                        <form onSubmit={props.formFunction}>
+                            <input type="submit" className="form-btn" value="Confirmar"/>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,7 +34,9 @@ const Content = (props) => {
 
 const ConfirmAction = () => {
 
-    var {action, user_id} = useParams();
+    const state = { ...localStorage };
+
+    var {utype, action, user_id} = useParams();
 
     if(action === "delete"){
         action = "deletar";
@@ -49,28 +55,39 @@ const ConfirmAction = () => {
         var method;
         
         //ManagerIdentification: state.id,
-        const item = {
+        var item = {
             managerIdentification: state.id,
-            userIdentification: user_id
+            userIdentification: user_id,
+            userType: utype === "donor",
         };  
 
         if(action === "deletar"){
             end_point = "DeleteRegistration";
             method = "DELETE";
+
+            let uri = backend_base_url+'/API/'+end_point;
+
+            fetchContent(uri, JSON.stringify(item), method, (data)=>alert(data));
         }
         if(action === "validar"){
             end_point = "ValidateKitchen";
             method = "PATCH";
-        }
 
-        let uri = backend_base_url+'/API/'+end_point;
-    
-        fetchContent(uri, JSON.stringify(item), method, (data)=>alert(data));
+            let uri = backend_base_url+'/API/'+end_point;
+
+            fetchContent(backend_base_url+'/API/AccessKitchenProfile', user_id, 'POST',
+            (data)=>{
+                var kitchen = data.user;
+                item = {
+                    managerIdentification: state.id,
+                    userIdentification: kitchen
+                };  
+                fetchContent(uri, JSON.stringify(item), method, (data)=>alert(data));
+            });
+        }
     };
 
     var upperCaseAction = action.charAt(0).toUpperCase() + action.slice(1);
-
-    const state = { ...localStorage };
 
     const backNavigation = (event) => {
         event.preventDefault();

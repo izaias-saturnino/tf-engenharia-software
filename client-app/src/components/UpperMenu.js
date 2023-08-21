@@ -36,7 +36,7 @@ const UpperMenu = (props) => {
                     </Link>
                     <div className="px-2 w-100">
                         <div className="px-2">
-                            {userType === "doador" && (
+                            {userType !== "cozinha solidária" && (
                             <div className="px-2 border-gray">
                                 <form className="search-bar" onSubmit={handleSearchSubmit}>
                                     <input
@@ -55,7 +55,7 @@ const UpperMenu = (props) => {
                         {isBurgerMenuOpen && (
                             <div className="burger-menu-dropdown">
 
-                                {userType !== undefined && (
+                                {userType !== "administrador" && (
                                     <Link to="/donation_history">
                                         <button className="burger-dropdown-menu-button">Doações</button>
                                     </Link>

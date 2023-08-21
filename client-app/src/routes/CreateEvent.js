@@ -48,7 +48,7 @@ const CreateEvent = () => {
     
         const item = {
           kitchenIdentification: state.id,
-          /*Date: Date.value,*/
+          date: Date.value,
           location: Location.value,
           public: Public.value,
         };

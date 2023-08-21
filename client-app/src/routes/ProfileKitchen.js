@@ -9,6 +9,8 @@ import { backend_base_url } from "../App";
 import UpperMenu from "../components/UpperMenu";
 
 const Event = (props) => {
+    const datePart = props.event.date.split("T")[0]; // Extrai a parte da data antes do "T"
+    const reversedDate = datePart.split("-").reverse().join("/");
     return (
         <div className={"search-item " + props.className}>
             {/* TODO add link */}
@@ -25,6 +27,9 @@ const Event = (props) => {
                 </div> */}
                 <div className="search-item-propertie">
                     Público esperado: {props.event.public}
+                </div>
+                <div className="search-item-propertie">
+                    Data: {reversedDate}
                 </div>
             </div>
         </div>
@@ -82,6 +87,9 @@ const ProfileKitchen = (props) => {
                                     <div>
                                     {profile.location}
                                     </div>
+                                    <div>
+                                    {profile.validated? "Cozinha validada." : "Cozinha ainda não validada."}
+                                    </div>
                                     {/* <ProfileProp propName={"Email"} propValue={profile.emailAddress}/> */}
                                     {/* <ProfileProp propName={"Telefone"} propValue={profile.Telefone}/> */}
                                     {/* <ProfileProp propName={"Endereço"} propValue={profile.location}/> */}
@@ -100,13 +108,6 @@ const ProfileKitchen = (props) => {
                     <div className="login-form">
                         <div>
                             <div className="title">{"Eventos"}</div>
-                            <div>
-                                <form className="main-form">
-                                    <div className="input-container">
-                                        <input placeholder={"Filtrar"} type="text" name="search" />
-                                    </div>
-                                </form>
-                            </div>
                             <div className="search-results">
                                 {results}
                             </div>
