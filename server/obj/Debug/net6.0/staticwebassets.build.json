@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "Z0oyHbGgZNZX7NPtapjMlgVV8/P49e/x9QbIheJHREA=",
+  "Source": "INF-01127",
+  "BasePath": "_content/INF-01127",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "INF-01127\\wwwroot",
+      "Source": "INF-01127",
+      "ContentRoot": "C:\\UFRGS\\INF-01127\\wwwroot\\",
+      "BasePath": "_content/INF-01127",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\UFRGS\\INF-01127\\wwwroot\\swagger-ui\\SwaggerDark.css",
+      "SourceId": "INF-01127",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\UFRGS\\INF-01127\\wwwroot\\",
+      "BasePath": "_content/INF-01127",
+      "RelativePath": "swagger-ui/SwaggerDark.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\swagger-ui\\SwaggerDark.css"
+    }
+  ]
+}
