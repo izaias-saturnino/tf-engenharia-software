@@ -105,6 +105,13 @@ const ProfileKitchen = (props) => {
                             </div>
                         </Link>
                     </div>
+                    <div className="py-8 px-10">
+                        <Link to={"/donation_history/"+kitchen}>
+                            <div className="w-100 button-container button-font">
+                                <input type="submit" className="form-btn" value="Gerar relatório"/>
+                            </div>
+                        </Link>
+                    </div>
                     <div className="login-form">
                         <div>
                             <div className="title">{"Eventos"}</div>
