@@ -26,14 +26,21 @@ const Content = (props) => {
           {props.utype === "donor" ? 
           <div>
             <div className="input-container">
-                <input placeholder="Telefone" type="text" name="phone" />
+                <input placeholder="Telefone" type="text" name="phone" required />
             </div>
             <div className="input-container">
-                <input placeholder="CPF" type="text" name="cpf" />
+                <input placeholder="CPF" type="text" name="cpf" required />
             </div>
           </div>
           :
-          <div></div>
+          <div>
+            <div className="input-container">
+                <input placeholder="Endereço" type="text" name="location" required />
+            </div>
+            <div className="input-container">
+                <input placeholder="Descrição" type="text" name="description" required />
+            </div>
+          </div>
           }
           <div className="input-container">
               <input placeholder="Senha" type="password" name="pass" required />
@@ -57,7 +64,7 @@ const Registration = (props) => {
     const handleRegistration = (event) => {
         event.preventDefault();
     
-        var { username, email, pass, pass2, phone, cpf } = document.getElementsByClassName("main-form")[0];
+        var { username, email, pass, pass2, phone, cpf, location, description } = document.getElementsByClassName("main-form")[0];
     
         if(pass.value !== pass2.value){
           alert("As duas senhas precisam ser iguais.");
@@ -83,11 +90,13 @@ const Registration = (props) => {
           item = {
             emailAddress: email.value,
             name: username.value,
-            password: pass.value
+            password: pass.value,
+            location: location.value,
+            description: description.value
           };
         }
     
-        fetchContent(uri, JSON.stringify(item), 'POST');
+        fetchContent(uri, JSON.stringify(item), 'POST', (data)=>alert(data));
     };
 
     return (

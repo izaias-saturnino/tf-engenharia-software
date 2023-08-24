@@ -38,6 +38,7 @@ const Content = (props) => {
 
 const Login = (props) => {
 
+    window.localStorage.clear();
     const navigate = useNavigate();
 
     function getUtype(int){

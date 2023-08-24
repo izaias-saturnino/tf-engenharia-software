@@ -58,7 +58,8 @@ const ModifyProfile = (props) => {
     
       var { current_pass, username, phone, new_pass, new_pass2 } = document.getElementsByClassName("main-form")[0];
 
-      let change_list = [username.value, undefined, new_pass.value, phone.value];
+      var phone_value = phone === undefined ? undefined : phone.value;
+      let change_list = [username.value, undefined, new_pass.value, phone_value];
       let end_points = ["Name", undefined, "Password", "PhoneNumber"];
 
       if(new_pass.value !== new_pass2.value){

@@ -21,12 +21,6 @@ const UpperMenu = (props) => {
         navigate("/account_search/"+query.value);
     }
 
-    const logout = (event) => {
-        event.preventDefault();
-        localStorage.clear();
-        navigate("/login");
-    };
-
     return (
         <div className="w-100 d-flex center-content box-shadow-small bg-white">
             <div className="screen-area">
@@ -73,17 +67,15 @@ const UpperMenu = (props) => {
                                     </Link>
                                 )}
 
-                                {userType === "doador" && (
+                                {userType !== "administrador" && (
                                     <Link to="/modify_profile">
                                         <button className="burger-dropdown-menu-button">Credenciais</button>
                                     </Link>
                                 )}
 
-                                {userType !== undefined && (
-                                    <Link to="/login">
-                                        <button className="burger-dropdown-menu-button">Sair</button>
-                                    </Link>
-                                )}
+                                <Link to="/login">
+                                    <button className="burger-dropdown-menu-button">{userType !== undefined ? "Sair" : "Login"}</button>
+                                </Link>
                             </div>
                         )}
                         </div>

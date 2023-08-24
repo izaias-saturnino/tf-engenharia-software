@@ -75,7 +75,7 @@ const Payment = (props) => {
         //fetch send payment
         const item = {
             donationIdentification: requisition_id,
-            donotIdentification: state.id
+            donorIdentification: state.id
         }
         let uri = backend_base_url+'/API/Donate';
         fetchContent(uri, JSON.stringify(item), 'PATCH', (data)=>alert(data));
