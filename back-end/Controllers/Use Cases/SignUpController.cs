@@ -24,7 +24,7 @@ namespace INF_01127.Controllers.Requests
                 _context.Add(donor);
                 _context.Add(new UserModel { Password = donor.Password, EmailAddress = donor.EmailAddress });
                 _context.SaveChanges();
-                return NoContent();
+                return Ok("Doador cadastrado com sucesso!");
             }
             
             catch (DbUpdateException)
@@ -40,7 +40,7 @@ namespace INF_01127.Controllers.Requests
             _context.Add(kitchen);
             _context.Add(new UserModel { Password = kitchen.Password, EmailAddress = kitchen.EmailAddress, Type = false });
             _context.SaveChanges();
-            return NoContent();
+            return Ok("Cozinha cadastrada com sucesso!");
         }
     }
 }

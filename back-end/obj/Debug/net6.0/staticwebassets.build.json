@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Z0oyHbGgZNZX7NPtapjMlgVV8/P49e/x9QbIheJHREA=",
+  "Hash": "mQLwA+wxL2ZN1UhokmRieARWV37tZLCLGjIyBkcIfg0=",
   "Source": "INF-01127",
   "BasePath": "_content/INF-01127",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "INF-01127\\wwwroot",
       "Source": "INF-01127",
-      "ContentRoot": "C:\\UFRGS\\INF-01127\\wwwroot\\",
+      "ContentRoot": "C:\\UFRGS (Inferno)\\INF-01127\\wwwroot\\",
       "BasePath": "_content/INF-01127",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\UFRGS\\INF-01127\\wwwroot\\swagger-ui\\SwaggerDark.css",
+      "Identity": "C:\\UFRGS (Inferno)\\INF-01127\\wwwroot\\swagger-ui\\SwaggerDark.css",
       "SourceId": "INF-01127",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\UFRGS\\INF-01127\\wwwroot\\",
+      "ContentRoot": "C:\\UFRGS (Inferno)\\INF-01127\\wwwroot\\",
       "BasePath": "_content/INF-01127",
       "RelativePath": "swagger-ui/SwaggerDark.css",
       "AssetKind": "All",

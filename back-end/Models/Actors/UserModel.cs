@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace INF_01127.Models.Actors
 {
     [Table("Users")]
+    [Index(nameof(EmailAddress), IsUnique = true)]
     public class UserModel
     {
         [Key]

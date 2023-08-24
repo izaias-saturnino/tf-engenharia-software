@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace INF_01127.Models.Actors
 {
     [Table("Managers")]
+    [Index(nameof(EmailAddress), IsUnique = true)]
     public class ManagerModel
     {
         [Key]
