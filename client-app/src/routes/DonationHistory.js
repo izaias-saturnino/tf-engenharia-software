@@ -44,10 +44,8 @@ const Donation = (props) => {
 const updateResults = (donations, kitchen = undefined) => {
     var results = [];
     if(donations !== undefined){
-        var i = 0;
         for (var donation in donations) {
             results.push(<Donation className={"default-border-bottom"} donation={donations[donation]} kitchen={kitchen}/>);
-            i++;
         }
     }
     if(donations === undefined || donations.length === 0){

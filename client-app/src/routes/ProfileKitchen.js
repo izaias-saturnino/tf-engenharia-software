@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from 'react-router-dom';
 
-import ProfileProp from "../components/ProfileProp";
-
 import defaultProfilePic from '../images/default-profile-picture.png';
 import fetchContent from "../gets/Fetch";
 import { backend_base_url } from "../App";

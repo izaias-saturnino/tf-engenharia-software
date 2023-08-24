@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import logo from '../images/doaresLogo.png';
-
 import AccountForm from "../components/AccountForm";
 import UpperMenu from "../components/UpperMenu";
 import { Link, Navigate, useParams } from "react-router-dom";
